@@ -14,7 +14,7 @@ resource "namecheap_domain_records" "lilja-io-ns" {
   mode = "OVERWRITE"
 
   nameservers = [
-        "amit.ns.cloudflare.com",
+            "amit.ns.cloudflare.com",
     "anna.ns.cloudflare.com"
   ]
 }
