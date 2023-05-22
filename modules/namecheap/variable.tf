@@ -18,3 +18,8 @@ variable "namecheap_domain" {
   type        = string
   default     = "lilja.io"
 }
+
+variable "cloudflare_api_token" {
+  type        = string
+  description = "(Required) API token for authenticating with the cloudflare api."
+}
