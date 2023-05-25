@@ -4,7 +4,7 @@ on: pull_request
 
 jobs:
   lint:
-    name: Lint
+    name: Plan
     runs-on: ubuntu-20.04
     steps:
       - name: Check out code
@@ -37,5 +37,5 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: >
-          cd modules/cloudflare
+          cd modules/cloudflare;
           terraform plan
