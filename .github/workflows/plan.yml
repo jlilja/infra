@@ -22,10 +22,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-north-1
 
-      - name: Go to cloudflare directory
-        id: cloudflare
-        run: cd modules/cloudflare
-
       - name: Terraform Init
         id: init
         run: terraform init
@@ -40,4 +36,6 @@ jobs:
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan
+        run: >
+          cd modules/cloudflare
+          terraform plan
