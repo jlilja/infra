@@ -5,8 +5,8 @@ on:
     branches:
       - main
 
-apply:
-  lint:
+jobs:
+  apply:
     name: Format
     runs-on: ubuntu-20.04
     steps:
