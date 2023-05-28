@@ -7,14 +7,14 @@ on:
 
 jobs:
   apply:
-    name: Format
+    name: Apply
     runs-on: ubuntu-20.04
     steps:
       - name: Check out code
         uses: actions/checkout@v2
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
+        uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.4.5
 
