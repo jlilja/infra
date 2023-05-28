@@ -1,4 +1,4 @@
-name: Format on push
+name: Apply on main
 
 on:
   push:
@@ -28,3 +28,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
+
+      - name: Terraform Init
+        id: apply
+        run: terraform apply
