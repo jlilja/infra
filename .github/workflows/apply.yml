@@ -5,7 +5,7 @@ on:
     branches:
       - main
 
-jobs:
+apply:
   lint:
     name: Format
     runs-on: ubuntu-20.04
@@ -40,4 +40,4 @@ jobs:
           TF_VAR_protonmail_dkim2: ${{ secrets.TF_VAR_PROTONMAIL_DKIM2 }}
           TF_VAR_protonmail_dkim3: ${{ secrets.TF_VAR_PROTONMAIL_DKIM3 }}
           TF_VAR_protonmail_verification: ${{ secrets.TF_VAR_PROTONMAIL_VERIFICATION }}
-        run: terraform apply
+        run: terraform apply -auto-approve

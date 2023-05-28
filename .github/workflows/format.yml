@@ -3,7 +3,7 @@ name: Format on push
 on: push
 
 jobs:
-  lint:
+  format:
     name: Format
     runs-on: ubuntu-20.04
     steps:
