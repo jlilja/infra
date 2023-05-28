@@ -1,4 +1,4 @@
-name: Plan / Test On PR
+name: Plan on PR
 
 on: pull_request
 
@@ -28,21 +28,15 @@ jobs:
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_S3_REGION_NAME: ${{ secrets.AWS_S3_REGION_NAME }}
-        run: >
-          cd modules/cloudflare;
-          terraform init
+        run: terraform init
 
       - name: Terraform Validate
         id: validate
-        run: >
-          cd modules/cloudflare;
-          terraform validate
+        run: terraform validate
 
       - name: Terraform Format
         id: fmt
-        run: >
-          cd modules/cloudflare;
-          terraform fmt -check
+        run: terraform fmt -check
 
       - name: Terraform Plan
         id: plan
@@ -55,9 +49,7 @@ jobs:
           TF_VAR_protonmail_dkim2: ${{ secrets.TF_VAR_PROTONMAIL_DKIM2 }}
           TF_VAR_protonmail_dkim3: ${{ secrets.TF_VAR_PROTONMAIL_DKIM3 }}
           TF_VAR_protonmail_verification: ${{ secrets.TF_VAR_PROTONMAIL_VERIFICATION }}
-        run: >
-          cd modules/cloudflare;
-          terraform plan
+        run: terraform plan
 
       # TODO: Make this work somehow.
       # - uses: actions/github-script@v6
