@@ -9,7 +9,7 @@ terraform {
 module "cloudflare_setup" {
   source = "./modules/cloudflare"
 
-  domain_name = "lilja.io"
+  domain_name          = "lilja.io"
   cloudflare_api_token = var.cloudflare_api_token
 
   protonmail_verification = var.protonmail_verification
