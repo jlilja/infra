@@ -1,13 +1,10 @@
 name: Plan / Test On PR
 
-on:
-  pull_request:
-    branches:
-      - main
+on: push
 
 jobs:
   lint:
-    name: Lint
+    name: Format
     runs-on: ubuntu-20.04
     steps:
       - name: Check out code

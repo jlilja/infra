@@ -1,3 +1,7 @@
+data "cloudflare_zone" "lilja_dot_io" {
+  name = var.namecheap_domain
+}
+
 resource "namecheap_domain_records" "lilja-rocks-ns" {
   domain = "lilja.rocks"
   mode   = "OVERWRITE"
@@ -13,8 +17,5 @@ resource "namecheap_domain_records" "lilja-io-ns" {
   domain = var.namecheap_domain
   mode   = "OVERWRITE"
 
-  nameservers = [
-    "amit.ns.cloudflare.com",
-    "anna.ns.cloudflare.com"
-  ]
+  nameservers = data.cloudflare_zone.lilja_dot_io.name_servers
 }

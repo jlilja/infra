@@ -1,0 +1,86 @@
+name: Plan / Test On PR
+
+on: pull_request
+
+jobs:
+  lint:
+    name: Plan
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.4.5
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY  }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-north-1
+
+      - name: Terraform Init
+        id: init
+        env:
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_REGION_NAME: ${{ secrets.AWS_S3_REGION_NAME }}
+        run: >
+          cd modules/cloudflare;
+          terraform init
+
+      - name: Terraform Validate
+        id: validate
+        run: >
+          cd modules/cloudflare;
+          terraform validate
+
+      - name: Terraform Format
+        id: fmt
+        run: >
+          cd modules/cloudflare;
+          terraform fmt -check
+
+      - name: Terraform Plan
+        id: plan
+        env:
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_S3_REGION_NAME: ${{ secrets.AWS_S3_REGION_NAME }}
+          TF_VAR_cloudflare_api_token: ${{ secrets.TF_VAR_CLOUDFLARE_API_TOKEN }}
+          TF_VAR_protonmail_dkim1: ${{ secrets.TF_VAR_PROTONMAIL_DKIM1 }}
+          TF_VAR_protonmail_dkim2: ${{ secrets.TF_VAR_PROTONMAIL_DKIM2 }}
+          TF_VAR_protonmail_dkim3: ${{ secrets.TF_VAR_PROTONMAIL_DKIM3 }}
+          TF_VAR_protonmail_verification: ${{ secrets.TF_VAR_PROTONMAIL_VERIFICATION }}
+        run: >
+          cd modules/cloudflare;
+          terraform plan
+
+      # TODO: Make this work somehow.
+      # - uses: actions/github-script@v6
+      #   if: github.event_name == 'pull_request'
+      #   env:
+      #     PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+      #   with:
+      #     script: |
+      #         const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+      #         ### Workspace
+
+      #         #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+      #         #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+      #         <details><summary>Show Plan</summary>
+
+      #         </details>
+
+      #         **Pusher**: @${{ github.actor }}
+      #         **Action**: ${{ github.event_name }}`;
+
+      #         github.issues.createComment({
+      #           issue_number: context.issue.number,
+      #           owner: context.repo.owner,
+      #           repo: context.repo.repo,
+      #           body: output
+      #         })
