@@ -24,7 +24,7 @@ module "namecheap_setup" {
   source               = "./modules/namecheap"
   domain_name          = local.domain_name
   cloudflare_api_token = var.cloudflare_api_token
-  user_name            = var.namecheap_user_name
-  api_user             = var.namecheap_api_user
-  api_key              = var.namecheap_api_key
+  namecheap_user_name  = var.namecheap_user_name
+  namecheap_api_user   = var.namecheap_api_user
+  namecheap_api_key    = var.namecheap_api_key
 }
