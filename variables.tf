@@ -37,8 +37,3 @@ variable "namecheap_api_key" {
   type        = string
   description = "(Required) The Namecheap API key"
 }
-
-variable "cloudflare_api_token" {
-  type        = string
-  description = "(Required) API token for authenticating with the cloudflare api."
-}
