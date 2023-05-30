@@ -40,4 +40,8 @@ jobs:
           TF_VAR_protonmail_dkim2: ${{ secrets.TF_VAR_PROTONMAIL_DKIM2 }}
           TF_VAR_protonmail_dkim3: ${{ secrets.TF_VAR_PROTONMAIL_DKIM3 }}
           TF_VAR_protonmail_verification: ${{ secrets.TF_VAR_PROTONMAIL_VERIFICATION }}
+          TF_VAR_namecheap_user_name: ${{ secrects.TF_VAR_NAMECHEAP_USER_NAME }}
+          TF_VAR_namecheap_api_user: ${{ secrects.TF_VAR_NAMECHEAP_API_USER }}
+          TF_VAR_namecheap_api_key: ${{ secrects.TF_VAR_NAMECHEAP_API_KEY }}
+          TF_VAR_cloudflare_api_token: ${{ secrects.TF_VAR_CLOUDFLARE_API_TOKEN }}
         run: terraform apply -auto-approve

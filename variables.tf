@@ -22,3 +22,18 @@ variable "protonmail_dkim3" {
   description = "The protonmail CNAME dkim3 dns record."
   type        = string
 }
+
+variable "namecheap_user_name" {
+  type        = string
+  description = "(Required) A registered user name for Namecheap"
+}
+
+variable "namecheap_api_user" {
+  type        = string
+  description = "(Required) A registered api user for Namecheap"
+}
+
+variable "namecheap_api_key" {
+  type        = string
+  description = "(Required) The Namecheap API key"
+}

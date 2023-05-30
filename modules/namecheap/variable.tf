@@ -13,10 +13,9 @@ variable "namecheap_api_key" {
   description = "(Required) The Namecheap API key"
 }
 
-variable "namecheap_domain" {
-  description = "The Namecheap domain to configure"
+variable "domain_name" {
+  description = "The cloudflare domain to configure."
   type        = string
-  default     = "lilja.io"
 }
 
 variable "cloudflare_api_token" {
