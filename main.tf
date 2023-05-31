@@ -19,12 +19,3 @@ module "cloudflare_setup" {
   protonmail_dkim2        = var.protonmail_dkim2
   protonmail_dkim3        = var.protonmail_dkim3
 }
-
-module "namecheap_setup" {
-  source               = "./modules/namecheap"
-  domain_name          = local.domain_name
-  cloudflare_api_token = var.cloudflare_api_token
-  namecheap_user_name  = var.namecheap_user_name
-  namecheap_api_user   = var.namecheap_api_user
-  namecheap_api_key    = var.namecheap_api_key
-}
