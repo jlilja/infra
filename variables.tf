@@ -3,6 +3,11 @@ variable "cloudflare_api_token" {
   description = "(Required) API token for authenticating with the cloudflare api."
 }
 
+variable "cloudflare_account_id" {
+  type = string
+  description = "Cloudflare account id."
+}
+
 variable "protonmail_verification" {
   description = "The protonmail txt verification dns record."
   type        = string
