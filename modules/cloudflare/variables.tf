@@ -3,6 +3,11 @@ variable "cloudflare_api_token" {
   description = "(Required) API token for authenticating with the cloudflare api."
 }
 
+variable "account_id" {
+  type        = string
+  description = "Cloudflare account id."
+}
+
 variable "domain_name" {
   description = "The cloudflare domain to configure."
   type        = string
