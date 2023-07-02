@@ -15,5 +15,9 @@ jobs:
         with:
           terraform_version: 1.4.5
 
+      - name: Enter terraform folder
+        id: cd terraform
+        run: cd terraform
+
       - name: Run terraform fmt check
         run: terraform fmt -check -diff -recursive

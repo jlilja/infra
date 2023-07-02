@@ -25,6 +25,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-north-1
 
+      - name: Enter terraform folder
+        id: cd terraform
+        run: cd terraform
+
       - name: Terraform Init
         id: init
         run: terraform init
