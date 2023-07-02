@@ -1,0 +1,23 @@
+---
+
+version: '3'
+
+tasks:
+
+  format:
+    desc: Format all terraform files
+    dir: terraform
+    cmds:
+      - terraform fmt -check -diff -recursive
+
+  init:
+    desc: Initializes the terraform project
+    dir: terraform
+    cmds:
+      - terraform init
+
+  plan:
+    desc: Plan new terraform changes
+    dir: terraform
+    cmds:
+      - terraform plan
