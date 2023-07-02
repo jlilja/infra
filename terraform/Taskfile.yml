@@ -1,0 +1,10 @@
+---
+
+version: '3'
+
+tasks:
+
+  format:
+    desc: Format all terraform files
+    cmds:
+      - terraform fmt -check -diff -recursive

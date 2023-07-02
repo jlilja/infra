@@ -1,0 +1,11 @@
+version: '3'
+
+includes:
+  terraform: terraform/Taskfile.yml
+
+tasks:
+  format:
+    desc: Run Terraform format check
+    dir: terraform
+    cmds:
+      - terraform:format
