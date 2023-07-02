@@ -54,7 +54,7 @@ jobs:
           TF_VAR_protonmail_dkim2: ${{ secrets.TF_VAR_PROTONMAIL_DKIM2 }}
           TF_VAR_protonmail_dkim3: ${{ secrets.TF_VAR_PROTONMAIL_DKIM3 }}
           TF_VAR_protonmail_verification: ${{ secrets.TF_VAR_PROTONMAIL_VERIFICATION }}
-        run: terraform plan
+        run: task terraform:plan
 
       - name: Update PR
         uses: actions/github-script@v6
