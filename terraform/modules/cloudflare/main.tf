@@ -63,4 +63,4 @@ resource "cloudflare_record" "cname_dkim3" {
   name    = "protonmail3._domainkey"
   value   = var.protonmail_dkim3
   proxied = false
-}
+      }
