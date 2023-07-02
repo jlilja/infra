@@ -18,8 +18,5 @@ jobs:
         with:
           terraform_version: 1.4.5
 
-      - name: Enter terraform folder
-        run: cd terraform
-
       - name: Run terraform fmt check
         run: task format
