@@ -8,3 +8,13 @@ tasks:
     desc: Format all terraform files
     cmds:
       - terraform fmt -check -diff -recursive
+
+  init:
+    desc: Initializes the terraform project
+    cmds:
+      - terraform init
+
+  plan:
+    desc: Plan new terraform changes
+    cmds:
+      - terraform plan
