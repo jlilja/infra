@@ -13,6 +13,7 @@ tasks:
 
   init:
     desc: Run Terraform init
+    dir: terraform
     cmds:
       - task: terraform:init
 
