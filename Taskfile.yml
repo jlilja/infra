@@ -7,18 +7,15 @@ tasks:
 
   format:
     desc: Run Terraform format check
-    dir: terraform
     cmds:
       - task: terraform:format
 
   init:
     desc: Run Terraform init
-    dir: terraform
     cmds:
       - task: terraform:init
 
   plan:
     desc: Run Terraform plan
-    dir: terraform
     cmds:
       - task: terraform:plan
