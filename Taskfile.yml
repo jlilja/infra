@@ -8,4 +8,4 @@ tasks:
     desc: Run Terraform format check
     dir: terraform
     cmds:
-      - terraform:format
+      - task: terraform:format
