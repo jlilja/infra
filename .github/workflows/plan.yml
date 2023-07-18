@@ -44,7 +44,7 @@ jobs:
         run: task terraform:format
 
       - name: Terraform Plan
-        id: plan
+        id: plan-output
         env:
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -69,15 +69,18 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
+
             const botComment = comments.find(comment => {
               return comment.user.type === 'Bot' && comment.body.includes('Terraform Cloud Plan Output')
             });
+
             const output = `#### Terraform Cloud Plan Output
                 \`\`\`
                 Plan: ${{ steps.plan-output.outputs.add }} to add, ${{ steps.plan-output.outputs.change }} to change, ${{ steps.plan-output.outputs.destroy }} to destroy.
                 \`\`\`
                 [Terraform Cloud Plan](${{ steps.plan-run.outputs.run_link }})
                 `;
+
             // 3. Delete previous comment so PR timeline makes sense
             if (botComment) {
               github.rest.issues.deleteComment({
@@ -86,6 +89,7 @@ jobs:
                 comment_id: botComment.id,
               });
             }
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
