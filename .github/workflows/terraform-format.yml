@@ -1,15 +1,21 @@
 ---
 
-name: Format on push
+name: Format Terraform code on push
 
-on: push
+on:
+  push:
+    paths:
+      - terraform
 
 jobs:
 
   format:
+
     name: Format
     runs-on: ubuntu-20.04
+
     steps:
+
       - name: Check out code
         uses: actions/checkout@v3
 

@@ -1,12 +1,16 @@
 ---
 
-name: Plan on PR
+name: Plan Terraform code on PR
 
-on: pull_request
+on:
+  pull_request:
+    paths:
+      - terraform
 
 jobs:
 
   plan:
+
     name: Plan
     runs-on: ubuntu-20.04
 
@@ -14,6 +18,7 @@ jobs:
       pull-requests: write
 
     steps:
+
       - name: Check out code
         uses: actions/checkout@v3
 

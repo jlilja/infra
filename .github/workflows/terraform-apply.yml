@@ -1,18 +1,23 @@
 ---
 
-name: Apply on main
+name: Apply Terraform code on main
 
 on:
   push:
     branches:
       - main
+    paths:
+      - terraform
 
 jobs:
 
   apply:
+
     name: Apply
     runs-on: ubuntu-20.04
+
     steps:
+
       - name: Check out code
         uses: actions/checkout@v3
 
