@@ -35,13 +35,13 @@ jobs:
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_S3_REGION_NAME: ${{ secrets.AWS_S3_REGION_NAME }}
-        run: task terraform:init
+        run: task tf:init
 
       - name: Terraform Validate
         run: terraform validate
 
       - name: Terraform Format
-        run: task terraform:format
+        run: task tf:format
 
       - name: Terraform Plan
         id: plan-output
@@ -55,7 +55,7 @@ jobs:
           TF_VAR_protonmail_dkim2: ${{ secrets.TF_VAR_PROTONMAIL_DKIM2 }}
           TF_VAR_protonmail_dkim3: ${{ secrets.TF_VAR_PROTONMAIL_DKIM3 }}
           TF_VAR_protonmail_verification: ${{ secrets.TF_VAR_PROTONMAIL_VERIFICATION }}
-        run: task terraform:plan
+        run: task tf:plan
 
       - name: Update PR
         uses: actions/github-script@v6

@@ -20,4 +20,4 @@ jobs:
           terraform_version: 1.4.5
 
       - name: Run terraform fmt check
-        run: task format
+        run: task tf:format

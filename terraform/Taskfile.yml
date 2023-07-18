@@ -5,19 +5,25 @@ version: '3'
 tasks:
 
   format:
-    desc: Format all terraform files
+    desc: Format all Terraform files
     dir: terraform
     cmds:
       - terraform fmt -check -diff -recursive
 
   init:
-    desc: Initializes the terraform project
+    desc: Initializes the Terraform project
     dir: terraform
     cmds:
       - terraform init
 
   plan:
-    desc: Plan new terraform changes
+    desc: Plan new Terraform changes
     dir: terraform
     cmds:
       - terraform plan
+
+  apply:
+    desk: Apply new Terraform changes
+    dir: terraform
+    cmds:
+      - terraform -auto-approve

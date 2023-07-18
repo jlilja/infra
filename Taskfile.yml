@@ -5,17 +5,22 @@ includes:
 
 tasks:
 
-  format:
+  tf:format:
     desc: Run Terraform format check
     cmds:
       - task: terraform:format
 
-  init:
+  tf:init:
     desc: Run Terraform init
     cmds:
       - task: terraform:init
 
-  plan:
+  tf:plan:
     desc: Run Terraform plan
     cmds:
       - task: terraform:plan
+
+  tf:apply:
+    desc: Run Terraform apply
+    cmds:
+      - task: terraform:apply
