@@ -12,6 +12,11 @@ tasks:
     cmds:
       - task: terraform:format
 
+  tf:validate:
+    desc: Run Terraform validate check
+    cmds:
+      - task: terraform:validate
+
   tf:init:
     desc: Run Terraform init
     cmds:

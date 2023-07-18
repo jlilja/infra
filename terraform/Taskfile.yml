@@ -10,6 +10,12 @@ tasks:
     cmds:
       - terraform fmt -check -diff -recursive
 
+  validate:
+    desc: Validate all Terraform files
+    dir: terraform
+    cmds:
+      - terraform validate
+
   init:
     desc: Initializes the Terraform project
     dir: terraform
