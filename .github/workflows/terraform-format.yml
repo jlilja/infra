@@ -3,9 +3,7 @@
 name: Format Terraform code on push
 
 on:
-  push:
-    paths:
-      - terraform
+  push
 
 jobs:
 
