@@ -1,9 +1,14 @@
-name: Plan on PR
+---
 
-on: pull_request
+name: Plan Terraform code on PR
+
+on:
+  pull_request
 
 jobs:
+
   plan:
+
     name: Plan
     runs-on: ubuntu-20.04
 
@@ -11,8 +16,12 @@ jobs:
       pull-requests: write
 
     steps:
+
       - name: Check out code
         uses: actions/checkout@v3
+
+      - name: Setup Taskfile
+        uses: arduino/setup-task@v1
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -27,23 +36,20 @@ jobs:
           aws-region: eu-north-1
 
       - name: Terraform Init
-        id: init
         env:
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_S3_REGION_NAME: ${{ secrets.AWS_S3_REGION_NAME }}
-        run: terraform init
+        run: task tf:init
 
       - name: Terraform Validate
-        id: validate
         run: terraform validate
 
       - name: Terraform Format
-        id: fmt
-        run: terraform fmt -check
+        run: task tf:format
 
       - name: Terraform Plan
-        id: plan
+        id: plan-output
         env:
           AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -54,7 +60,7 @@ jobs:
           TF_VAR_protonmail_dkim2: ${{ secrets.TF_VAR_PROTONMAIL_DKIM2 }}
           TF_VAR_protonmail_dkim3: ${{ secrets.TF_VAR_PROTONMAIL_DKIM3 }}
           TF_VAR_protonmail_verification: ${{ secrets.TF_VAR_PROTONMAIL_VERIFICATION }}
-        run: terraform plan
+        run: task tf:plan
 
       - name: Update PR
         uses: actions/github-script@v6
@@ -68,15 +74,18 @@ jobs:
               repo: context.repo.repo,
               issue_number: context.issue.number,
             });
+
             const botComment = comments.find(comment => {
               return comment.user.type === 'Bot' && comment.body.includes('Terraform Cloud Plan Output')
             });
+
             const output = `#### Terraform Cloud Plan Output
                 \`\`\`
                 Plan: ${{ steps.plan-output.outputs.add }} to add, ${{ steps.plan-output.outputs.change }} to change, ${{ steps.plan-output.outputs.destroy }} to destroy.
                 \`\`\`
                 [Terraform Cloud Plan](${{ steps.plan-run.outputs.run_link }})
                 `;
+
             // 3. Delete previous comment so PR timeline makes sense
             if (botComment) {
               github.rest.issues.deleteComment({
@@ -85,6 +94,7 @@ jobs:
                 comment_id: botComment.id,
               });
             }
+
             github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,

@@ -1,0 +1,33 @@
+---
+
+version: '3'
+
+includes:
+  terraform: terraform/Taskfile.yml
+
+tasks:
+
+  tf:format:
+    desc: Run Terraform format check
+    cmds:
+      - task: terraform:format
+
+  tf:validate:
+    desc: Run Terraform validate check
+    cmds:
+      - task: terraform:validate
+
+  tf:init:
+    desc: Run Terraform init
+    cmds:
+      - task: terraform:init
+
+  tf:plan:
+    desc: Run Terraform plan
+    cmds:
+      - task: terraform:plan
+
+  tf:apply:
+    desc: Run Terraform apply
+    cmds:
+      - task: terraform:apply

@@ -1,4 +1,6 @@
-name: Apply on main
+---
+
+name: Apply Terraform code on main
 
 on:
   push:
@@ -6,12 +8,19 @@ on:
       - main
 
 jobs:
+
   apply:
+
     name: Apply
     runs-on: ubuntu-20.04
+
     steps:
+
       - name: Check out code
         uses: actions/checkout@v3
+
+      - name: Setup Taskfile
+        uses: arduino/setup-task@v1
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -27,7 +36,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: task tf:init
 
       - name: Terraform Apply
         id: apply
@@ -41,4 +50,4 @@ jobs:
           TF_VAR_protonmail_dkim2: ${{ secrets.TF_VAR_PROTONMAIL_DKIM2 }}
           TF_VAR_protonmail_dkim3: ${{ secrets.TF_VAR_PROTONMAIL_DKIM3 }}
           TF_VAR_protonmail_verification: ${{ secrets.TF_VAR_PROTONMAIL_VERIFICATION }}
-        run: terraform apply -auto-approve
+        run: task tf:apply

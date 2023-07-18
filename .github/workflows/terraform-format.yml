@@ -1,14 +1,24 @@
-name: Format on push
+---
 
-on: push
+name: Format Terraform code on push
+
+on:
+  push
 
 jobs:
+
   format:
+
     name: Format
     runs-on: ubuntu-20.04
+
     steps:
+
       - name: Check out code
         uses: actions/checkout@v3
+
+      - name: Setup Taskfile
+        uses: arduino/setup-task@v1
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
@@ -16,4 +26,4 @@ jobs:
           terraform_version: 1.4.5
 
       - name: Run terraform fmt check
-        run: terraform fmt -check -diff -recursive
+        run: task tf:format
