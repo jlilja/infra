@@ -1,7 +1,11 @@
 ---
 
-- name: Setup Raspberry Pi.
+# This playbook is used for whenever setting up a new Pihole instance on a Raspberry Pi.
+# The playbook is only intended to run initially in order to setup tasks that will most likely only be set once.
+# Other playbooks will maintain the installation of Pihole and further maintenence.
+
+- name: Setup Raspberry Pi
   hosts: pimachines
   become: yes
   roles:
-    - lockdown-user
+    - setup-user
