@@ -32,4 +32,4 @@ tasks:
     desk: Apply new Terraform changes
     dir: terraform
     cmds:
-      - terraform -auto-approve
+      - terraform apply -auto-approve
