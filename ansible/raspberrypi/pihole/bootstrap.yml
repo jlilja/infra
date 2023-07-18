@@ -1,0 +1,7 @@
+---
+
+- name: Setup Raspberry Pi.
+  hosts: pimachines
+  become: yes
+  roles:
+    - lockdown-user

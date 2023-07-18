@@ -1,0 +1,8 @@
+---
+
+- name: Install git
+  ansible.builtin.package:
+    name:
+      - git
+      - curl
+    state: present

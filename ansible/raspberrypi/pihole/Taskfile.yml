@@ -1,0 +1,11 @@
+---
+
+version: '3'
+
+tasks:
+
+  bootstrap:
+    desc: 'Run playbook meant for an initial setup of a Pihole on a Raspberry Pi'
+    dir: 'ansible/raspberrypi/pihole'
+    cmds:
+      - ansible-playbook -i inventory.yml bootstrap.yml
