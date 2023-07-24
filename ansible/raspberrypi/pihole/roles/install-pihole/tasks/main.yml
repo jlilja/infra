@@ -1,0 +1,26 @@
+---
+
+- name: Install git
+  ansible.builtin.package:
+    name:
+      - git
+      - curl
+    state: present
+
+- name: Git clone pihole repository
+  ansible.builtin.git:
+    repo: 'https://github.com/pi-hole/pi-hole.git'
+    dest: /home/jserver/pihole
+
+- name: ensures /etc/pihole dir exists
+  file:
+    path: "/etc/pihole"
+    state: directory
+
+- name: Copy setupVars
+  ansible.builtin.copy:
+    src: ./setupVars.conf
+    dest: /etc/pihole/setupVars.conf
+
+- name: Install pihole unattended
+  ansible.builtin.shell: bash /home/jserver/pihole/automated\ install/basic-install.sh --unattended

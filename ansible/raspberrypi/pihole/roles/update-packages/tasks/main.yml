@@ -1,0 +1,8 @@
+---
+
+
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
+- name: Update packages
+  apt:
+    update_cache: true
+    cache_valid_time: 3600

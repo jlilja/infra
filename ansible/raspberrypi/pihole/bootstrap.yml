@@ -9,3 +9,5 @@
   become: yes
   roles:
     - setup-user
+    - update-packages
+    - install-pihole
