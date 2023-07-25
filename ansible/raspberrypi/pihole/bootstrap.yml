@@ -6,7 +6,7 @@
 
 - name: Setup Raspberry Pi
   hosts: pimachines
-  become: yes
+  become: true
   roles:
     - setup-user
     - install-packages

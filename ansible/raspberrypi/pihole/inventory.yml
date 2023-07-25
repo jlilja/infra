@@ -7,3 +7,4 @@ pimachines:
   vars:
     ansible_user: jserver
     keys_repository: https://github.com/jlilja.keys
+    pihole_repository: https://github.com/pi-hole/pi-hole.git
