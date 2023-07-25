@@ -10,5 +10,5 @@ tasks:
     cmds:
       - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
-      INVENTORY: inventory.yml
+      INVENTORY: inventories/pimachines.yml
       PLAYBOOK: bootstrap.yml

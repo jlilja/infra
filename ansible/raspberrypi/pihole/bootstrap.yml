@@ -11,4 +11,6 @@
     - setup-user
     - install-packages
     - update-packages
+    - copy-setupvars
+    - copy-ftlconfig
     - install-pihole
