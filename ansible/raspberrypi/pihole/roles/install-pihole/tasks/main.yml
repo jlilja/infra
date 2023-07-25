@@ -1,22 +1,16 @@
 ---
 
-- name: Install git
-  ansible.builtin.package:
-    name:
-      - git
-      - curl
-    state: present
-
 - name: Git clone pihole repository
   ansible.builtin.git:
     repo: 'https://github.com/pi-hole/pi-hole.git'
     dest: /home/jserver/pihole
 
-- name: ensures /etc/pihole dir exists
-  file:
+- name: Ensures /etc/pihole dir exists
+  ansible.builtin.file:
     path: "/etc/pihole"
     state: directory
 
+# A file transfer will make Ansible always report a change.
 - name: Copy setupVars
   ansible.builtin.copy:
     src: ./setupVars.conf

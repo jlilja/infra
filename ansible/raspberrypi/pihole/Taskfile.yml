@@ -8,4 +8,7 @@ tasks:
     desc: 'Run playbook meant for an initial setup of a Pihole on a Raspberry Pi'
     dir: 'ansible/raspberrypi/pihole'
     cmds:
-      - ansible-playbook -i inventory.yml bootstrap.yml
+      - ansible-playbook -i $INVENTORY $PLAYBOOK
+    env:
+      INVENTORY: inventory.yml
+      PLAYBOOK: bootstrap.yml

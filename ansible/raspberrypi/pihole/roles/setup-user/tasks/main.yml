@@ -2,10 +2,10 @@
 
 - name: Create user if not already exist
   ansible.builtin.user:
-    name: jserver
+    name: "{{ ansible_user }}"
 
 - name: Set authorized keys from Github repo
   ansible.posix.authorized_key:
-    user: jserver
+    user: "{{ ansible_user }}"
     state: present
-    key: https://github.com/jlilja.keys
+    key: "{{ keys_repository }}"

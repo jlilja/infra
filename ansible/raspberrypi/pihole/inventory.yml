@@ -4,4 +4,6 @@ pimachines:
   hosts:
     pi01:
       ansible_host: 192.168.1.53
-      ansible_user: jserver
+  vars:
+    ansible_user: jserver
+    keys_repository: https://github.com/jlilja.keys
