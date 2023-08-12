@@ -4,6 +4,7 @@ version: '3'
 
 includes:
   terraform: terraform/Taskfile.yml
+  ansible:raspberrypi:pihole: ansible/raspberrypi/pihole/Taskfile.yml
 
 tasks:
 

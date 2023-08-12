@@ -13,3 +13,11 @@ Terraform code is defined in the [terraform](./terraform/) folder.
 * `task tf:init` - Initialize terraform providers and backend.
 * `task tf:plan` - Plan Terraform code.
 * `task tf:apply` - Apply Terraform code.
+
+## Ansible
+
+* Manages setup, configuration, and maintenence of a Pihole running on a Raspberry Pi.
+
+Pihole on Raspberry Pi is defined in the [Pihole](./ansible/raspberrypi/pihole/) folder.
+
+* `task ansible:raspberrypi:pihole:bootstrap` - Initial setup of a new Raspberry Pi.

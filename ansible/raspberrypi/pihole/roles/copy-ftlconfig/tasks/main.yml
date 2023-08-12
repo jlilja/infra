@@ -1,0 +1,14 @@
+---
+
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
+- name: Ensures /etc/pihole dir exists
+  ansible.builtin.file:
+    path: "/etc/pihole"
+    state: directory
+
+# A file transfer will make Ansible always report a change.
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
+- name: Copy pihole-FTL.conf
+  ansible.builtin.copy:
+    src: ./pihole-FTL.j2
+    dest: /etc/pihole/pihole-FTL.conf
