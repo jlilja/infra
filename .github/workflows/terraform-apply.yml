@@ -36,7 +36,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: task tf:init
+        run: task terraform:cloudflare:init
 
       - name: Terraform Apply
         id: apply
@@ -50,4 +50,4 @@ jobs:
           TF_VAR_protonmail_dkim2: ${{ secrets.TF_VAR_PROTONMAIL_DKIM2 }}
           TF_VAR_protonmail_dkim3: ${{ secrets.TF_VAR_PROTONMAIL_DKIM3 }}
           TF_VAR_protonmail_verification: ${{ secrets.TF_VAR_PROTONMAIL_VERIFICATION }}
-        run: task tf:apply
+        run: task terraform:cloudflare:apply

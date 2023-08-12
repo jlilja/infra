@@ -1,0 +1,10 @@
+---
+
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html
+- name: Install packages
+  ansible.builtin.package:
+    name:
+      - git
+      - curl
+      - ntpdate
+    state: present
