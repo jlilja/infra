@@ -8,11 +8,11 @@ Terraform code is defined in the [terraform](./terraform/) folder.
 
 ### Available commands
 
-* `task tf:format` -  Format Terraform code.
-* `task tf:validate` - Validate Terraform code.
-* `task tf:init` - Initialize terraform providers and backend.
-* `task tf:plan` - Plan Terraform code.
-* `task tf:apply` - Apply Terraform code.
+* `task terraform:cloudflare:format` -  Format Terraform code.
+* `task terraform:cloudflare:validate` - Validate Terraform code.
+* `task terraform:cloudflare:init` - Initialize terraform providers and backend.
+* `task terraform:cloudflare:plan` - Plan Terraform code.
+* `task terraform:cloudflare:apply` - Apply Terraform code.
 
 ## Ansible
 
