@@ -8,3 +8,5 @@ pimachines:
     ansible_user: jserver
     keys_repository: https://github.com/jlilja.keys
     pihole_repository: https://github.com/pi-hole/pi-hole.git
+    dns_1: 1.1.1.1
+    dns_2: 1.0.0.1

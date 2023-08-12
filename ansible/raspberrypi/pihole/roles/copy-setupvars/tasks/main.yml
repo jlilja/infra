@@ -9,6 +9,6 @@
 # A file transfer will make Ansible always report a change.
 # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
 - name: Copy setupVars
-  ansible.builtin.copy:
-    src: ./setupVars.conf
+  ansible.builtin.template:
+    src: templates/setupVars.j2
     dest: /etc/pihole/setupVars.conf
