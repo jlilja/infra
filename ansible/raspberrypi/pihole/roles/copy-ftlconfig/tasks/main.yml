@@ -10,5 +10,5 @@
 # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
 - name: Copy pihole-FTL.conf
   ansible.builtin.copy:
-    src: ./pihole-FTL.conf
+    src: ./pihole-FTL.j2
     dest: /etc/pihole/pihole-FTL.conf

@@ -10,3 +10,4 @@ pimachines:
     pihole_repository: https://github.com/pi-hole/pi-hole.git
     dns_1: 1.1.1.1
     dns_2: 1.0.0.1
+    privacy_level: 0

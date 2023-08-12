@@ -5,6 +5,7 @@
   ansible.builtin.git:
     repo: "{{ pihole_repository }}"
     dest: "/home/{{ ansible_user }}/pihole"
+    version: master
 
 # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html
 - name: Install pihole unattended
