@@ -1,6 +1,5 @@
 data "cloudflare_zone" "lilja_dot_io" {
-  name       = var.domain_name
-  account_id = var.account_id
+  name = var.domain_name
 }
 
 resource "cloudflare_record" "mx_proton_mail" {
