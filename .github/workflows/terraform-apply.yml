@@ -2,10 +2,12 @@
 
 name: Apply Terraform code on main
 
-on:
+oneee:
   push:
     branches:
       - main
+    paths:
+      - 'terraform/**.tf'
 
 jobs:
 

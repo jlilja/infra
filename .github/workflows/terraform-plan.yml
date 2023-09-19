@@ -3,7 +3,9 @@
 name: Plan Terraform code on PR
 
 on:
-  pull_request
+  pull_request:
+    paths:
+      - 'terraform/**.tf'
 
 jobs:
 
