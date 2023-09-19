@@ -57,6 +57,7 @@ jobs:
           AWS_S3_REGION_NAME: ${{ secrets.AWS_S3_REGION_NAME }}
           CLOUDFLARE_API_KEY: ${{ secrets.TF_VAR_CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_API_HOSTNAME: ${{ secrets.TF_VAR_CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_EMAIL }}
           TF_VAR_protonmail_dkim1: ${{ secrets.TF_VAR_PROTONMAIL_DKIM1 }}
           TF_VAR_protonmail_dkim2: ${{ secrets.TF_VAR_PROTONMAIL_DKIM2 }}
           TF_VAR_protonmail_dkim3: ${{ secrets.TF_VAR_PROTONMAIL_DKIM3 }}
