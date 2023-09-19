@@ -7,4 +7,4 @@ terraform {
   }
 }
 
-provider "cloudflare" {}
+# provider "cloudflare" {}
