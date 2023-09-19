@@ -2,7 +2,7 @@
 
 name: Apply Terraform code on main
 
-oneee:
+on:
   push:
     branches:
       - main
