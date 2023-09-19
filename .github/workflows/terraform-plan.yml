@@ -5,8 +5,6 @@ name: Plan Terraform code on PR
 on:
   workflow_dispatch:
   pull_request:
-    paths:
-      - 'terraform/**.tf'
 
 jobs:
 
