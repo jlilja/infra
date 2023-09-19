@@ -13,8 +13,6 @@ locals {
 module "cloudflare_setup" {
   source                  = "./modules/cloudflare"
   domain_name             = local.domain_name
-  account_id              = var.cloudflare_account_id
-  cloudflare_api_token    = var.cloudflare_api_token
   protonmail_verification = var.protonmail_verification
   protonmail_dkim1        = var.protonmail_dkim1
   protonmail_dkim2        = var.protonmail_dkim2
