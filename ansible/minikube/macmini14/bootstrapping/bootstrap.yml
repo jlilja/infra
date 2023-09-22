@@ -1,0 +1,19 @@
+---
+
+
+- name: playbook
+  hosts: all
+  become: true
+  tasks:
+
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html
+    - name: Create user if not already exist
+      ansible.builtin.user:
+        name: "{{ ansible_user }}"
+
+    # https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html
+    - name: Set authorized keys from Github repo
+      ansible.posix.authorized_key:
+        user: "{{ ansible_user }}"
+        state: present
+        key: "{{ keys_repository }}"

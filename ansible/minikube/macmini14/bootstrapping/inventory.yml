@@ -1,0 +1,10 @@
+---
+
+machine:
+  hosts:
+    kube1:
+  vars:
+    ansible_connection: local
+    ansible_user: j
+    keys_repository: https://github.com/jlilja.keys
+    pihole_repository: https://github.com/pi-hole/pi-hole.git
