@@ -5,3 +5,4 @@ version: '3'
 includes:
   terraform:cloudflare: terraform/Taskfile.yml
   ansible:raspberrypi:pihole: ansible/raspberrypi/pihole/Taskfile.yml
+  ansible:minikube:macmini: ansible/minikube/macmini14/Taskfile.yml
