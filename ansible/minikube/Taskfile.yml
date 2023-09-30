@@ -6,17 +6,17 @@ tasks:
 
   transfer-bootstrap:
     desc: 'Run bootstrapping on host'
-    dir: 'ansible/minikube/macmini14'
+    dir: 'ansible/minikube'
     cmds:
       - scp -r ./bootstrapping j@192.168.1.149:~/bootstrapping
 
   ping-host:
-    dir: 'ansible/minikube/macmini14'
+    dir: 'ansible/minikube'
     cmds:
       - ansible all -i ./ansible/inventory.yml -m ping
 
   install-dependencies:
     desc: 'Install docker and minikube'
-    dir: 'ansible/minikube/macmini14/ansible'
+    dir: 'ansible/minikube/ansible'
     cmds:
       - ansible-playbook -i ./inventory.yml ./install_deps.yml --ask-become-pass
