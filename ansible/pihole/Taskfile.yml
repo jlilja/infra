@@ -6,7 +6,7 @@ tasks:
 
   bootstrap:
     desc: 'Run playbook meant for an initial setup of a Pihole on a Raspberry Pi'
-    dir: 'ansible/raspberrypi/pihole'
+    dir: 'ansible/pihole'
     cmds:
       - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
