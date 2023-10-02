@@ -1,0 +1,11 @@
+---
+
+- name: Update dependencies
+  hosts: node1
+  become: true
+  tasks:
+
+    - name: Update dnf packages
+      dnf:
+        state: present
+        update_only: yes

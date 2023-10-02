@@ -1,7 +1,7 @@
 ---
 
 - name: Install dependencies
-  hosts: kube1
+  hosts: node1
   become: true
   tasks:
 
