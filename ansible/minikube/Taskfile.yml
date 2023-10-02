@@ -5,10 +5,16 @@ version: '3'
 tasks:
 
   transfer-bootstrap:
-    desc: 'Run bootstrapping on host'
+    desc: 'Copy bootstrapping scripts to setup a node'
     dir: 'ansible/minikube'
     cmds:
       - scp -r ./bootstrapping j@192.168.1.149:~/bootstrapping
+
+  transfer-definition:
+    desc: 'Copy K8s apps definitions'
+    dir: 'ansible/minikube'
+    cmds:
+      - scp -r ./apps j@192.168.1.149:~/apps
 
   ping-host:
     dir: 'ansible/minikube'
@@ -20,3 +26,9 @@ tasks:
     dir: 'ansible/minikube/ansible'
     cmds:
       - ansible-playbook -i ./inventory.yml ./install_deps.yml --ask-become-pass
+
+  update-dependencies:
+    desc: 'Update dnf packages'
+    dir: 'ansible/minikube/ansible'
+    cmds:
+      - ansible-playbook -i ./inventory.yml ./update_deps.yml --ask-become-pass
