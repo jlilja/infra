@@ -10,12 +10,6 @@ tasks:
     cmds:
       - scp -r ./bootstrapping j@192.168.1.149:~/bootstrapping
 
-  transfer-definition:
-    desc: 'Copy K8s apps definitions'
-    dir: 'ansible/minikube'
-    cmds:
-      - scp -r ./apps j@192.168.1.149:~/apps
-
   ping-host:
     dir: 'ansible/minikube'
     cmds:
@@ -32,3 +26,9 @@ tasks:
     dir: 'ansible/minikube/ansible'
     cmds:
       - ansible-playbook -i ./inventory.yml ./update_deps.yml --ask-become-pass
+
+  harden-ssh:
+    desc: 'Update ssh configs to be more secure'
+    dir: 'ansible/minikube/ansible'
+    cmds:
+      - ansible-playbook -i ./inventory.yml ./harden_ssh.yml --ask-become-pass
