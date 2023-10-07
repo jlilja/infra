@@ -1,0 +1,11 @@
+---
+
+version: '3'
+
+tasks:
+
+  transfer-definition:
+    desc: 'Copy K8s apps definitions'
+    dir: 'k8s/apps/webserver'
+    cmds:
+      - scp -r ./nginx.yml j@192.168.1.149:~/nginx.yml
