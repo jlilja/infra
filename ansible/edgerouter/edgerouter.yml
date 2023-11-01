@@ -1,0 +1,17 @@
+---
+
+- name: Set
+  hosts: edgerouter1
+  connection: network_cli
+
+  tasks:
+    - name: Gather facts
+      edgeos_facts:
+        gather_subset:
+          - config
+          - default
+
+    - name: Configure the remote device
+      community.network.edgeos_config:
+        lines:
+          - set system host-name edgerouter

@@ -9,3 +9,9 @@ tasks:
     dir: 'k8s/apps/webserver'
     cmds:
       - scp -r ./nginx.yml j@192.168.1.149:~/nginx.yml
+
+  transfer-ingress:
+    desc: 'Copy K8s apps definitions'
+    dir: 'k8s/apps/webserver'
+    cmds:
+      - scp -r ./ingress.yml j@192.168.1.149:~/ingress.yml

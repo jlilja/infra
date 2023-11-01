@@ -1,0 +1,11 @@
+---
+
+version: '3'
+
+tasks:
+
+  edgeroutersetup:
+    desc: 'Call edgerouter router'
+    dir: 'ansible/edgerouter'
+    cmds:
+      - ansible-playbook -i ./inventory.yml ./edgerouter.yml --ask-pass
