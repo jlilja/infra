@@ -29,7 +29,7 @@ tasks:
       - terraform plan
 
   apply:
-    desk: Apply new Terraform changes
+    desc: Apply new Terraform changes
     dir: terraform
     cmds:
       - terraform apply -auto-approve
