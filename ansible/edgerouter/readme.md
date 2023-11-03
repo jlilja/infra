@@ -24,28 +24,38 @@ If you are following the setup wizard, use the following settings:
 
 **Internet port**
 
-Internet connection type        "DHCP"
-VLAN                            unchecked
-IPv4 Firewall                   checked
-IPv6 Firewall                   checked
-DHCPv6 PD                       unchecked
+| Option                    | Value     |
+|---------------------------|-----------|
+| Internet connection type  | "DHCP"    |
+| VLAN                      | unchecked |
+| IPv4 Firewall             | checked   |
+| IPv6 Firewall             | checked   |
+| DHCPv6 PD                 | unchecked |
 
 **DNS forwarding**
 
-DNS servers                     "Use servers provided by the Internet Service Provider"
+|Option         | Value                                                     |
+|---------------|-----------------------------------------------------------|
+| DNS servers   | "Use servers provided by the Internet Service Provider"   |
 
 **LAN ports** TODO Revise if this is needed
 
-Address                         192.168.1.1 / 255.255.255.0
-DHCP                            "Enable the DHCP server"
+|Option     | Value                         |
+|-----------|-------------------------------|
+| Address   | 192.168.1.1 / 255.255.255.0   |
+| DHCP      | "Enable the DHCP server"      |
 
 **User setup**
 
-User                            "Create new admin user" - *Create new credentials*
+|Option | Value                                                 |
+|-------|-------------------------------------------------------|
+| User  | "Create new admin user" - *Create new credentials*    |
 
 **Analytics and crash reporting**
 
-Analytics and crashes           unchecked
+|Option                 | Value     |
+|-----------------------|-----------|
+| Analytics and crashes | unchecked |
 
 
 Hit apply once the settings are configured. You should be prompted by the following message:
