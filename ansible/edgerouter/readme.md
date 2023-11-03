@@ -65,3 +65,7 @@ Hit apply changes, confirm, and reboot.
 While the router is restarting, you should now remove your manually inputted PIv4 settings and revert back to DHCP assigning mode. You will now also need to switch ports from eth1 to eth2 for your computer on the router when connecting. If you have a cable for the WAN, this can also be connected into eth0 at this point.
 
 When connected to eth2, verify that you have a connection to the internet. If so, disconnect your computer and connect your switch or AP into the same port for further configuration.
+
+## Further reading
+
+* https://guide.thehomeofthefuture.com/set-up-an-ubiquiti-edgerouter-from-scratch
