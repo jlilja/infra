@@ -1,0 +1,39 @@
+---
+
+- name: Set
+  hosts: edgerouter1
+  connection: network_cli
+
+  tasks:
+
+    - name: Configure the remote device
+      community.network.edgeos_config:
+        lines:
+          # Set hostname settings
+          - set system host-name edgerouter
+
+          # Disable ubnt services
+          - set service ubnt-discover disable
+          - set service unms disable
+
+          # Set NTP servers
+          - set system ntp server 0.ubnt.pool.ntp.org
+          - set system ntp server 1.ubnt.pool.ntp.org
+          - set system ntp server 2.ubnt.pool.ntp.org
+          - set system ntp server 3.ubnt.pool.ntp.org
+
+          - set system time-zone UTC
+
+          # Enable deep packet analysis
+          # https://help.ui.com/hc/en-us/articles/204951104-EdgeRouter-Deep-Packet-Inspection-Engine
+          - set system traffic-analysis dpi enable
+          - set system traffic-analysis export enable
+
+          # Don't tell Ubiquiti about your issues.
+          - set system analytics-handler send-analytics-report false
+          - set system crash-handler send-crash-report false
+
+          # Hairpinning is when services wants to go out to the NAT and get back into the network.
+          # AFAIK this is not needed for me at the moment.
+          # Will be commented out until VLANS are defined
+          # - set port-forward hairpin-nat disable

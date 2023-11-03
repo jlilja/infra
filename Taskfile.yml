@@ -4,6 +4,9 @@ version: '3'
 
 includes:
   terraform:cloudflare: terraform/Taskfile.yml
+
+  k8s:webserver: k8s/apps/webserver/Taskfile.yml
+
   ansible:pihole: ansible/pihole/Taskfile.yml
   ansible:minikube: ansible/minikube/Taskfile.yml
-  k8s:webserver: k8s/apps/webserver/Taskfile.yml
+  ansible:edgerouter: ansible/edgerouter/Taskfile.yml
