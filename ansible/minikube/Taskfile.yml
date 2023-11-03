@@ -11,6 +11,7 @@ tasks:
       - scp -r ./bootstrapping j@192.168.1.149:~/bootstrapping
 
   ping-host:
+    desc: 'Ping the minikube node using ansible module ping'
     dir: 'ansible/minikube'
     cmds:
       - ansible all -i ./ansible/inventory.yml -m ping
