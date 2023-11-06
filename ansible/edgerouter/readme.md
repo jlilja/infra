@@ -1,5 +1,7 @@
 # Edgerouter
 
+Hardware - EdgeRouter Lite 3-Port
+
 ## Setup static IP on linux
 
 When setting up a new edgerouter, the router is not configured for DHCP (server for assigning IPs). This means that we need to tell the router our IP when connecting with it for the first time.
