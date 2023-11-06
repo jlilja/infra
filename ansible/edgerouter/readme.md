@@ -79,3 +79,4 @@ When connected to eth2, verify that you have a connection to the internet. If so
 ## Further reading
 
 * https://guide.thehomeofthefuture.com/set-up-an-ubiquiti-edgerouter-from-scratch
+* https://www.justinho.com/blog/2020/09/03/cleanedgerouter.html
