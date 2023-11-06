@@ -22,6 +22,10 @@
           - set system ntp server 2.ubnt.pool.ntp.org
           - set system ntp server 3.ubnt.pool.ntp.org
 
+          # Set all of the remote servers
+          - set system name-server 8.8.8.8
+          - set system name-server 4.2.2.1
+
           - set system time-zone UTC
 
           # Enable deep packet analysis
@@ -37,3 +41,19 @@
           # AFAIK this is not needed for me at the moment.
           # Will be commented out until VLANS are defined
           # - set port-forward hairpin-nat disable
+
+          # Setup WAN entrypoint for eth0.
+          # Setup interface to use DHCP and duplex speed to be auto negotiated
+          - set interfaces ethernet eth0 description internet
+          - set interfaces ethernet eth0 address dhcp
+          - set interfaces ethernet eth0 duplex auto
+
+          # Setup LAN interface for home network.
+          # 192.168.1.1/24, nothing special.
+          - set interfaces ethernet eth1 description lan
+          - set interfaces ethernet eth1 address 192.168.1.1/24
+          - set interfaces ethernet eth1 duplex auto
+
+          # Not used. Eth1 pushes traffic to a switch so no need to the remainin interface(s).
+          - set interfaces ethernet eth2 description -
+          - set interfaces ethernet eth2 disable
