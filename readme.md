@@ -22,12 +22,14 @@ Terraform code is defined in the [terraform](./terraform/) folder.
 
 Pihole on Raspberry Pi is defined in the [Pihole](./ansible/pihole/) folder.
 
+* `task ansible:pihole:bootstrap`               - Run playbook meant for an initial setup of a Pihole on a Raspberry Pi
+
 Edgerouter is defined in the [Edgerouter](./ansible/edgerouter/) folder.
+
+* `task ansible:edgerouter:edgeroutersetup`     - Call edgerouter router
 
 Kubernetes configuration is defined in the [Minikube](./ansible/minikube/) folder.
 
-* `task ansible:pihole:bootstrap`               - Run playbook meant for an initial setup of a Pihole on a Raspberry Pi
-* `task ansible:edgerouter:edgeroutersetup`     - Call edgerouter router
 * `task ansible:minikube:harden-ssh`            - Update ssh configs to be more secure
 * `task ansible:minikube:install-dependencies`  - Install docker and minikube
 * `task ansible:minikube:ping-host`             - Ping the minikube node using ansible module ping
