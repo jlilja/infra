@@ -57,3 +57,17 @@
           # Not used. Eth1 pushes traffic to a switch so no need to the remainin interface(s).
           - set interfaces ethernet eth2 description -
           - set interfaces ethernet eth2 disable
+
+          # Setup LAN1 dhcp server
+          - set service dhcp-server shared-network-name LAN1 authoritative enable
+          - set service dhcp-server shared-network-name LAN1 subnet 192.168.1.0/24 default-router 192.168.1.1 # Router
+          - set service dhcp-server shared-network-name LAN1 subnet 192.168.1.0/24 dns-server 192.168.1.1 # DNS 1
+          - set service dhcp-server shared-network-name LAN1 subnet 192.168.1.0/24 lease 86000 # Lease time
+          - set service dhcp-server shared-network-name LAN1 subnet 192.168.1.0/24 start 192.168.1.38 stop 192.168.1.243
+
+          # Setup homelab dhcp server
+          - set service dhcp-server shared-network-name homelab authoritative enable
+          - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 default-router 192.168.20.1 # Router
+          - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 dns-server 192.168.20.1 # DNS 1
+          - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 lease 86000 # Lease time
+          - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 start 192.168.20.1 stop 192.168.20.243

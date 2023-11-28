@@ -82,3 +82,4 @@ When connected to eth2, verify that you have a connection to the internet. If so
 
 * https://guide.thehomeofthefuture.com/set-up-an-ubiquiti-edgerouter-from-scratch
 * https://www.justinho.com/blog/2020/09/03/cleanedgerouter.html
+* https://help.ui.com/hc/en-us/articles/204952254-EdgeRouter-DHCP-Server
