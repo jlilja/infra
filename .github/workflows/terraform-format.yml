@@ -5,7 +5,7 @@ name: Format Terraform code on push
 on:
   push:
     paths:
-      - "./terraform"
+      - "./terraform/**"
 
 jobs:
 
