@@ -63,6 +63,10 @@ jobs:
       - name: Update PR
         uses: actions/github-script@v7
         id: plan-comment
+        env:
+          ADD: ${{ steps.plan-output.outputs.add }}
+          CHANGE: ${{ steps.plan-output.outputs.change }}
+          DESTROY: ${{ steps.plan-output.outputs.destroy }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -78,7 +82,7 @@ jobs:
 
             const output = `#### Terraform Cloud Plan Output
                 \`\`\`
-                Plan: ${{ steps.plan-output.outputs.add }} to add, ${{ steps.plan-output.outputs.change }} to change, ${{ steps.plan-output.outputs.destroy }} to destroy.
+                Plan: ${process.env.ADD} to add, ${process.env.CHANGE} to change, ${process.env.DESTROY} to destroy.
                 \`\`\`
                 [Terraform Cloud Plan](${{ steps.plan-run.outputs.run_link }})
                 `;
@@ -91,7 +95,7 @@ jobs:
               });
             }
 
-            if (${{ steps.plan-output.outputs.add }} || ${{ steps.plan-output.outputs.change }} || ${{ steps.plan-output.outputs.destroy }}) {
+            if (${process.env.ADD} || ${process.env.CHANGE} || ${process.env.DESTROY}) {
               github.rest.issues.createComment({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
