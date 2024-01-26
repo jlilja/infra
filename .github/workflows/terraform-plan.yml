@@ -67,6 +67,7 @@ jobs:
           ADD: ${{ steps.plan-output.outputs.add }}
           CHANGE: ${{ steps.plan-output.outputs.change }}
           DESTROY: ${{ steps.plan-output.outputs.destroy }}
+          LINK: ${{ steps.plan-run.outputs.run_link }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -84,7 +85,7 @@ jobs:
                 \`\`\`
                 Plan: ${process.env.ADD} to add, ${process.env.CHANGE} to change, ${process.env.DESTROY} to destroy.
                 \`\`\`
-                [Terraform Cloud Plan](${{ steps.plan-run.outputs.run_link }})
+                [Terraform Cloud Plan](${process.env.LINK})
                 `;
 
             if (botComment) {
