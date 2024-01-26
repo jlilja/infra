@@ -1,5 +1,4 @@
 ---
-
 name: Plan Terraform code on PR
 
 on:
@@ -9,9 +8,7 @@ on:
       - "terraform"
 
 jobs:
-
   plan:
-
     name: Plan
     runs-on: ubuntu-20.04
 
@@ -19,7 +16,6 @@ jobs:
       pull-requests: write
 
     steps:
-
       - name: Check out code
         uses: actions/checkout@v4
 
@@ -95,11 +91,7 @@ jobs:
               });
             }
 
-            if (
-              ${{ steps.plan-output.outputs.add }} ||
-              ${{ steps.plan-output.outputs.change }} ||
-              ${{ steps.plan-output.outputs.destroy }}
-            ) {
+            if (${{ steps.plan-output.outputs.add }} || ${{ steps.plan-output.outputs.change }} || ${{ steps.plan-output.outputs.destroy }}) {
               github.rest.issues.createComment({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
