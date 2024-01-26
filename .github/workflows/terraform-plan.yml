@@ -4,8 +4,8 @@ name: Plan Terraform code on PR
 on:
   workflow_dispatch:
   pull_request:
-    paths:
-      - "terraform"
+    # paths:
+    #   - "terraform"
 
 jobs:
   plan:
@@ -83,9 +83,8 @@ jobs:
 
             const output = `#### Terraform Cloud Plan Output
                 \`\`\`
-                Plan: ${process.env.ADD} to add, ${process.env.CHANGE} to change, ${process.env.DESTROY} to destroy.
+                Plan: ${{ steps.plan-output.outputs.add }} to add, ${{ steps.plan-output.outputs.change }} to change, ${{ steps.plan-output.outputs.destroy }} to destroy.
                 \`\`\`
-                [Terraform Cloud Plan](${process.env.LINK})
                 `;
 
             if (botComment) {
@@ -96,11 +95,9 @@ jobs:
               });
             }
 
-            if (${process.env.ADD} || ${process.env.CHANGE} || ${process.env.DESTROY}) {
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: output
-              });
-            }
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            });
