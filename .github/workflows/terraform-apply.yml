@@ -1,5 +1,4 @@
 ---
-
 name: Apply Terraform code on main
 
 on:
@@ -7,17 +6,14 @@ on:
     branches:
       - main
     paths:
-      - "./terraform"
+      - "terraform/**"
 
 jobs:
-
   apply:
-
     name: Apply
     runs-on: ubuntu-20.04
 
     steps:
-
       - name: Check out code
         uses: actions/checkout@v4
 
