@@ -1,6 +1,5 @@
 ---
-
-version: '3'
+version: "3"
 
 includes:
   terraform:cloudflare: terraform/Taskfile.yml
@@ -10,3 +9,4 @@ includes:
   ansible:pihole: ansible/pihole/Taskfile.yml
   ansible:minikube: ansible/minikube/Taskfile.yml
   ansible:edgerouter: ansible/edgerouter/Taskfile.yml
+  ansible:unifi: ansible/unifi/Taskfile.yml
