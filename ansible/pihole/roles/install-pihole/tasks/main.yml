@@ -1,5 +1,4 @@
 ---
-
 # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html
 - name: Git clone pihole repository
   ansible.builtin.git:

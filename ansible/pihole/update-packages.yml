@@ -1,0 +1,8 @@
+---
+# Used for regular maintenence of system. Will update apt packages
+
+- name: Update rpi packages
+  hosts: pimachines
+  become: true
+  roles:
+    - update-packages

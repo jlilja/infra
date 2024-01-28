@@ -1,5 +1,4 @@
 ---
-
 # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html
 - name: Create user if not already exist
   ansible.builtin.user:
