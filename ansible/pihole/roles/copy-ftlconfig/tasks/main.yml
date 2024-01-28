@@ -1,5 +1,4 @@
 ---
-
 # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
 - name: Ensures /etc/pihole dir exists
   ansible.builtin.file:

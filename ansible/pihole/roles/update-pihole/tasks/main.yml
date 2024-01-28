@@ -1,0 +1,3 @@
+---
+- name: Update pihole
+  ansible.builtin.command: pihole -up

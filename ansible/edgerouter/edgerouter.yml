@@ -70,4 +70,11 @@
           - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 default-router 192.168.20.1 # Router
           - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 dns-server 192.168.20.1 # DNS 1
           - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 lease 86000 # Lease time
-          - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 start 192.168.20.1 stop 192.168.20.243
+          - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 start 192.168.20.1 stop 192.168.20.254
+
+          # Setup guest dhcp server
+          - set service dhcp-server shared-network-name guest authoritative enable
+          - set service dhcp-server shared-network-name guest subnet 192.168.30.0/24 default-router 192.168.30.1 # Router
+          - set service dhcp-server shared-network-name guest subnet 192.168.30.0/24 dns-server 192.168.20.1 # DNS 1
+          - set service dhcp-server shared-network-name guest subnet 192.168.30.0/24 lease 86000 # Lease time
+          - set service dhcp-server shared-network-name guest subnet 192.168.30.0/24 start 192.168.30.1 stop 192.168.30.254

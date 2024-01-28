@@ -1,14 +1,30 @@
 ---
-
-version: '3'
+version: "3"
 
 tasks:
-
   bootstrap:
-    desc: 'Run playbook meant for an initial setup of a Pihole on a Raspberry Pi'
-    dir: 'ansible/pihole'
+    desc: "Run playbook meant for an initial setup of a Pihole on a Raspberry Pi"
+    dir: "ansible/pihole"
     cmds:
       - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       INVENTORY: inventories/pimachines.yml
       PLAYBOOK: bootstrap.yml
+
+  update_packages:
+    desc: Update apt packages on machine
+    dir: "ansible/pihole"
+    cmds:
+      - ansible-playbook -i $INVENTORY $PLAYBOOK
+    env:
+      INVENTORY: inventories/pimachines.yml
+      PLAYBOOK: update-packages.yml
+
+  update_pihole:
+    desc: Update pihole
+    dir: "ansible/pihole"
+    cmds:
+      - ansible-playbook -i $INVENTORY $PLAYBOOK
+    env:
+      INVENTORY: inventories/pimachines.yml
+      PLAYBOOK: update-pihole.yml
