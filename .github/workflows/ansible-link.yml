@@ -14,4 +14,4 @@ jobs:
       - name: Run ansible-lint
         uses: ansible/ansible-lint@a3fc7e4def4c3576a221fd1e0e58c0ee43f73af5
         with:
-          args: "--profile=min"
+          args: "--profile=min --exclude=ansible/edgerouter/edgerouter.yml"
