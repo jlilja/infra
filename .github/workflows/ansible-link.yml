@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run ansible-lint
-        uses: ansible/ansible-lint@24ac1cdb1ae30a273a844ac869fadd8d7b544ef5
+        uses: ansible/ansible-lint@a3fc7e4def4c3576a221fd1e0e58c0ee43f73af5
         with:
           args: "--profile=min"
