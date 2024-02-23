@@ -6,14 +6,14 @@
 
   handlers:
 
-    - name: restart ssh
-      service: name=sshd state=restarted
+    - name: Restart ssh
+      ansible.builtin.service: name=sshd state=restarted
 
   tasks:
 
     # Taken from https://github.com/geerlingguy/ansible-for-devops/blob/master/security/main.yml
     - name: Update SSH configuration to be more secure.
-      lineinfile:
+      ansible.builtin.lineinfile:
         dest: /etc/ssh/sshd_config
         regexp: "{{ item.regexp }}"
         line: "{{ item.line }}"

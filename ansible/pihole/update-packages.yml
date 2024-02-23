@@ -5,4 +5,4 @@
   hosts: pimachines
   become: true
   roles:
-    - update-packages
+    - update_packages

@@ -15,10 +15,10 @@ spec:
         app: nginxdeployment
     spec:
       containers:
-      - image: ghcr.io/home-assistant/home-assistant:stable
-        name: nginxdeployment
-        ports:
-        - containerPort: 8123
+        - image: ghcr.io/home-assistant/home-assistant:stable
+          name: nginxdeployment
+          ports:
+            - containerPort: 8123
 ---
 apiVersion: v1
 kind: Service

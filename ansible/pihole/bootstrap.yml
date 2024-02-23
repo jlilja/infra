@@ -9,9 +9,9 @@
   hosts: pimachines
   become: true
   roles:
-    - setup-user
-    - install-packages
-    - update-packages
-    - copy-setupvars
-    - copy-ftlconfig
-    - install-pihole
+    - setup_user
+    - install_packages
+    - update_packages
+    - copy_setupvars
+    - copy_ftlconfig
+    - install_pihole
