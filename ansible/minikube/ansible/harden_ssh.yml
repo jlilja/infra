@@ -6,8 +6,8 @@
 
   handlers:
 
-    - name: restart ssh
-      service: name=sshd state=restarted
+    - name: Restart ssh
+      ansible.builtin.service: name=sshd state=restarted
 
   tasks:
 
