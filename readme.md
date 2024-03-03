@@ -31,7 +31,7 @@ If a Terraform provider is not available, and Terraform's data type is neither a
 > [!NOTE]
 > This is still under development and features a lot of WIP and unfinished work.
 
-* Setting up functioning application of Home assistant
+* Setting up functioning application of Home assistant.
 
 ### Terraform
 
