@@ -11,6 +11,9 @@ jobs:
     name: Apply
     runs-on: ubuntu-20.04
 
+    permissions:
+      id-token: write
+
     steps:
       - name: Check out code
         uses: actions/checkout@v4
