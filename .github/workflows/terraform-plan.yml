@@ -4,7 +4,7 @@ name: Plan Terraform code on PR
 on:
   pull_request:
     paths:
-      - "./terraform/**.tf"
+      - "./terraform/**"
   workflow_dispatch:
 
 env:

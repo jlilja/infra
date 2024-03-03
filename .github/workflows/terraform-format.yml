@@ -4,7 +4,7 @@ name: Format Terraform code on push
 on:
   push:
     paths:
-      - "./terraform/**.tf"
+      - "./terraform/**"
 
 env:
   TF_IN_AUTOMATION: true
