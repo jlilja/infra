@@ -2,11 +2,11 @@
 
 ## Overview
 
-This repository holds the bootstrapping and configuration of various cloud and on-prem hosted solutions related to my digital infrastructure. The purpose of this project is to keep and maintain a blueprint of how different resources are setup and utilise off-the-shelf tooling with maintainability, security, upgradeability, and governance.
+This repository holds the bootstrapping and configuration of various cloud and on-prem hosted solutions related to my digital infrastructure. The purpose of this project is to keep and maintain a blueprint of how different resources are setup and utilise off-the-shelf tooling with maintainability, security, upgradeability, and governance in mind.
 
 If applicable, resources shall be provisioned and managed through Terraform. Terraform is vendor agnostic, which enables the exporting and importing of data between resources regardless of which vendor they are.
 
-If a Terraform provider is not available, and Terraform's data type is neither an option, Ansible is the second preferred choice of configruation.
+If a Terraform provider is not available, and Terraform's data type is neither an option, Ansible is the second preferred choice of configuration.
 
 ## Directory structure
 
@@ -22,7 +22,7 @@ If a Terraform provider is not available, and Terraform's data type is neither a
 
 ### Ansible
 
-* Manages setup, configuration, and maintenence of a Pihole running on a Raspberry Pi.
+* Manages setup, configuration, and maintenence of a Pihole instance running on Raspberry Pi.
 * Manages the settings for Edgerouter router running on EdgeOS.
 * Manages the setup, bootstrapping, and managing minikube kubernetes cluster.
 
