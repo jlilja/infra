@@ -2,7 +2,9 @@
 version: "3"
 
 includes:
-  terraform:cloudflare: terraform/Taskfile.yml
+  terraform:cloudflare: terraform/cloudflare/Taskfile.yml
+  terraform:edgerouter: terraform/edgerouter/Taskfile.yml
+  terraform:pihole: terraform/pihole/Taskfile.yml
 
   k8s:webserver: k8s/apps/webserver/Taskfile.yml
 

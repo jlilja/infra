@@ -1,15 +1,3 @@
-terraform {
-  backend "s3" {
-    bucket = "jlilja-terraform-state-files"
-    key    = "infra"
-    region = "eu-north-1"
-  }
-}
-
-locals {
-  domain_name = "lilja.io"
-}
-
 module "cloudflare_setup" {
   source                  = "./modules/cloudflare"
   domain_name             = local.domain_name
