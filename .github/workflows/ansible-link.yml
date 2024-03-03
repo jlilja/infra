@@ -2,6 +2,8 @@ name: Ansible lint
 
 on:
   pull_request:
+    paths:
+      - './ansible/**.yml'
   workflow_dispatch:
 
 jobs:
