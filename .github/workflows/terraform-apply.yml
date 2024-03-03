@@ -3,8 +3,13 @@ name: Apply Terraform code on main
 
 on:
   push:
+    paths:
+      - "./terraform/**.tf"
     branches:
       - main
+
+env:
+  TF_IN_AUTOMATION: true
 
 jobs:
   apply:

@@ -11,3 +11,10 @@ includes:
   ansible:pihole: ansible/pihole/Taskfile.yml
   ansible:minikube: ansible/minikube/Taskfile.yml
   ansible:edgerouter: ansible/edgerouter/Taskfile.yml
+
+tasks:
+  terraform-format:
+    cmds:
+      - task terraform:cloudflare:format
+      - task terraform:edgerouter:format
+      - task terraform:pihole:format

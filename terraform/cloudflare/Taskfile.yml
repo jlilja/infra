@@ -30,4 +30,4 @@ tasks:
     desc: Apply new Terraform changes
     dir: terraform/cloudflare
     cmds:
-      - terraform apply -auto-approve
+      - terraform apply

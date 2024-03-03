@@ -2,17 +2,31 @@
 
 ## Terraform
 
+* Managing firewall rules for edgerouter routers.
 * Setting dns records for cloudflare domain(s).
+* Managing local dns records via pihole dns.
 
 Terraform code is defined in the [terraform](./terraform/) folder.
 
 ### Available commands
 
+* `task terraform:edgerouter:apply` - Apply Terraform code.
+* `task terraform:edgerouter:format` -  Format Terraform code.
+* `task terraform:edgerouter:init` - Initialize terraform providers and backend.
+* `task terraform:edgerouter:plan` - Plan Terraform code.
+* `task terraform:edgerouter:validate` - Validate Terraform code.
+
+* `task terraform:cloudflare:apply` - Apply Terraform code.
 * `task terraform:cloudflare:format` -  Format Terraform code.
-* `task terraform:cloudflare:validate` - Validate Terraform code.
 * `task terraform:cloudflare:init` - Initialize terraform providers and backend.
 * `task terraform:cloudflare:plan` - Plan Terraform code.
-* `task terraform:cloudflare:apply` - Apply Terraform code.
+* `task terraform:cloudflare:validate` - Validate Terraform code.
+
+* `task terraform:pihole:apply` - Apply Terraform code.
+* `task terraform:pihole:format` -  Format Terraform code.
+* `task terraform:pihole:init` - Initialize terraform providers and backend.
+* `task terraform:pihole:plan` - Plan Terraform code.
+* `task terraform:pihole:validate` - Validate Terraform code.
 
 ## Ansible
 
