@@ -1,51 +1,40 @@
 # Infra for managed resources
 
-## Terraform
+## Overview
+
+This repository holds the bootstrapping and configuration of various cloud and on-prem hosted solutions related to my digital infrastructure. The purpose of this project is to keep and maintain a blueprint of how different resources are setup and utilise off-the-shelf tooling with maintainability, security, upgradeability, and governance in mind.
+
+If applicable, resources shall be provisioned and managed through Terraform. Terraform is vendor agnostic, which enables the exporting and importing of data between resources regardless of which vendor they are.
+
+If a Terraform provider is not available, and Terraform's data type is neither an option, Ansible is the second preferred choice of configuration.
+
+## Directory structure
+
+```
+📂 infra
+├─📁 .github    # Github actions workflows, repostory settings, and dependabot settings.
+├─📁 ansible    # Ansible playbooks.
+├─📁 k8s        # Experimental work using Minikube.
+└─📁 terraform  # Terraform configuration.
+```
+
+## Resources in version control
+
+### Ansible
+
+* Manages setup, configuration, and maintenence of a Pihole instance running on Raspberry Pi.
+* Manages the settings for Edgerouter router running on EdgeOS.
+* Manages the setup, bootstrapping, and managing minikube kubernetes cluster.
+
+### k8s
+
+> [!NOTE]
+> This is still under development and features a lot of WIP and unfinished work.
+
+* Setting up functioning application of Home assistant.
+
+### Terraform
 
 * Managing firewall rules for edgerouter routers.
 * Setting dns records for cloudflare domain(s).
 * Managing local dns records via pihole dns.
-
-Terraform code is defined in the [terraform](./terraform/) folder.
-
-### Available commands
-
-* `task terraform:edgerouter:apply` - Apply Terraform code.
-* `task terraform:edgerouter:format` -  Format Terraform code.
-* `task terraform:edgerouter:init` - Initialize terraform providers and backend.
-* `task terraform:edgerouter:plan` - Plan Terraform code.
-* `task terraform:edgerouter:validate` - Validate Terraform code.
-
-* `task terraform:cloudflare:apply` - Apply Terraform code.
-* `task terraform:cloudflare:format` -  Format Terraform code.
-* `task terraform:cloudflare:init` - Initialize terraform providers and backend.
-* `task terraform:cloudflare:plan` - Plan Terraform code.
-* `task terraform:cloudflare:validate` - Validate Terraform code.
-
-* `task terraform:pihole:apply` - Apply Terraform code.
-* `task terraform:pihole:format` -  Format Terraform code.
-* `task terraform:pihole:init` - Initialize terraform providers and backend.
-* `task terraform:pihole:plan` - Plan Terraform code.
-* `task terraform:pihole:validate` - Validate Terraform code.
-
-## Ansible
-
-* Manages setup, configuration, and maintenence of a Pihole running on a Raspberry Pi.
-* Manages the settings for Edgerouter router running on EdgeOS.
-* Manages the setup, bootstrapping, and managing minikube kubernetes cluster.
-
-Pihole on Raspberry Pi is defined in the [Pihole](./ansible/pihole/) folder.
-
-* `task ansible:pihole:bootstrap`               - Run playbook meant for an initial setup of a Pihole on a Raspberry Pi
-
-Edgerouter is defined in the [Edgerouter](./ansible/edgerouter/) folder.
-
-* `task ansible:edgerouter:edgeroutersetup`     - Call edgerouter router
-
-Kubernetes configuration is defined in the [Minikube](./ansible/minikube/) folder.
-
-* `task ansible:minikube:harden-ssh`            - Update ssh configs to be more secure
-* `task ansible:minikube:install-dependencies`  - Install docker and minikube
-* `task ansible:minikube:ping-host`             - Ping the minikube node using ansible module ping
-* `task ansible:minikube:transfer-bootstrap`    - Copy bootstrapping scripts to setup a node
-* `task ansible:minikube:update-dependencies`   - Update dnf packages
