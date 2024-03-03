@@ -23,11 +23,10 @@ jobs:
         with:
           terraform_version: 1.4.5
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v3
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY  }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: arn:aws:iam::524080394605:role/TFGithubOIDC
           aws-region: eu-north-1
 
       - name: Terraform Init
@@ -37,9 +36,6 @@ jobs:
       - name: Terraform Apply
         id: apply
         env:
-          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_S3_REGION_NAME: ${{ secrets.AWS_S3_REGION_NAME }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.TF_VAR_CLOUDFLARE_API_TOKEN }}
           TF_VAR_protonmail_dkim1: ${{ secrets.TF_VAR_PROTONMAIL_DKIM1 }}
           TF_VAR_protonmail_dkim2: ${{ secrets.TF_VAR_PROTONMAIL_DKIM2 }}
