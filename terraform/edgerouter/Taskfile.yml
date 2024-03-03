@@ -4,30 +4,30 @@ version: "3"
 tasks:
   format:
     desc: Format all Terraform files
-    dir: terraform
+    dir: terraform/edgerouter
     cmds:
       - terraform fmt -check -diff -recursive
 
   validate:
     desc: Validate all Terraform files
-    dir: terraform
+    dir: terraform/edgerouter
     cmds:
       - terraform validate
 
   init:
     desc: Initializes the Terraform project
-    dir: terraform
+    dir: terraform/edgerouter
     cmds:
       - terraform init
 
   plan:
     desc: Plan new Terraform changes
-    dir: terraform
+    dir: terraform/edgerouter
     cmds:
       - terraform plan
 
   apply:
     desc: Apply new Terraform changes
-    dir: terraform
+    dir: terraform/edgerouter
     cmds:
       - terraform apply -parallelism=1 -auto-approve
