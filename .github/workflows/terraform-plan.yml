@@ -48,7 +48,7 @@ jobs:
         run: task terraform:cloudflare:format
 
       - name: Terraform Plan
-        id: plan-output
+        id: plan
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.TF_VAR_CLOUDFLARE_API_TOKEN }}
           TF_VAR_protonmail_dkim1: ${{ secrets.TF_VAR_PROTONMAIL_DKIM1 }}
