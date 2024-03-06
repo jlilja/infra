@@ -41,7 +41,7 @@ If a Terraform provider is not available, and Terraform's data type is neither a
 
 ## Hardware
 
-| Nickname | Type     | Brand     | Model                  | CPU                         | RAM               | GPU                | OS               |
-|----------|----------|-----------|------------------------|-----------------------------|-------------------|--------------------|------------------|
-| G&T      | Headless | Mac Mini  | Late 2014 (Macmini7,1) | 2.6 GHz Intel Core i5       | 8GB 1600 MHz DDR3 | Intel Iris 1536 MB | Fedora 39 Server |
-| Negroni  | Headless | Intel NUC | D54250WYK              | 1.3 Ghz Intel Core i5-4250U | 8GB 1600 MHz DDR3 | Intel HD Graphics  | Fedora 39 Server |
+| Nickname | Type     | Brand     | Model                  | CPU                                   | RAM               | GPU                | OS               |
+|----------|----------|-----------|------------------------|---------------------------------------|-------------------|--------------------|------------------|
+| G&T      | Headless | Mac Mini  | Late 2014 (Macmini7,1) | 2.6 GHz Intel Core i5 (Haswell)       | 8GB 1600 MHz DDR3 | Intel Iris 1536 MB | Fedora 39 Server |
+| Negroni  | Headless | Intel NUC | D54250WYK              | 1.3 Ghz Intel Core i5-4250U (Haswell) | 8GB 1600 MHz DDR3 | Intel HD Graphics  | Fedora 39 Server |
