@@ -63,3 +63,11 @@ resource "cloudflare_record" "cname_dkim3" {
   value   = var.protonmail_dkim3
   proxied = false
 }
+
+resource "cloudflare_record" "txt_dmarc" {
+  zone_id = data.cloudflare_zone.lilja_dot_io.id
+  type    = "TXT"
+  name    = "_dmarc"
+  value   = "v=DMARC1; p=quarantine"
+  proxied = false
+}
