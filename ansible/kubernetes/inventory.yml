@@ -1,0 +1,9 @@
+---
+nodes:
+  hosts:
+    kmain:
+      ansible_host: 192.168.1.105
+      ansible_user: kmain
+    kworker:
+      ansible_host: 192.168.1.104
+      ansible_user: kworker1

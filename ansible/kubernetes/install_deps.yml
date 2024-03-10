@@ -1,7 +1,7 @@
 ---
 
 - name: Install dependencies
-  hosts: node1
+  hosts: nodes
   become: true
   tasks:
 
@@ -10,17 +10,19 @@
         name: dnf-plugins-core
         state: present
 
-    - name: Add docker repository
-      ansible.builtin.command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+    - name: Add Docker repository
+      ansible.builtin.yum_repository:
+        name: Docker
+        description: Docker repository
+        baseurl: https://download.docker.com/linux/fedora/docker-ce.repo
 
-    - name: Install docker engine, containerd, and docker compose
+    - name: Install docker engine and containerd
       ansible.builtin.dnf:
         name:
           - docker-ce
           - docker-ce-cli
           - containerd.io
           - docker-buildx-plugin
-          - docker-compose-plugin
         state: present
 
     - name: Start docker
@@ -39,8 +41,10 @@
         name: "{{ ansible_user }}"
         group: "{{ docker_group }}"
 
-    - name: Install the nginx rpm from a remote repo
+    - name: Install Kubernetes
       ansible.builtin.dnf:
-        name: 'https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm'
+        name:
+          - kubernetes-kubeadm
+          - kubernetes-node
+          - kubernetes-client
         state: present
-        disable_gpg_check: true

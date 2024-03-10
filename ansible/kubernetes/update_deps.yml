@@ -1,7 +1,7 @@
 ---
 
 - name: Update dependencies
-  hosts: node1
+  hosts: nodes
   become: true
   tasks:
 
