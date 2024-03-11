@@ -1,0 +1,9 @@
+---
+- name: Set SSH settings
+  hosts: nodes
+  become: true
+
+  tasks:
+    - name: Disable swap
+      ansible.builtin.shell: |
+        swapoff -a
