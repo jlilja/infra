@@ -1,9 +1,21 @@
 ---
+
 - name: Set kubernetes settings
   hosts: nodes
   become: true
 
   tasks:
+
+    - name: Update /etc/hosts
+      become: true
+      blockinfile:
+          path: /etc/hosts
+          create: yes
+          block: |
+            {% for item in etc_hosts %}
+            {{ item.ip }}   {{ item.host }}
+            {% endfor %}
+
     - name: Disable swap
       ansible.builtin.shell: |
         swapoff -a

@@ -25,3 +25,9 @@ tasks:
     dir: "ansible/kubernetes"
     cmds:
       - ansible-playbook -i ./inventory.yml ./harden_ssh.yml --ask-become-pass
+
+  configure-kubernetes:
+    desc: "Set kubernetes configs"
+    dir: "ansible/kubernetes"
+    cmds:
+      - ansible-playbook -i ./inventory.yml ./configure_kubernetes.yml --ask-become-pass
