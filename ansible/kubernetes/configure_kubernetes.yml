@@ -1,5 +1,5 @@
 ---
-- name: Set SSH settings
+- name: Set kubernetes settings
   hosts: nodes
   become: true
 
