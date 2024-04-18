@@ -40,11 +40,3 @@
       ansible.builtin.user:
         name: "{{ ansible_user }}"
         group: "{{ docker_group }}"
-
-    - name: Install Kubernetes
-      ansible.builtin.dnf:
-        name:
-          - kubernetes-kubeadm
-          - kubernetes-node
-          - kubernetes-client
-        state: present

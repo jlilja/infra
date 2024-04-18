@@ -19,3 +19,11 @@
     - name: Disable swap
       ansible.builtin.shell: |
         swapoff -a
+
+    - name: Install Kubernetes
+      ansible.builtin.dnf:
+        name:
+          - kubernetes-kubeadm
+          - kubernetes-node
+          - kubernetes-client
+        state: present
