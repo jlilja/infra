@@ -1,4 +1,4 @@
 provider "pihole" {
-  url      = local.pihole_ip
+  url      = "http://${local.pihole_ip}"
   password = var.password
 }
