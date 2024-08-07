@@ -9,7 +9,7 @@
 
   tasks:
 
-    - name: Configure the remote device
+    - name: Configure system settings
       community.network.edgeos_config:
         lines:
           # Set hostname settings
@@ -61,23 +61,40 @@
           - set interfaces ethernet eth2 description -
           - set interfaces ethernet eth2 disable
 
-          # Setup LAN1 dhcp server
-          - set service dhcp-server shared-network-name LAN1 authoritative enable
-          - set service dhcp-server shared-network-name LAN1 subnet 192.168.1.0/24 default-router 192.168.1.1 # Router
-          - set service dhcp-server shared-network-name LAN1 subnet 192.168.1.0/24 dns-server 192.168.1.1 # DNS 1
-          - set service dhcp-server shared-network-name LAN1 subnet 192.168.1.0/24 lease 86000 # Lease time
-          - set service dhcp-server shared-network-name LAN1 subnet 192.168.1.0/24 start 192.168.1.38 stop 192.168.1.243
+    - name: Setup trusted network
+      community.network.edgeos_config:
+        lines:
 
-          # Setup homelab dhcp server
+          # vlan setup
+          - set interfaces ethernet eth1 vif 10 description 'VLAN 10'
+          - set interfaces ethernet eth1 vif 10 address 192.168.10.1/24
+
+          # dhcp setup
+          - set service dhcp-server shared-network-name trusted authoritative enable
+          - set service dhcp-server shared-network-name trusted subnet 192.168.10.0/24 default-router 192.168.10.1 # Router
+          - set service dhcp-server shared-network-name trusted subnet 192.168.10.0/24 dns-server 192.168.10.1 # DNS 1
+          - set service dhcp-server shared-network-name trusted subnet 192.168.10.0/24 lease 3600 # Lease time
+
+          - set service dhcp-server shared-network-name trusted subnet 192.168.10.0/24 start 192.168.10.10 stop 192.168.10.254
+
+          # dns server for vlan
+          - set service dns forwarding listen-on eth1.10
+
+    - name: Setup homelab network
+      community.network.edgeos_config:
+        lines:
+
+          # vlan setup
+          - set interfaces ethernet eth1 vif 20 description 'VLAN 20'
+          - set interfaces ethernet eth1 vif 20 address 192.168.20.1/24
+
+          # dhcp setup
           - set service dhcp-server shared-network-name homelab authoritative enable
           - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 default-router 192.168.20.1 # Router
           - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 dns-server 192.168.20.1 # DNS 1
-          - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 lease 86000 # Lease time
-          - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 start 192.168.20.1 stop 192.168.20.254
+          - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 lease 3600 # Lease time
 
-          # Setup guest dhcp server
-          - set service dhcp-server shared-network-name guest authoritative enable
-          - set service dhcp-server shared-network-name guest subnet 192.168.30.0/24 default-router 192.168.30.1 # Router
-          - set service dhcp-server shared-network-name guest subnet 192.168.30.0/24 dns-server 192.168.20.1 # DNS 1
-          - set service dhcp-server shared-network-name guest subnet 192.168.30.0/24 lease 86000 # Lease time
-          - set service dhcp-server shared-network-name guest subnet 192.168.30.0/24 start 192.168.30.1 stop 192.168.30.254
+          - set service dhcp-server shared-network-name homelab subnet 192.168.20.0/24 start 192.168.20.10 stop 192.168.20.254
+
+          # dns server for vlan
+          - set service dns forwarding listen-on eth1.20
