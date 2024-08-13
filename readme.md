@@ -1,5 +1,15 @@
 # Infra for managed resources
 
+- [Overview](#overview)
+- [Directory structure](#directory-structure)
+- [Resources in version control](#resources-in-version-control)
+    - [Ansible](#ansible)
+    - [k8s](#k8s)
+    - [Terraform](#terraform)
+    - [Hardware](#hardware)
+    - [Network](#network)
+
+
 ## Overview
 
 This repository holds the bootstrapping and configuration of various cloud and on-prem hosted solutions related to my digital infrastructure. The purpose of this project is to keep and maintain a blueprint of how different resources are setup and utilise off-the-shelf tooling with maintainability, security, upgradeability, and governance in mind.
@@ -47,3 +57,7 @@ If a Terraform provider is not available, and Terraform's data type is neither a
 | Negroni   | Headless  | Intel NUC     | D54250WYK                 | 1.3 Ghz Intel Core i5-4250U   | x86_64    | 8GB 1600 MHz DDR3     | Intel HD Graphics     | Fedora 39 Server  |
 | Jameson   | Headless  | Intel NUX     | N/A                       | 1.3 GHz Intel Core i5-4250U   | x86_64    | 16GB 1600 Mhz DDR3    | Intel HD Graphics     | Ubuntu 22.04      |
 | Margarita | Desktop   | Raspberry Pi  | 3 Model B                 | 1.2 GHz ARM BCM2837           | 64 bit v8 | 1GB                   | N/A                   | Raspbian          |
+
+## Network
+
+![Netowrk](./images/network/network.png)

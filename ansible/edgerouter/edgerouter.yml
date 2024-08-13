@@ -66,7 +66,7 @@
         lines:
 
           # vlan setup
-          - set interfaces ethernet eth1 vif 10 description 'VLAN 10'
+          - set interfaces ethernet eth1 vif 10 description 'VLAN 10 - Trusted'
           - set interfaces ethernet eth1 vif 10 address 192.168.10.1/24
 
           # dhcp setup
@@ -85,7 +85,7 @@
         lines:
 
           # vlan setup
-          - set interfaces ethernet eth1 vif 20 description 'VLAN 20'
+          - set interfaces ethernet eth1 vif 20 description 'VLAN 20 - Homelab'
           - set interfaces ethernet eth1 vif 20 address 192.168.20.1/24
 
           # dhcp setup
@@ -98,3 +98,79 @@
 
           # dns server for vlan
           - set service dns forwarding listen-on eth1.20
+
+    - name: Setup DNS network
+      community.network.edgeos_config:
+        lines:
+
+          # vlan setup
+          - set interfaces ethernet eth1 vif 30 description 'VLAN 30 - DNS'
+          - set interfaces ethernet eth1 vif 30 address 192.168.30.1/24
+
+          # dhcp setup
+          - set service dhcp-server shared-network-name dns authoritative enable
+          - set service dhcp-server shared-network-name dns subnet 192.168.30.0/24 default-router 192.168.30.1 # Router
+          - set service dhcp-server shared-network-name dns subnet 192.168.30.0/24 dns-server 192.168.30.1 # DNS 1
+          - set service dhcp-server shared-network-name dns subnet 192.168.30.0/24 lease 3600 # Lease time
+
+          - set service dhcp-server shared-network-name dns subnet 192.168.30.0/24 start 192.168.30.10 stop 192.168.30.254
+
+          # dns server for vlan
+          - set service dns forwarding listen-on eth1.30
+
+    - name: Setup infrastructure network
+      community.network.edgeos_config:
+        lines:
+
+          # vlan setup
+          - set interfaces ethernet eth1 vif 40 description 'VLAN 40 - Infrastructure'
+          - set interfaces ethernet eth1 vif 40 address 192.168.40.1/24
+
+          # dhcp setup
+          - set service dhcp-server shared-network-name infra authoritative enable
+          - set service dhcp-server shared-network-name infra subnet 192.168.40.0/24 default-router 192.168.40.1 # Router
+          - set service dhcp-server shared-network-name infra subnet 192.168.40.0/24 dns-server 192.168.40.1 # DNS 1
+          - set service dhcp-server shared-network-name infra subnet 192.168.40.0/24 lease 3600 # Lease time
+
+          - set service dhcp-server shared-network-name infra subnet 192.168.40.0/24 start 192.168.40.10 stop 192.168.40.254
+
+          # dns server for vlan
+          - set service dns forwarding listen-on eth1.40
+
+    - name: Setup NAS network
+      community.network.edgeos_config:
+        lines:
+
+          # vlan setup
+          - set interfaces ethernet eth1 vif 50 description 'VLAN 50 - NAS'
+          - set interfaces ethernet eth1 vif 50 address 192.168.50.1/24
+
+          # dhcp setup
+          - set service dhcp-server shared-network-name nas authoritative enable
+          - set service dhcp-server shared-network-name nas subnet 192.168.50.0/24 default-router 192.168.50.1 # Router
+          - set service dhcp-server shared-network-name nas subnet 192.168.50.0/24 dns-server 192.168.50.1 # DNS 1
+          - set service dhcp-server shared-network-name nas subnet 192.168.50.0/24 lease 3600 # Lease time
+
+          - set service dhcp-server shared-network-name nas subnet 192.168.50.0/24 start 192.168.50.10 stop 192.168.50.254
+
+          # dns server for vlan
+          - set service dns forwarding listen-on eth1.50
+
+    - name: Setup IoT network
+      community.network.edgeos_config:
+        lines:
+
+          # vlan setup
+          - set interfaces ethernet eth1 vif 60 description 'VLAN 60 - IoT'
+          - set interfaces ethernet eth1 vif 60 address 192.168.60.1/24
+
+          # dhcp setup
+          - set service dhcp-server shared-network-name iot authoritative enable
+          - set service dhcp-server shared-network-name iot subnet 192.168.60.0/24 default-router 192.168.60.1 # Router
+          - set service dhcp-server shared-network-name iot subnet 192.168.60.0/24 dns-server 192.168.60.1 # DNS 1
+          - set service dhcp-server shared-network-name iot subnet 192.168.60.0/24 lease 3600 # Lease time
+
+          - set service dhcp-server shared-network-name iot subnet 192.168.60.0/24 start 192.168.60.10 stop 192.168.60.254
+
+          # dns server for vlan
+          - set service dns forwarding listen-on eth1.60
