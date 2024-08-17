@@ -10,25 +10,12 @@ resource "unifi_device" "USW_24_G1" {
   }
 
   port_override {
-    number = 2
-    name   = unifi_port_profile.homelab.name
-
-    port_profile_id = unifi_port_profile.homelab.id
-  }
-
-  port_override {
     number = 7
     name   = unifi_port_profile.dns.name
 
     port_profile_id = unifi_port_profile.dns.id
   }
 
-  port_override {
-    number = 23
-    name   = unifi_port_profile.homelab.name
-
-    port_profile_id = unifi_port_profile.homelab.id
-  }
 }
 
 resource "unifi_device" "US_8_60W" {
