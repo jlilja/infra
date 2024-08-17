@@ -1,9 +1,3 @@
-locals {
-  USW_24_G1   = "switch - USW-24-G1"
-  US_8_60W    = "switch - US-8-60W"
-  UAP_AC_Lite = "ap - UAP-AC-Lite"
-}
-
 resource "unifi_device" "USW_24_G1" {
   name = local.USW_24_G1
 
@@ -13,20 +7,15 @@ resource "unifi_device" "USW_24_G1" {
   port_override {
     number = 1
     name   = "router"
-    # port_profile_id = unifi_port_profile.trusted.id
   }
 
   port_override {
-    number = 2
-    name   = "NAS"
-    # port_profile_id = unifi_port_profile.homelab.id
+    number = 7
+    name   = unifi_port_profile.dns.name
+
+    port_profile_id = unifi_port_profile.dns.id
   }
 
-  port_override {
-    number = 2
-    name   = "NAS"
-    # port_profile_id = unifi_port_profile.homelab.id
-  }
 }
 
 resource "unifi_device" "US_8_60W" {
