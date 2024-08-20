@@ -1,7 +1,7 @@
 resource "edge_firewall_ruleset" "test" {
   name            = "example"
   description     = "drop all traffic on its way to 192.168.2.1/24 over port 80"
-  default_action  = "accept"
+  default_action  = "drop"
   default_logging = true
 
   rule {
