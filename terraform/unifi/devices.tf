@@ -10,7 +10,14 @@ resource "unifi_device" "USW_24_G1" {
   }
 
   port_override {
-    number = 7
+    number = 15
+    name   = unifi_port_profile.iot.name
+
+    port_profile_id = unifi_port_profile.iot.id
+  }
+
+  port_override {
+    number = 17
     name   = unifi_port_profile.dns.name
 
     port_profile_id = unifi_port_profile.dns.id
