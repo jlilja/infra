@@ -9,7 +9,6 @@ includes:
   k8s:webserver: k8s/apps/webserver/Taskfile.yml
 
   ansible: ansible/Taskfile.yml
-  ansible:kubernetes: ansible/kubernetes/Taskfile.yml
 
 tasks:
   terraform-format:
