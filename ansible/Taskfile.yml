@@ -2,29 +2,35 @@
 version: "3"
 
 tasks:
-  bootstrap:
+  edgeroutersetup:
+    desc: "Configure edgerouter"
+    dir: "ansible"
+    cmds:
+      - ansible-playbook -i ./hosts.yml ./configure-edgerouter.yml --ask-pass
+
+  bootstrap_pihole:
     desc: "Run playbook meant for an initial setup of a Pihole on a Raspberry Pi"
-    dir: "ansible/pihole"
+    dir: "ansible"
     cmds:
       - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
-      INVENTORY: inventories/pimachines.yml
+      INVENTORY: hosts.yml
       PLAYBOOK: bootstrap.yml
 
   update_packages:
     desc: Update apt packages on machine
-    dir: "ansible/pihole"
+    dir: "ansible"
     cmds:
       - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
-      INVENTORY: inventories/pimachines.yml
+      INVENTORY: hosts.yml
       PLAYBOOK: update-packages.yml
 
   update_pihole:
     desc: Update pihole
-    dir: "ansible/pihole"
+    dir: "ansible"
     cmds:
       - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
-      INVENTORY: inventories/pimachines.yml
+      INVENTORY: hosts.yml
       PLAYBOOK: update-pihole.yml
