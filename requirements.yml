@@ -1,5 +1,5 @@
 ---
 collections:
-  - community.general
-  - community.network.edgeos_config
-  - ansible.posix
+  - name: community.general
+  - name: community.edgeos_config
+  - name: ansible.posix
