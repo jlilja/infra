@@ -15,6 +15,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run ansible-lint
-        uses: ansible/ansible-lint@a3fc7e4def4c3576a221fd1e0e58c0ee43f73af5
+        uses: ansible/ansible-lint@3b5bee19c2102ea35bc8619795a72c5c73797fc7
         with:
           args: "--profile=min --exclude=ansible/edgerouter/edgerouter.yml"
