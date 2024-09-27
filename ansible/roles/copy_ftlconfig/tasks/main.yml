@@ -4,6 +4,7 @@
   ansible.builtin.file:
     path: "/etc/pihole"
     state: directory
+    mode: "0644"
 
 # A file transfer will make Ansible always report a change.
 # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
@@ -11,3 +12,4 @@
   ansible.builtin.copy:
     src: ./pihole-FTL.j2
     dest: /etc/pihole/pihole-FTL.conf
+    mode: "0644"
