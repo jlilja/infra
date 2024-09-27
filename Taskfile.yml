@@ -8,9 +8,7 @@ includes:
 
   k8s:webserver: k8s/apps/webserver/Taskfile.yml
 
-  ansible:pihole: ansible/pihole/Taskfile.yml
-  ansible:kubernetes: ansible/kubernetes/Taskfile.yml
-  ansible:edgerouter: ansible/edgerouter/Taskfile.yml
+  ansible: ansible/Taskfile.yml
 
 tasks:
   terraform-format:
