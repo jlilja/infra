@@ -15,7 +15,7 @@ tasks:
       - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       INVENTORY: hosts.yml
-      PLAYBOOK: bootstrap.yml
+      PLAYBOOK: bootstrap-pihole.yml
 
   update_packages:
     desc: Update apt packages on machine
