@@ -5,6 +5,7 @@ on:
     paths:
       - "./ansible/**.yml"
       - ".github/workflows/ansible-link.yml"
+      - "./requirements.yml"
   workflow_dispatch:
 
 jobs:
