@@ -28,7 +28,7 @@ jobs:
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
 
       - name: Setup Taskfile
-        uses: arduino/setup-task@e26d8975574116b0097a1161e0fe16ba75d84c1c
+        uses: arduino/setup-task@b79a1c3f82f6efdfe71d6e04f582092eca400294
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
