@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - "**/*.tf"
+      - "**/*.hcl"
     branches:
       - main
   workflow_dispatch:
