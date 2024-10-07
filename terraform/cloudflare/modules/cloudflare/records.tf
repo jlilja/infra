@@ -1,7 +1,3 @@
-data "cloudflare_zone" "lilja_dot_io" {
-  name = var.domain_name
-}
-
 resource "cloudflare_record" "mx_proton_mail" {
   name     = data.cloudflare_zone.lilja_dot_io.name
   zone_id  = data.cloudflare_zone.lilja_dot_io.id
@@ -36,7 +32,7 @@ resource "cloudflare_record" "mx_proton_protomain_verification" {
   zone_id = data.cloudflare_zone.lilja_dot_io.id
   type    = "TXT"
   name    = data.cloudflare_zone.lilja_dot_io.name
-  value   = "protonmail-verification=${var.protonmail_verification}"
+  content = "protonmail-verification=${var.protonmail_verification}"
   proxied = false
 }
 
