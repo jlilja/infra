@@ -10,6 +10,11 @@ resource "unifi_device" "USW_24_G1" {
   }
 
   port_override {
+    number = 23
+    name   = "unifi-cloudkey" # Don't modify until ready
+  }
+
+  port_override {
     number = 15
     name   = unifi_port_profile.iot.name
 
@@ -23,6 +28,12 @@ resource "unifi_device" "USW_24_G1" {
     port_profile_id = unifi_port_profile.dns.id
   }
 
+  port_override {
+    number = 19
+    name   = unifi_port_profile.trusted.name
+
+    port_profile_id = unifi_port_profile.trusted.id
+  }
 }
 
 resource "unifi_device" "US_8_60W" {
