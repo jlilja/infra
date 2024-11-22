@@ -167,7 +167,7 @@
           # dhcp setup
           - set service dhcp-server shared-network-name iot authoritative enable
           - set service dhcp-server shared-network-name iot subnet 192.168.60.0/24 default-router 192.168.60.1 # Router
-          - set service dhcp-server shared-network-name iot subnet 192.168.60.0/24 dns-server 192.168.60.1 # DNS 1
+          - set service dhcp-server shared-network-name iot subnet 192.168.60.0/24 dns-server 192.168.30.10 # DNS 1
           - set service dhcp-server shared-network-name iot subnet 192.168.60.0/24 lease 3600 # Lease time
 
           - set service dhcp-server shared-network-name iot subnet 192.168.60.0/24 start 192.168.60.10 stop 192.168.60.254

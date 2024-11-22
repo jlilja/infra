@@ -6,7 +6,10 @@ tasks:
     desc: "Configure edgerouter"
     dir: "ansible"
     cmds:
-      - ansible-playbook -i ./hosts.yml ./configure-edgerouter.yml --ask-pass
+      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-pass
+    env:
+      INVENTORY: hosts.yml
+      PLAYBOOK: configure-edgerouter.yml
 
   bootstrap_pihole:
     desc: "Run playbook meant for an initial setup of a Pihole on a Raspberry Pi"
@@ -17,7 +20,7 @@ tasks:
       INVENTORY: hosts.yml
       PLAYBOOK: bootstrap-pihole.yml
 
-  update_packages:
+  pihole-apt-update:
     desc: Update apt packages on machine
     dir: "ansible"
     cmds:
@@ -39,7 +42,9 @@ tasks:
     desc: "Ping the kubernetes node(s) using ansible module ping"
     dir: "ansible"
     cmds:
-      - ansible all -i hosts.yml -m ping
+      - ansible all -i $INVENTORY -m ping
+    env:
+      INVENTORY: hosts.yml
 
   install-dependencies:
     desc: "Install docker and kubernetes"
