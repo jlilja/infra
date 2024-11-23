@@ -5,6 +5,7 @@
   become: true
   tasks:
 
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html
     - name: Update all dnf packages to present
       ansible.builtin.dnf:
         name: "*"
