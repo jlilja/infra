@@ -5,7 +5,7 @@
   become: true
   tasks:
 
-    - name: Upgrade all packages
+    - name: Update all dnf packages to present
       ansible.builtin.dnf:
         name: "*"
-        state: latest
+        state: present
