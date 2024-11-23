@@ -1,6 +1,6 @@
 ---
-# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
-- name: Update packages
-  ansible.builtin.apt:
-    update_cache: true
-    cache_valid_time: 3600
+# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html
+- name: Update all packages to present
+  ansible.builtin.package:
+    name: "*"
+    state: present
