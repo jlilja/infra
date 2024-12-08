@@ -1,71 +1,60 @@
 ---
 version: "3"
 
+env:
+  INVENTORY: hosts.yml
+
 tasks:
-  edgeroutersetup:
+  edgerouter-setup:
     desc: "Configure edgerouter"
-    dir: "ansible"
     cmds:
       - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-pass
     env:
-      INVENTORY: hosts.yml
       PLAYBOOK: configure-edgerouter.yml
 
-  bootstrap_pihole:
+  bootstrap-pihole:
     desc: "Run playbook meant for an initial setup of a Pihole on a Raspberry Pi"
-    dir: "ansible"
     cmds:
       - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
-      INVENTORY: hosts.yml
       PLAYBOOK: bootstrap-pihole.yml
 
-  pihole-apt-update:
-    desc: Update apt packages on machine
-    dir: "ansible"
-    cmds:
-      - ansible-playbook -i $INVENTORY $PLAYBOOK
-    env:
-      INVENTORY: hosts.yml
-      PLAYBOOK: update-packages.yml
-
-  update_pihole:
+  update-pihole:
     desc: Update pihole
-    dir: "ansible"
     cmds:
       - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
-      INVENTORY: hosts.yml
       PLAYBOOK: update-pihole.yml
 
   ping-host:
     desc: "Ping the kubernetes node(s) using ansible module ping"
-    dir: "ansible"
     cmds:
       - ansible all -i $INVENTORY -m ping
-    env:
-      INVENTORY: hosts.yml
 
-  install-dependencies:
+  dnf-install-container-environment:
     desc: "Install docker and kubernetes"
-    dir: "ansible"
     cmds:
-      - ansible-playbook -i hosts.yml ./install_deps.yml --ask-become-pass
+      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
+    env:
+      PLAYBOOK: dnf-install-packages.yml
 
-  update-dependencies:
-    desc: "Update dnf packages"
-    dir: "ansible"
+  update-packages:
+    desc: "Update packages"
     cmds:
-      - ansible-playbook -i hosts.yml ./update_deps.yml --ask-become-pass
+      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
+    env:
+      PLAYBOOK: update-packages.yml
 
   harden-ssh:
     desc: "Secure ssh configs"
-    dir: "ansible"
     cmds:
-      - ansible-playbook -i hosts.yml ./harden_ssh.yml --ask-become-pass
+      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
+    env:
+      PLAYBOOK: harden-ssh.yml
 
   configure-kubernetes:
     desc: "Set kubernetes configs"
-    dir: "ansible"
     cmds:
-      - ansible-playbook -i hosts.yml ./configure_kubernetes.yml --ask-become-pass
+      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
+    env:
+      PLAYBOOK: configure-kubernetes.yml
