@@ -2,15 +2,27 @@
 version: "3"
 
 includes:
-  terraform:cloudflare: terraform/cloudflare/Taskfile.yml
-  terraform:edgerouter: terraform/edgerouter/Taskfile.yml
-  terraform:pihole: terraform/pihole/Taskfile.yml
+  terraform:cloudflare:
+    taskfile: terraform/cloudflare/Taskfile.yml
+    dir: terraform/cloudflare
 
-  k8s:webserver: k8s/apps/webserver/Taskfile.yml
+  terraform:edgerouter:
+    taskfile: terraform/edgerouter/Taskfile.yml
+    dir: terraform/edgerouter
+
+  terraform:pihole:
+    taskfile: terraform/pihole/Taskfile.yml
+    dir: terraform/pihole
+
+  terraform:unifi:
+    taskfile: terraform/unifi/Taskfile.yml
+    dir: terraform/unifi
 
   ansible:
     taskfile: ansible/Taskfile.yml
     dir: ansible
+
+  # k8s:webserver: k8s/apps/webserver/Taskfile.yml
 
 tasks:
   terraform-format:

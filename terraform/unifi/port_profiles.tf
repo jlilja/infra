@@ -1,8 +1,22 @@
+resource "unifi_port_profile" "disabled" {
+  name = "disabled"
+
+  forward = "customize"
+
+  lifecycle {
+    ignore_changes = [
+      tagged_networkconf_ids
+    ]
+  }
+}
+
 resource "unifi_port_profile" "trusted" {
   name = unifi_network.trusted.name
 
-  native_networkconf_id  = unifi_network.trusted.id
-  tagged_networkconf_ids = [unifi_network.trusted.id]
+  native_networkconf_id = unifi_network.trusted.id
+  tagged_networkconf_ids = [
+    # unifi_network.trusted.id
+  ]
 
   forward  = "customize"
   poe_mode = "auto"

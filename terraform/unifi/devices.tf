@@ -6,12 +6,26 @@ resource "unifi_device" "USW_24_G1" {
 
   port_override {
     number = 1
-    name   = "router"
+    name   = "UNTAGGED - unifi-cloudkey" # Don't modify until ready
+  }
+
+  port_override {
+    number = 2
+    name   = "UNTAGGED - 8 port switch"
+
+    # port_profile_id = unifi_port_profile.iot.id
+  }
+
+  port_override {
+    number = 3
+    name   = "IOT - hue"
+
+    # port_profile_id = unifi_port_profile.trusted.id
   }
 
   port_override {
     number = 23
-    name   = "unifi-cloudkey" # Don't modify until ready
+    name   = "UPLINK - router"
   }
 
   port_override {
