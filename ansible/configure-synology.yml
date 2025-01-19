@@ -1,0 +1,19 @@
+---
+
+- name: Set synoinfo settings
+  hosts: ds418
+  become: true
+
+  vars_prompt:
+
+    - name: synology_username
+      prompt: synology username
+      private: false
+
+  tasks:
+
+    - name: "Check if reset_button_disable option is set"
+      ansible.builtin.lineinfile:
+        name: /etc/synoinfo.conf
+        line: "reset_button_disable=yes"
+        state: present
