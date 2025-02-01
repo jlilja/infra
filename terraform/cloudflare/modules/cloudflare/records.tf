@@ -24,13 +24,6 @@ resource "cloudflare_record" "cname_dkim1" {
   proxied = false
 }
 
-
-
-
-
-
-
-
 resource "cloudflare_record" "mx_proton_spf1" {
   zone_id = data.cloudflare_zone.lilja_dot_io.id
   type    = "TXT"
