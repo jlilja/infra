@@ -14,7 +14,7 @@ resource "cloudflare_record" "mx_proton_mail" {
 }
 
 resource "cloudflare_record" "cname_dkim1" {
-  for_each = { for record in var.dkim_records : record.value => record }
+  for_each = { for record in var.dkim_records : record.name => record }
 
   zone_id = data.cloudflare_zone.lilja_dot_io.id
 
