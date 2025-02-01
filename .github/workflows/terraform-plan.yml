@@ -48,7 +48,7 @@ jobs:
         run: task terraform:cloudflare:validate
 
       - name: Terraform Format
-        run: task terraform:cloudflare:format
+        run: task terraform:cloudflare:format-check
 
       - name: Terraform Plan
         id: plan
