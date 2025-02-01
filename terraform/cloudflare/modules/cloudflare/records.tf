@@ -14,12 +14,12 @@ resource "cloudflare_record" "mx_proton_mail" {
 }
 
 resource "cloudflare_record" "cname_dkim1" {
-  for_each = map(var.dkim_records)
+  for_each = var.dkim_records
 
   zone_id = data.cloudflare_zone.lilja_dot_io.id
   type    = "CNAME"
-  name    = each.name
-  content = each.value
+  name    = each.value.name
+  content = each.value.value
   proxied = false
 }
 
@@ -50,6 +50,6 @@ resource "cloudflare_record" "txt_dmarc" {
   zone_id = data.cloudflare_zone.lilja_dot_io.id
   type    = "TXT"
   name    = "_dmarc"
-  value   = "v=DMARC1; p=quarantine"
+  content   = "v=DMARC1; p=quarantine"
   proxied = false
 }
