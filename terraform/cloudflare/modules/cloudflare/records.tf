@@ -4,7 +4,7 @@ resource "cloudflare_record" "mx_proton_mail" {
   name    = data.cloudflare_zone.lilja_dot_io.name
   zone_id = data.cloudflare_zone.lilja_dot_io.id
 
-  content    = each.value
+  content  = each.value
   proxied  = false
   type     = "MX"
   ttl      = 1
@@ -19,7 +19,7 @@ resource "cloudflare_record" "cname_dkim1" {
   zone_id = data.cloudflare_zone.lilja_dot_io.id
   type    = "CNAME"
   name    = each.name
-  content   = each.value
+  content = each.value
   proxied = false
 }
 
@@ -34,7 +34,7 @@ resource "cloudflare_record" "mx_proton_spf1" {
   zone_id = data.cloudflare_zone.lilja_dot_io.id
   type    = "TXT"
   name    = data.cloudflare_zone.lilja_dot_io.name
-  value   = "v=spf1 include:_spf.protonmail.ch mx ~all"
+  content = "v=spf1 include:_spf.protonmail.ch mx ~all"
   proxied = false
 }
 

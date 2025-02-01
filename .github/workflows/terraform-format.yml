@@ -27,4 +27,4 @@ jobs:
           terraform_version: 1.4.5
 
       - name: Run terraform fmt check
-        run: task terraform:cloudflare:format
+        run: task terraform:cloudflare:format-check
