@@ -2,11 +2,17 @@
 version: "3"
 
 tasks:
-  format:
-    desc: Format all Terraform files
+  format-check:
+    desc: Check Terraform formatted files
     dir: terraform/cloudflare
     cmds:
       - terraform fmt -check -diff -recursive
+
+  format-fix:
+    desc: Check Terraform formatted files
+    dir: terraform/cloudflare
+    cmds:
+      - terraform fmt -diff -recursive
 
   validate:
     desc: Validate all Terraform files
