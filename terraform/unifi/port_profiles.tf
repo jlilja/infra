@@ -30,6 +30,27 @@ resource "unifi_port_profile" "trusted" {
   }
 }
 
+resource "unifi_port_profile" "hue" {
+  name = "hihi"
+
+  # native_networkconf_id = unifi_network.iot.id
+  tagged_networkconf_ids = [
+    unifi_network.trusted.id,
+    unifi_network.homelab.id,
+  ]
+
+  forward  = "all"
+  poe_mode = "auto"
+
+  site = unifi_site.default.name
+
+  lifecycle {
+    ignore_changes = [
+      # tagged_networkconf_ids
+    ]
+  }
+}
+
 resource "unifi_port_profile" "homelab" {
   name = unifi_network.homelab.name
 

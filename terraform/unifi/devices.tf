@@ -20,7 +20,7 @@ resource "unifi_device" "USW_24_G1" {
     number = 3
     name   = "IOT - hue"
 
-    # port_profile_id = unifi_port_profile.trusted.id
+    port_profile_id = unifi_port_profile.hue.id
   }
 
   port_override {

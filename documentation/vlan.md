@@ -16,10 +16,18 @@ VLANs is a level 2 feature.
 
 The connected host sends its traffic without any VLAN tag on the frames. When the frame reaches the switch port, the switch will add the VLAN tag.
 
-### Untagged (U)
+### Untagged VLAN / Native VLAN
 
-An untagged VLAN, also known as "U". The default VLAN (which has ID 1, VLAN1) is an untagged VLAN.
 
-### Tagged (T)
 
-A port is a `tagged port` when the interface is expecting frames containing VLAN tags. A tagged port is configured to carry all VLANs by default, but a filter can be applied to limit to specific VLANs.
+### Tagged VLAN
+
+Any VLAN that is not the native VLAN that is explicitly permitted to flow through a switch port.
+
+### Trunk port
+
+Name of a switch port that is tagged with multiple VLAN tags.
+
+### Access port
+
+A port that is not tagged with any VLAN tags.
