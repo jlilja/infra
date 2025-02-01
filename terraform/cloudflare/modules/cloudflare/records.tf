@@ -50,6 +50,6 @@ resource "cloudflare_record" "txt_dmarc" {
   zone_id = data.cloudflare_zone.lilja_dot_io.id
   type    = "TXT"
   name    = "_dmarc"
-  content   = "v=DMARC1; p=quarantine"
+  content = "v=DMARC1; p=quarantine"
   proxied = false
 }
