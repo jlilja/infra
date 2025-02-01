@@ -31,7 +31,7 @@ jobs:
         uses: arduino/setup-task@b91d5d2c96a56797b48ac1e0e89220bf64044611 # v2
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@817023b5c82d2c7e8a83ec15dd1a7352c0cd875f # v3
+        uses: hashicorp/setup-terraform@49dee962d541c13290ae1c9c9be9c8b741ecb6bc # v3
 
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@4fc4975a852c8cd99761e2de1f4ba73402e44dd9 # v4
