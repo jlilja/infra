@@ -54,9 +54,6 @@ jobs:
         id: plan
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.TF_VAR_CLOUDFLARE_API_TOKEN }}
-          TF_VAR_protonmail_dkim1: ${{ secrets.TF_VAR_PROTONMAIL_DKIM1 }}
-          TF_VAR_protonmail_dkim2: ${{ secrets.TF_VAR_PROTONMAIL_DKIM2 }}
-          TF_VAR_protonmail_dkim3: ${{ secrets.TF_VAR_PROTONMAIL_DKIM3 }}
           TF_VAR_protonmail_verification: ${{ secrets.TF_VAR_PROTONMAIL_VERIFICATION }}
         run: task terraform:cloudflare:plan
 

@@ -1,24 +1,25 @@
 resource "cloudflare_record" "mx_proton_mail" {
   for_each = toset(var.mx_records)
 
-  name    = data.cloudflare_zone.lilja_dot_io.name
   zone_id = data.cloudflare_zone.lilja_dot_io.id
 
-  content  = each.value
-  proxied  = false
-  type     = "MX"
+  name    = data.cloudflare_zone.lilja_dot_io.name
+  type    = "MX"
+  content = each.value
+  proxied = false
+
   ttl      = 1
   priority = index(var.mx_records, each.value) + 1
-
-  comment = "MX records for ${data.cloudflare_zone.lilja_dot_io.name} zone."
+  comment  = "MX records for ${data.cloudflare_zone.lilja_dot_io.name} zone."
 }
 
 resource "cloudflare_record" "cname_dkim1" {
   for_each = toset(var.dkim_records)
 
   zone_id = data.cloudflare_zone.lilja_dot_io.id
-  type    = "CNAME"
+
   name    = each.value.name
+  type    = "CNAME"
   content = each.value.value
   proxied = false
 }
