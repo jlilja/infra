@@ -4,7 +4,7 @@ resource "cloudflare_record" "mx_proton_mail" {
   name    = data.cloudflare_zone.lilja_dot_io.name
   zone_id = data.cloudflare_zone.lilja_dot_io.id
 
-  value    = each.value
+  content    = each.value
   proxied  = false
   type     = "MX"
   ttl      = 1
@@ -14,12 +14,12 @@ resource "cloudflare_record" "mx_proton_mail" {
 }
 
 resource "cloudflare_record" "cname_dkim1" {
-  for_each = toset(var.dkim_records)
+  for_each = map(var.dkim_records)
 
   zone_id = data.cloudflare_zone.lilja_dot_io.id
   type    = "CNAME"
   name    = each.name
-  value   = each.value
+  content   = each.value
   proxied = false
 }
 
