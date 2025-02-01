@@ -1,24 +1,34 @@
 resource "cloudflare_record" "mx_proton_mail" {
-  name     = data.cloudflare_zone.lilja_dot_io.name
-  zone_id  = data.cloudflare_zone.lilja_dot_io.id
-  value    = "mail.protonmail.ch"
+  for_each = toset(var.mx_records)
+
+  name    = data.cloudflare_zone.lilja_dot_io.name
+  zone_id = data.cloudflare_zone.lilja_dot_io.id
+
+  value    = each.value
   proxied  = false
   type     = "MX"
   ttl      = 1
-  priority = 10
-  comment  = "First MX record for ${data.cloudflare_zone.lilja_dot_io.name} zone."
+  priority = index(var.mx_records, each.value) + 1
+
+  comment = "MX records for ${data.cloudflare_zone.lilja_dot_io.name} zone."
 }
 
-resource "cloudflare_record" "mx_proton_mailsec" {
-  name     = data.cloudflare_zone.lilja_dot_io.name
-  zone_id  = data.cloudflare_zone.lilja_dot_io.id
-  value    = "mailsec.protonmail.ch"
-  proxied  = false
-  type     = "MX"
-  ttl      = 1
-  priority = 20
-  comment  = "Second MX record for ${data.cloudflare_zone.lilja_dot_io.name} zone."
+resource "cloudflare_record" "cname_dkim1" {
+  for_each = toset(var.dkim_records)
+
+  zone_id = data.cloudflare_zone.lilja_dot_io.id
+  type    = "CNAME"
+  name    = each.name
+  value   = each.value
+  proxied = false
 }
+
+
+
+
+
+
+
 
 resource "cloudflare_record" "mx_proton_spf1" {
   zone_id = data.cloudflare_zone.lilja_dot_io.id
@@ -33,30 +43,6 @@ resource "cloudflare_record" "mx_proton_protomain_verification" {
   type    = "TXT"
   name    = data.cloudflare_zone.lilja_dot_io.name
   content = "protonmail-verification=${var.protonmail_verification}"
-  proxied = false
-}
-
-resource "cloudflare_record" "cname_dkim1" {
-  zone_id = data.cloudflare_zone.lilja_dot_io.id
-  type    = "CNAME"
-  name    = "protonmail._domainkey"
-  value   = var.protonmail_dkim1
-  proxied = false
-}
-
-resource "cloudflare_record" "cname_dkim2" {
-  zone_id = data.cloudflare_zone.lilja_dot_io.id
-  type    = "CNAME"
-  name    = "protonmail2._domainkey"
-  value   = var.protonmail_dkim2
-  proxied = false
-}
-
-resource "cloudflare_record" "cname_dkim3" {
-  zone_id = data.cloudflare_zone.lilja_dot_io.id
-  type    = "CNAME"
-  name    = "protonmail3._domainkey"
-  value   = var.protonmail_dkim3
   proxied = false
 }
 
