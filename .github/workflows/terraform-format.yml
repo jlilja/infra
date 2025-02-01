@@ -22,9 +22,7 @@ jobs:
         uses: arduino/setup-task@v2
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.4.5
+        uses: hashicorp/setup-terraform@817023b5c82d2c7e8a83ec15dd1a7352c0cd875f # v3
 
       - name: Run terraform fmt check
         run: task terraform:cloudflare:format-check
