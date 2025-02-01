@@ -14,7 +14,7 @@ resource "cloudflare_record" "mx_proton_mail" {
 }
 
 resource "cloudflare_record" "cname_dkim1" {
-  for_each = var.dkim_records
+  for_each = toset(var.dkim_records)
 
   zone_id = data.cloudflare_zone.lilja_dot_io.id
   type    = "CNAME"
