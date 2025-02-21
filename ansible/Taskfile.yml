@@ -58,3 +58,10 @@ tasks:
       - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
     env:
       PLAYBOOK: configure-kubernetes.yml
+
+  configure-synology:
+    desc: "Set various configs for synology NAS"
+    cmds:
+      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass --ask-pass
+    env:
+      PLAYBOOK: configure-synology.yml

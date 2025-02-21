@@ -1,0 +1,26 @@
+---
+
+- name: Set synoinfo settings
+  hosts: ds418
+  become: true
+
+  vars_prompt:
+
+    - name: synology_username
+      prompt: synology username
+      private: false
+
+  vars:
+    synoinfoconf:
+      path: /etc/synoinfo.conf
+
+  tasks:
+
+  # - name: Ensure SELinux is set to enforcing mode
+  #   ansible.builtin.lineinfile:
+  #     path: /etc/selinux/config
+  #     regexp: '^SELINUX='
+  #     line: SELINUX=enforcing
+
+    - name: Set disable reset button to true
+      ansible.builtin.command: "/usr/syno/bin/synosetkeyvalue {{ synoinfoconf }} reset_button_disable yes"
