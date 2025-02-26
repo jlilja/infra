@@ -8,7 +8,7 @@ tasks:
   edgerouter-setup:
     desc: "Configure edgerouter"
     cmds:
-      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-pass
+      - docker run ansible-playbook --rm -it ansible-playbook -i $INVENTORY $PLAYBOOK --ask-pass
     env:
       PLAYBOOK: configure-edgerouter.yml
 
@@ -34,7 +34,15 @@ tasks:
   dnf-install-container-environment:
     desc: "Install docker and kubernetes"
     cmds:
-      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
+      - |
+        docker run -it --rm \
+          -v "/home/jonas/.ssh:/.ssh:ro" \
+          -v "/home/jonas/.ssh/known_hosts:/.ssh/known_hosts:rw" \
+          -v "/run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock" \
+          -e "SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock" \
+          -v ./$PLAYBOOK:/ansible/$PLAYBOOK \
+          -v ./$INVENTORY:/ansible/$INVENTORY \
+          ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       PLAYBOOK: dnf-install-packages.yml
 

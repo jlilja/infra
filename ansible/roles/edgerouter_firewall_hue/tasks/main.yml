@@ -1,0 +1,9 @@
+---
+- name: Setup firewall hue
+  community.network.edgeos_config:
+    lines:
+      - set firewall name HUE_IN default-action drop
+
+      - set firewall name HUE_IN description 'Trafic IN'
+      - set firewall name HUE_IN rule 10 action accept
+      - set firewall name HUE_IN rule 10 description 'Allow trafic from local IPs'
