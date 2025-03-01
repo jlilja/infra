@@ -43,12 +43,10 @@ tasks:
     cmds:
       - |
         docker run -it --rm --network="host" \
-          -v "/home/jonas/.ssh:/.ssh:ro" \
-          -v "/home/jonas/.ssh/known_hosts:/.ssh/known_hosts:rw" \
-          -v "/run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock" \
-          -v "/home/jonas/.1password/agent.sock:/.1password/agent.sock" \
           -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
-          -v .:/ansible \
+          -v "$HOME/.1password/agent.sock:/.1password/agent.sock" \
+          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts" \
+          -v "$PWD:/ansible" \
           ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
     env:
       PLAYBOOK: update-packages.yml
@@ -72,9 +70,8 @@ tasks:
     cmds:
       - |
         docker run -it --rm --network="host" \
-          -e "ANSIBLE_HOST_KEY_CHECKING=false" \
-          -v ./$PLAYBOOK:/ansible/$PLAYBOOK \
-          -v ./$INVENTORY:/ansible/$INVENTORY \
+          -v "$PWD:/ansible" \
+          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts" \
           ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass --ask-pass
     env:
       PLAYBOOK: configure-synology.yml
