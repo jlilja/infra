@@ -8,7 +8,7 @@ tasks:
   edgerouter-setup:
     desc: "Configure edgerouter"
     cmds:
-      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-pass
+      - docker run ansible-playbook --rm -it ansible-playbook -i $INVENTORY $PLAYBOOK --ask-pass
     env:
       PLAYBOOK: configure-edgerouter.yml
 
@@ -41,27 +41,40 @@ tasks:
   update-packages:
     desc: "Update packages"
     cmds:
-      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
+      - |
+        docker run -it --rm --network="host" \
+          -v "/home/jonas/.ssh:/.ssh:ro" \
+          -v "/home/jonas/.ssh/known_hosts:/.ssh/known_hosts:rw" \
+          -v "/run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock" \
+          -v "/home/jonas/.1password/agent.sock:/.1password/agent.sock" \
+          -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
+          -v .:/ansible \
+          ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
     env:
       PLAYBOOK: update-packages.yml
 
-  harden-ssh:
-    desc: "Secure ssh configs"
-    cmds:
-      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
-    env:
-      PLAYBOOK: harden-ssh.yml
+  # harden-ssh:
+  #   desc: "Secure ssh configs"
+  #   cmds:
+  #     - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
+  #   env:
+  #     PLAYBOOK: harden-ssh.yml
 
-  configure-kubernetes:
-    desc: "Set kubernetes configs"
-    cmds:
-      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
-    env:
-      PLAYBOOK: configure-kubernetes.yml
+  # configure-kubernetes:
+  #   desc: "Set kubernetes configs"
+  #   cmds:
+  #     - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
+  #   env:
+  #     PLAYBOOK: configure-kubernetes.yml
 
   configure-synology:
     desc: "Set various configs for synology NAS"
     cmds:
-      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass --ask-pass
+      - |
+        docker run -it --rm --network="host" \
+          -e "ANSIBLE_HOST_KEY_CHECKING=false" \
+          -v ./$PLAYBOOK:/ansible/$PLAYBOOK \
+          -v ./$INVENTORY:/ansible/$INVENTORY \
+          ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass --ask-pass
     env:
       PLAYBOOK: configure-synology.yml

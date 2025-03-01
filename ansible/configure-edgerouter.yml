@@ -19,3 +19,7 @@
     - name: Setup trusted network
       ansible.builtin.import_role:
         name: edgerouter_vlan_setup
+
+    # - name: Setup iot firewall
+    #   ansible.builtin.import_role:
+    #     name: edgerouter_firewall_hue
