@@ -26,11 +26,6 @@ tasks:
     env:
       PLAYBOOK: update-pihole.yml
 
-  ping-host:
-    desc: "Ping the kubernetes node(s) using ansible module ping"
-    cmds:
-      - ansible all -i $INVENTORY -m ping
-
   dnf-install-container-environment:
     desc: "Install docker and kubernetes"
     cmds:
@@ -44,19 +39,25 @@ tasks:
       - |
         docker run -it --rm --network="host" \
           -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
-          -v "$HOME/.1password/agent.sock:/.1password/agent.sock" \
-          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts" \
-          -v "$PWD:/ansible" \
+          -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
+          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
+          -v "$PWD:/ansible:ro" \
           ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
     env:
       PLAYBOOK: update-packages.yml
 
-  # harden-ssh:
-  #   desc: "Secure ssh configs"
-  #   cmds:
-  #     - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
-  #   env:
-  #     PLAYBOOK: harden-ssh.yml
+  harden-ssh:
+    desc: "Secure ssh configs"
+    cmds:
+      - |
+        docker run -it --rm --network="host" \
+          -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
+          -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
+          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
+          -v "$PWD:/ansible:ro" \
+          ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
+    env:
+      PLAYBOOK: harden-ssh.yml
 
   # configure-kubernetes:
   #   desc: "Set kubernetes configs"
@@ -70,8 +71,8 @@ tasks:
     cmds:
       - |
         docker run -it --rm --network="host" \
-          -v "$PWD:/ansible" \
-          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts" \
+          -v "$PWD:/ansible:ro" \
+          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
           ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass --ask-pass
     env:
       PLAYBOOK: configure-synology.yml
