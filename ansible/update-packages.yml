@@ -1,7 +1,7 @@
 ---
 
 - name: Update packages
-  hosts: localhost
+  hosts: nodes
   become: true
   roles:
     - update_packages

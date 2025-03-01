@@ -23,4 +23,4 @@
   #     line: SELINUX=enforcing
 
     - name: Set disable reset button to true
-      ansible.builtin.command: "/usr/syno/bin/synosetkeyvalue {{ synoinfoconf }} reset_button_disable yes"
+      ansible.builtin.command: "/usr/syno/bin/synosetkeyvalue {{ synoinfoconf.path }} reset_button_disable yes"
