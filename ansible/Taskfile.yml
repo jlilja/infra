@@ -8,7 +8,13 @@ tasks:
   edgerouter-setup:
     desc: "Configure edgerouter"
     cmds:
-      - docker run ansible-playbook --rm -it ansible-playbook -i $INVENTORY $PLAYBOOK --ask-pass
+      # - docker run ansible-playbook --rm -it ansible-playbook -i $INVENTORY $PLAYBOOK --ask-pass
+      - |
+        docker run -it --rm --network="host" \
+          -v "$PWD:/ansible" \
+          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
+          -v "requirements.yml:/ansible/requirements.yml:ro" \
+          ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass --ask-pass
     env:
       PLAYBOOK: configure-edgerouter.yml
 

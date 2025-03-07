@@ -1,4 +1,4 @@
-FROM python:slim@sha256:f3614d98f38b0525d670f287b0474385952e28eb43016655dd003d0e28cf8652
+FROM python:3.9-slim@sha256:d1fd807555208707ec95b284afd10048d0737e84b5f2d6fdcbed2922b9284b56
 
 WORKDIR /ansible
 
@@ -8,6 +8,8 @@ RUN apt-get install -y \
     openssh-client \
     sshpass
 
-RUN pip3 install ansible
+RUN pip3 install \
+    ansible \
+    ansible-pylibssh
 
 ENTRYPOINT ["ansible-playbook"]
