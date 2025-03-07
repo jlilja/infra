@@ -28,6 +28,6 @@ updates:
       interval: "monthly"
 
   - package-ecosystem: "docker"
-    directory: "/docker/ansible"
+    directory: "/dockerfiles/ansible"
     schedule:
       interval: "monthly"
