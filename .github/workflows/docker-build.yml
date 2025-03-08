@@ -22,4 +22,5 @@ jobs:
         uses: docker/bake-action@v6
         with:
           workdir: dockerfiles/ansible
+          source: dockerfiles/ansible
           push: false
