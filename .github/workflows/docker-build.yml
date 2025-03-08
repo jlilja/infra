@@ -22,7 +22,7 @@ jobs:
         uses: docker/setup-buildx-action@aa1e2a0b496d6cd3474071c7b0ab0eea5948de3a # v3
 
       - name: Run Docker bake
-        uses: docker/bake-action@v6
+        uses: docker/bake-action@c48383c7fd6d2a1a3459884f6224098f671c545d # v6
         with:
           source: .
           workdir: dockerfiles/ansible
