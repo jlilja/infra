@@ -5,7 +5,7 @@ on:
   pull_request:
     paths:
       - "**/*.tf"
-      - "**/*.hcl"
+      - "terraform/**/*.hcl"
       - ".github/workflows/terraform-apply.yml"
       - ".github/workflows/terraform-plan.yml"
   workflow_dispatch:
