@@ -2,13 +2,8 @@
 
 - [Overview](#overview)
 - [Directory structure](#directory-structure)
-- [Resources in version control](#resources-in-version-control)
-    - [Ansible](#ansible)
-    - [k8s](#k8s)
-    - [Terraform](#terraform)
-    - [Hardware](#hardware)
-    - [Network](#network)
-
+- [Hardware](#hardware)
+- [Network](#network)
 
 ## Overview
 
@@ -22,32 +17,15 @@ If a Terraform provider is not available, and Terraform's data type is neither a
 
 ```
 📂 infra
-├─📁 .github    # Github actions workflows, repostory settings, and dependabot settings.
-├─📁 ansible    # Ansible playbooks.
-├─📁 k8s        # Experimental work using Minikube.
-└─📁 terraform  # Terraform configuration.
+├─📁 .github       # Github actions workflows, repostory settings, and dependabot settings.
+├─📁 ansible       # Ansible playbooks.
+├─📁 dockerfiles   # Dockerfiles management for tooling.
+├─📁 documentation # Source of custom documentation for various resources.
+├─📁 images        # Source of images supporting documentation.
+├─📁 k8s           # WIP location for anything Kubernetes.
+├─📁 scrips        # Any ad-hoc or one-off scripts.
+└─📁 terraform     # Terraform configuration.
 ```
-
-## Resources in version control
-
-### Ansible
-
-* Manages setup, configuration, and maintenence of a Pihole instance running on Raspberry Pi.
-* Manages the settings for Edgerouter router running on EdgeOS.
-* Manages the setup, bootstrapping, and managing minikube kubernetes cluster.
-
-### k8s
-
-> [!NOTE]
-> This is still under development and features a lot of WIP and unfinished work.
-
-* Setting up functioning application of Home assistant.
-
-### Terraform
-
-* Managing firewall rules for edgerouter routers.
-* Setting dns records for cloudflare domain(s).
-* Managing local dns records via pihole dns.
 
 ## Hardware
 
@@ -63,5 +41,7 @@ If a Terraform provider is not available, and Terraform's data type is neither a
 _Set hostname on Fedora with https://docs.fedoraproject.org/en-US/quick-docs/changing-hostname/_
 
 ## Network
+
+[CIDR ranges](./documentation/networks.md)
 
 ![Netowrk](./images/network/network.png)
