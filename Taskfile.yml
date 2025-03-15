@@ -8,6 +8,8 @@ includes:
 
   k8s:webserver: k8s/apps/webserver/Taskfile.yml
 
+  docker: dockerfiles/Taskfile.yml
+
   ansible:
     taskfile: ansible/Taskfile.yml
     dir: ansible
