@@ -16,13 +16,13 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@138de3b6464b863fed6a98c1fae46faa58f98dee # v3
+        uses: docker/setup-qemu-action@5964de0df58d5ad28b04d8fe2e6b80ad47105b91 # v3.5.0
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@afeb29a6e0d7d6258844ecabe6eba67d13443680 # v3
+        uses: docker/setup-buildx-action@f7ce87c1d6bead3e36075b2ce75da1f6cc28aaca # v3.9.0
 
       - name: Run Docker bake
-        uses: docker/bake-action@8f9e95c9aa0181f735899e61e36d9477cb08ffc5 # v6
+        uses: docker/bake-action@4f08b22a19b3133912e9acbf7da9bfa25184a173 # v6.4.0
         with:
           source: .
           workdir: dockerfiles/ansible

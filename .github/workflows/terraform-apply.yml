@@ -26,13 +26,13 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Setup Taskfile
-        uses: arduino/setup-task@7da076a31d22e32a0b08d90f20a630097a7100dd # v2
+        uses: arduino/setup-task@e26d8975574116b0097a1161e0fe16ba75d84c1c # v1.0.3
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@2f1b53ffa558af27b90742f3f28397d986061ece # v3
+        uses: hashicorp/setup-terraform@651471c36a6092792c552e8b1bef71e592b462d8 # v3.1.1
 
       - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@ececac1a45f3b08a01d2dd070d28d111c5fe6722 # v4
+        uses: aws-actions/configure-aws-credentials@4fc4975a852c8cd99761e2de1f4ba73402e44dd9 # v4.0.3
         with:
           role-to-assume: arn:aws:iam::524080394605:role/TFGithubOIDC
           aws-region: eu-north-1
