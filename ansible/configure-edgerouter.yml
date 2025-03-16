@@ -20,6 +20,12 @@
       ansible.builtin.import_role:
         name: edgerouter_vlan_setup
 
-    # - name: Setup iot firewall
-    #   ansible.builtin.import_role:
-    #     name: edgerouter_firewall_hue
+    - name: Create RFC1918 group
+      ansible.builtin.import_role:
+        name: edgerouter_create_network_groups
+
+    - name: Setup iot firewall
+      ansible.builtin.import_role:
+        name: edgerouter_firewall_hue
+      vars:
+        fw_name: HUE_IN

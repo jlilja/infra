@@ -1,9 +1,12 @@
 ---
-- name: Setup firewall hue
+- name: Create RFC1918 group
   community.network.edgeos_config:
     lines:
-      - set firewall name HUE_IN default-action drop
+      - set firewall name {{ fw_name }} default-action drop
+      - set firewall name {{ fw_name }} description 'Trafic IN'
 
-      - set firewall name HUE_IN description 'Trafic IN'
-      - set firewall name HUE_IN rule 10 action accept
-      - set firewall name HUE_IN rule 10 description 'Allow trafic from local IPs'
+      - set firewall name {{ fw_name }} rule 10 action accept
+      - set firewall name {{ fw_name }} rule 10 description 'Allow trafic from RFC 1918'
+      - set firewall name {{ fw_name }} rule 10 destination group network-group RFC1918
+
+      - set interfaces ethernet eth1 vif 60 firewall in name {{ fw_name }}
