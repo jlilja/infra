@@ -19,7 +19,7 @@ jobs:
         uses: docker/setup-qemu-action@138de3b6464b863fed6a98c1fae46faa58f98dee # v3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@aa1e2a0b496d6cd3474071c7b0ab0eea5948de3a # v3
+        uses: docker/setup-buildx-action@afeb29a6e0d7d6258844ecabe6eba67d13443680 # v3
 
       - name: Run Docker bake
         uses: docker/bake-action@8f9e95c9aa0181f735899e61e36d9477cb08ffc5 # v6
