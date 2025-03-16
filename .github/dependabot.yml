@@ -3,22 +3,11 @@ version: 2
 
 updates:
   - package-ecosystem: "terraform"
-    directory: "/terraform/cloudflare"
-    schedule:
-      interval: "monthly"
-
-  - package-ecosystem: "terraform"
-    directory: "/terraform/edgerouter"
-    schedule:
-      interval: "monthly"
-
-  - package-ecosystem: "terraform"
-    directory: "/terraform/pihole"
-    schedule:
-      interval: "monthly"
-
-  - package-ecosystem: "terraform"
-    directory: "/terraform/unifi"
+    directories:
+      - "/terraform/cloudflare"
+      - "/terraform/edgerouter"
+      - "/terraform/pihole"
+      - "/terraform/unifi"
     schedule:
       interval: "monthly"
 
@@ -28,6 +17,11 @@ updates:
       interval: "monthly"
 
   - package-ecosystem: "docker"
+    directory: "/dockerfiles/ansible"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "pip"
     directory: "/dockerfiles/ansible"
     schedule:
       interval: "monthly"
