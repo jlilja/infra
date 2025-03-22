@@ -1,0 +1,8 @@
+---
+- name: Setup firewall hue
+  community.network.edgeos_config:
+    lines:
+      - set firewall group network-group RFC1918 description 'RFC1918 ranges'
+      - set firewall group network-group RFC1918 network 192.168.0.0/16
+      - set firewall group network-group RFC1918 network 172.16.0.0/12
+      - set firewall group network-group RFC1918 network 10.0.0.0/8
