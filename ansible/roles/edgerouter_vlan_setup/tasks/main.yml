@@ -95,11 +95,11 @@
       - set interfaces ethernet eth1 vif 61 description 'VLAN 61 - Smart lighting'
       - set interfaces ethernet eth1 vif 61 address 192.168.61.1/28
 
-      - set service dhcp-server shared-network-name iot authoritative enable
+      - set service dhcp-server shared-network-name smartlightning authoritative enable
 
-      - set service dhcp-server shared-network-name iot subnet 192.168.61.0/28 default-router 192.168.61.1
-      - set service dhcp-server shared-network-name iot subnet 192.168.61.0/28 dns-server 192.168.30.10
-      - set service dhcp-server shared-network-name iot subnet 192.168.61.0/28 lease 3600
-      - set service dhcp-server shared-network-name iot subnet 192.168.61.0/28 start 192.168.61.1 stop 192.168.61.14
+      - set service dhcp-server shared-network-name smartlightning subnet 192.168.61.0/28 default-router 192.168.61.1
+      - set service dhcp-server shared-network-name smartlightning subnet 192.168.61.0/28 dns-server 192.168.30.10
+      - set service dhcp-server shared-network-name smartlightning subnet 192.168.61.0/28 lease 3600
+      - set service dhcp-server shared-network-name smartlightning subnet 192.168.61.0/28 start 192.168.61.1 stop 192.168.61.14
 
       - set service dns forwarding listen-on eth1.61
