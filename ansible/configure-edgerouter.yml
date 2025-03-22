@@ -16,7 +16,7 @@
       ansible.builtin.import_role:
         name: edgerouter_firewall_standard_rules
 
-    - name: Setup trusted network
+    - name: Setup VLANs
       ansible.builtin.import_role:
         name: edgerouter_vlan_setup
 
@@ -28,4 +28,4 @@
       ansible.builtin.import_role:
         name: edgerouter_firewall_hue
       vars:
-        fw_name: HUE_IN
+        edgerouter_firewall_hue_fw_name: HUE_IN
