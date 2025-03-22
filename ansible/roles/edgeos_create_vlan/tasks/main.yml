@@ -1,0 +1,15 @@
+---
+- name: Setting up vlan {{ edgeos_create_vlan_name }}
+  community.network.edgeos_config:
+    lines:
+      - set interfaces ethernet eth1 vif {{ edgeos_create_vlan_vlan_id }} description '{{ edgeos_create_vlan_description }}'
+      - set interfaces ethernet eth1 vif {{ edgeos_create_vlan_vlan_id }} address {{ edgeos_create_vlan_cidr }}
+
+      - set service dhcp-server shared-network-name {{ edgeos_create_vlan_name }} authoritative enable
+
+      - set service dhcp-server shared-network-name {{ edgeos_create_vlan_name }} subnet {{ edgeos_create_vlan_subnet }} default-router {{ edgeos_create_vlan_router }}
+      - set service dhcp-server shared-network-name {{ edgeos_create_vlan_name }} subnet {{ edgeos_create_vlan_subnet }} dns-server {{ edgeos_create_vlan_dns }}
+      - set service dhcp-server shared-network-name {{ edgeos_create_vlan_name }} subnet {{ edgeos_create_vlan_subnet }} lease {{ edgeos_create_vlan_lease }}
+      - set service dhcp-server shared-network-name {{ edgeos_create_vlan_name }} subnet {{ edgeos_create_vlan_subnet }} start {{ edgeos_create_vlan_start }} stop {{ edgeos_create_vlan_stop }}
+
+      - set service dns forwarding listen-on {{ edgeos_create_vlan_interface }}
