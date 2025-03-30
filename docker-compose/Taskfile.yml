@@ -1,0 +1,7 @@
+---
+version: "3"
+
+includes:
+  pihole:
+    taskfile: pihole/Taskfile.yml
+    dir: pihole

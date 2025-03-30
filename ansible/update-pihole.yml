@@ -1,8 +1,0 @@
----
-# Used for updating pihole software
-
-- name: Update pihole
-  hosts: pimachines
-  become: true
-  roles:
-    - update_pihole

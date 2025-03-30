@@ -5,7 +5,7 @@ env:
   INVENTORY: hosts.yml
 
 tasks:
-  edgerouter-setup:
+  configure-edgerouter:
     desc: "Configure edgerouter"
     cmds:
       - |
@@ -18,19 +18,23 @@ tasks:
     env:
       PLAYBOOK: configure-edgerouter.yml
 
-  bootstrap-pihole:
+  configure-pihole:
     desc: "Run playbook meant for an initial setup of a Pihole on a Raspberry Pi"
     cmds:
       - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
-      PLAYBOOK: bootstrap-pihole.yml
+      PLAYBOOK: configure-pihole.yml
 
-  update-pihole:
-    desc: Update pihole
+  configure-synology:
+    desc: "Set various configs for synology NAS"
     cmds:
-      - ansible-playbook -i $INVENTORY $PLAYBOOK
+      - |
+        docker run -it --rm --network="host" \
+          -v "$PWD:/ansible:ro" \
+          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
+          ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass --ask-pass
     env:
-      PLAYBOOK: update-pihole.yml
+      PLAYBOOK: configure-synology.yml
 
   dnf-install-container-environment:
     desc: "Install docker and kubernetes"
@@ -64,21 +68,3 @@ tasks:
           ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
     env:
       PLAYBOOK: harden-ssh.yml
-
-  # configure-kubernetes:
-  #   desc: "Set kubernetes configs"
-  #   cmds:
-  #     - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
-  #   env:
-  #     PLAYBOOK: configure-kubernetes.yml
-
-  configure-synology:
-    desc: "Set various configs for synology NAS"
-    cmds:
-      - |
-        docker run -it --rm --network="host" \
-          -v "$PWD:/ansible:ro" \
-          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
-          ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass --ask-pass
-    env:
-      PLAYBOOK: configure-synology.yml

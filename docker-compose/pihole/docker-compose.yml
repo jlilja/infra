@@ -1,0 +1,14 @@
+services:
+  nginx:
+    image: nginx:1.27.3@sha256:da837cfb72cb98fdd8efa8f2c8d3d29b89b327c07d45bf564d52835d787a0892
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+  pihole:
+    image: pihole/pihole:2025.02.7@sha256:16182d525693103d5b356173b0405be348b9494eb69ec0b4585d51b3c14b61dd
+    environment:
+      TZ: 'Europe/Stockholm'
+    volumes:
+      - './pihole.toml:/etc/pihole/pihole.toml'

@@ -14,4 +14,4 @@
 # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/hostname_module.html
 - name: Set a hostname
   ansible.builtin.hostname:
-    name: "{{ raspberrypi_hostname }}"
+    name: "{{ hostname }}"

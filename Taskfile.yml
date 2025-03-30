@@ -10,6 +10,8 @@ includes:
 
   docker: dockerfiles/Taskfile.yml
 
+  docker-compose: docker-compose/Taskfile.yml
+
   ansible:
     taskfile: ansible/Taskfile.yml
     dir: ansible

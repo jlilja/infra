@@ -5,4 +5,5 @@
     name:
       - git
       - curl
+      # Add packages needed for a docker compose install
     state: present
