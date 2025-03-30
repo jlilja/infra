@@ -1,0 +1,11 @@
+---
+version: "3"
+
+env:
+  INVENTORY: hosts.yml
+
+tasks:
+  start-pihole:
+    desc: "Start up docker compose"
+    cmds:
+      - docker compose up

@@ -10,3 +10,5 @@ services:
     image: pihole/pihole:2025.02.7@sha256:16182d525693103d5b356173b0405be348b9494eb69ec0b4585d51b3c14b61dd
     environment:
       TZ: 'Europe/Stockholm'
+    volumes:
+      - './pihole.toml:/etc/pihole/pihole.toml'
