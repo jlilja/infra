@@ -1,0 +1,100 @@
+#!/usr/bin/env bash
+
+# List compiled from https://kb.synology.com/en-global/DSM/tutorial/What_websites_does_Synology_NAS_connect_to_when_running_services_or_updating_software
+# List exclude all "only for china" entries and .cn domains
+domains=(
+    account.synology.com
+    api.insight.synology.com
+    apiauth.quickconnect.to
+    autoupdate.synology.com
+    autoupdate7.synology.com
+    checkip.dyndns.org
+    checkip.synology.com
+    checkip.webrtc.quickconnect.to
+    checkipv6.quickconnect.to
+    checkipv6.synology.com
+    checkport.synology.com
+    collectorautoupdate7.synology.com
+    collectorupdate7.synology.com
+    czr3.re.cs.quickconnect.to
+    czr4.re.cs.quickconnect.to
+    czr5.re.cs.quickconnect.to
+    dataautoupdate7.synology.com
+    dataupdate.synology.com
+    dataupdate7.synology.com
+    ddns.synology.com
+    dec.quickconnect.to
+    der5.re.cs.quickconnect.to
+    der6.re.cs.quickconnect.to
+    der8.re.cs.quickconnect.to
+    der9.re.cs.quickconnect.to
+    download.synology.com
+    download.synology.com/routerdb
+    frch.lp.cs.quickconnect.to
+    frlp.lp.cs.quickconnect.to
+    frp1.punch.cs.quickconnect.to
+    frp2.punch.cs.quickconnect.to
+    frp3.punch.cs.quickconnect.to
+    frp4.punch.cs.quickconnect.to
+    frr1.re.cs.quickconnect.to
+    frr2.re.cs.quickconnect.to
+    frr3.re.cs.quickconnect.to
+    frr4.re.cs.quickconnect.to
+    global.download.synology.com
+    global.quickconnect.to
+    global.synologydownload.com
+    gofile.me
+    help.synology.com
+    kb.synology.com
+    keymaker.synology.com
+    notification.synology.com
+    orch.lp.cs.quickconnect.to
+    orlp.lp.cs.quickconnect.to
+    orp1.punch.cs.quickconnect.to
+    orp2.punch.cs.quickconnect.to
+    payment.synology.com
+    pkgautoupdate.synology.com
+    pkgautoupdate.synologyupdate.com
+    pkgautoupdate7.synology.com
+    pkgupdate.synology.com
+    pkgupdate7.synology.com
+    report.synology.com/upload.php
+    sgr3.re.cs.quickconnect.to
+    sgr4.re.cs.quickconnect.to
+    signal1.fr.webrtc.quickconnect.to
+    signal1.or.webrtc.quickconnect.to
+    signal1.ty.webrtc.quickconnect.to
+    signal2.fr.webrtc.quickconnect.to
+    signal2.or.webrtc.quickconnect.to
+    signal2.ty.webrtc.quickconnect.to
+    signal3.fr.webrtc.quickconnect.to
+    signal4.fr.webrtc.quickconnect.to
+    sns.synology.com
+    subscribe.insight.synology.com
+    supapi.synology.com
+    synoconf.synology.com
+    synoconfkms.synology.com
+    timestamp.synology.com
+    twr1.re.cs.quickconnect.to
+    twr2.re.cs.quickconnect.to
+    twr3.re.cs.quickconnect.to
+    twr4.re.cs.quickconnect.to
+    twr5.re.cs.quickconnect.to
+    twr6.re.cs.quickconnect.to
+    typ1.punch.cs.quickconnect.to
+    typ2.punch.cs.quickconnect.to
+    update.synology.com
+    update7.synology.com
+    usc.quickconnect.to
+    uslp.lp.cs.quickconnect.to
+    usr1.re.cs.quickconnect.to
+    usr2.re.cs.quickconnect.to
+    usr3.re.cs.quickconnect.to
+    usr5.re.cs.quickconnect.to
+    usr6.re.cs.quickconnect.to
+    www.synology.com
+)
+
+for domain in "${domains[@]}"; do
+    echo "$(dig +short a $domain | tail -n1)"
+done

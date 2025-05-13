@@ -1,0 +1,32 @@
+---
+- name: Create firewall ruleset for ds418p vlan 51 direction IN
+  community.network.edgeos_config:
+    lines:
+      - set firewall name ds418p_IN default-action drop
+      - set firewall name ds418p_IN description 'Trafic IN'
+
+      - set firewall name ds418p_IN rule 10 action accept
+      - set firewall name ds418p_IN rule 10 description 'Allow traffic from RFC 1918'
+      - set firewall name ds418p_IN rule 10 destination group network-group RFC1918
+
+      - set firewall name ds418p_IN rule 20 action accept
+      - set firewall name ds418p_IN rule 20 description 'Allow traffic from allowed Synology IPs'
+      - set firewall name ds418p_IN rule 20 destination group address-group Synology-URLs
+
+      - set interfaces ethernet eth1 vif 51 firewall in name ds418p_IN
+
+- name: Create firewall ruleset for ds418p vlan 51 direction OUT
+  community.network.edgeos_config:
+    lines:
+      - set firewall name ds418p_OUT default-action drop
+      - set firewall name ds418p_OUT description 'Trafic OUT'
+
+      - set firewall name ds418p_OUT rule 10 action accept
+      - set firewall name ds418p_OUT rule 10 description 'Allow traffic to RFC 1918'
+      - set firewall name ds418p_OUT rule 10 source group network-group RFC1918
+
+      - set firewall name ds418p_OUT rule 20 action accept
+      - set firewall name ds418p_OUT rule 20 description 'Allow traffic to allowed Synology IPs'
+      - set firewall name ds418p_OUT rule 20 destination group address-group Synology-URLs
+
+      - set interfaces ethernet eth1 vif 51 firewall out name ds418p_OUT

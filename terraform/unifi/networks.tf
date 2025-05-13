@@ -33,6 +33,13 @@ resource "unifi_network" "nas" {
   vlan_id = 50
 }
 
+resource "unifi_network" "ds418p" {
+  name    = local.DS418P
+  purpose = "vlan-only"
+
+  vlan_id = 51
+}
+
 resource "unifi_network" "iot" {
   name    = local.IOT
   purpose = "vlan-only"

@@ -3,7 +3,7 @@
 # Linting of this file is disabled until the following issue is resolved:
 # https://github.com/ansible/ansible-lint/issues/3607
 
-- name: Set
+- name: Configure edgerouter vlans
   hosts: edgerouters
   connection: network_cli
 
@@ -11,10 +11,6 @@
     - name: System configuration
       ansible.builtin.import_role:
         name: edgerouter_system_configure
-
-    - name: Standard firewall defaults
-      ansible.builtin.import_role:
-        name: edgerouter_firewall_standard_rules
 
     - name: Create VLAN 10
       ansible.builtin.import_role:
@@ -106,6 +102,24 @@
         edgeos_create_vlan_start: "192.168.50.10"
         edgeos_create_vlan_stop: "192.168.50.254"
 
+    - name: Create VLAN 51
+      ansible.builtin.import_role:
+        name: edgeos_create_vlan
+      vars:
+        edgeos_create_vlan_name: ds418p
+        edgeos_create_vlan_description: "VLAN 51 - ds418p vlan"
+
+        edgeos_create_vlan_vlan_id: 51
+        edgeos_create_vlan_lease: 3600
+        edgeos_create_vlan_interface: "eth1.51"
+
+        edgeos_create_vlan_cidr: "192.168.51.1/28"
+        edgeos_create_vlan_subnet: "192.168.51.0/28"
+        edgeos_create_vlan_router: "192.168.51.1"
+        edgeos_create_vlan_dns: "192.168.51.1"
+        edgeos_create_vlan_start: "192.168.51.1"
+        edgeos_create_vlan_stop: "192.168.51.14"
+
     - name: Create VLAN 60
       ansible.builtin.import_role:
         name: edgeos_create_vlan
@@ -141,13 +155,3 @@
         edgeos_create_vlan_dns: "192.168.61.1"
         edgeos_create_vlan_start: "192.168.61.1"
         edgeos_create_vlan_stop: "192.168.61.14"
-
-    - name: Create RFC1918 group
-      ansible.builtin.import_role:
-        name: edgerouter_create_network_groups
-
-    - name: Setup iot firewall
-      ansible.builtin.import_role:
-        name: edgerouter_firewall_hue
-      vars:
-        edgerouter_firewall_hue_fw_name: HUE_IN

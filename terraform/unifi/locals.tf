@@ -11,6 +11,7 @@ locals {
   DNS     = "dns"
   INFRA   = "infra"
   NAS     = "nas"
+  DS418P  = "ds418p"
   IOT     = "iot"
 }
 
