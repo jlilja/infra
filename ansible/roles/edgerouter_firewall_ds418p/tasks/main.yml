@@ -8,6 +8,8 @@
       - set firewall name ds418p_IN rule 10 action accept
       - set firewall name ds418p_IN rule 10 description 'Allow traffic from RFC 1918'
       - set firewall name ds418p_IN rule 10 destination group network-group RFC1918
+      - set firewall name ds418p_IN rule 10 state established enable
+      - set firewall name ds418p_IN rule 10 state related enable
 
       - set firewall name ds418p_IN rule 20 action accept
       - set firewall name ds418p_IN rule 20 description 'Allow traffic from allowed Synology IPs'
