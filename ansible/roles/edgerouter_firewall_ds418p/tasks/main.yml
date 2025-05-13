@@ -27,6 +27,6 @@
 
       - set firewall name ds418p_OUT rule 20 action accept
       - set firewall name ds418p_OUT rule 20 description 'Allow traffic to allowed Synology IPs'
-      - set firewall name ds418p_OUT rule 20 destination group address-group Synology-URLs
+      - set firewall name ds418p_OUT rule 20 source group address-group Synology-URLs
 
       - set interfaces ethernet eth1 vif 51 firewall out name ds418p_OUT
