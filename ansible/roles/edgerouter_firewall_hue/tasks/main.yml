@@ -1,5 +1,5 @@
 ---
-- name: Create RFC1918 group
+- name: Create firewall ruleset for hue smart lightning
   community.network.edgeos_config:
     lines:
       - set firewall name {{ edgerouter_firewall_hue_fw_name }} default-action drop
