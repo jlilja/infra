@@ -1,34 +1,38 @@
 ---
-- name: Create firewall ruleset for ds418p vlan 51 direction IN
+- name: Ruleset eth1.51/in
   community.network.edgeos_config:
     lines:
-      - set firewall name ds418p_IN default-action drop
-      - set firewall name ds418p_IN description 'Trafic IN'
+      - set firewall name ds418p_IN default-action accept
+      - set firewall name ds418p_IN description 'Traffic IN'
 
       - set firewall name ds418p_IN rule 10 action accept
-      - set firewall name ds418p_IN rule 10 description 'Allow traffic from RFC 1918'
-      - set firewall name ds418p_IN rule 10 destination group network-group RFC1918
-      - set firewall name ds418p_IN rule 10 state established enable
-      - set firewall name ds418p_IN rule 10 state related enable
+      - set firewall name ds418p_IN rule 10 description 'Allow traffic to internet'
+      - set firewall name ds418p_IN rule 10 protocol tcp_udp
+      - set firewall name ds418p_IN rule 10 state established   enable
+      - set firewall name ds418p_IN rule 10 state invalid       disable
+      - set firewall name ds418p_IN rule 10 state new           enable
+      - set firewall name ds418p_IN rule 10 state related       enable
 
-      - set firewall name ds418p_IN rule 20 action accept
-      - set firewall name ds418p_IN rule 20 description 'Allow traffic from allowed Synology IPs'
-      - set firewall name ds418p_IN rule 20 destination group address-group Synology-URLs
+      - set firewall name ds418p_IN rule 20 action drop
+      - set firewall name ds418p_IN rule 20 description 'Drop established/related to RFC1918'
+      - set firewall name ds418p_IN rule 20 source group network-group RFC1918
 
       - set interfaces ethernet eth1 vif 51 firewall in name ds418p_IN
 
-- name: Create firewall ruleset for ds418p vlan 51 direction OUT
+- name: Ruleset eth1.51/local
   community.network.edgeos_config:
     lines:
-      - set firewall name ds418p_OUT default-action drop
-      - set firewall name ds418p_OUT description 'Trafic OUT'
+      - set firewall name ds418p_LOCAL default-action drop
+      - set firewall name ds418p_LOCAL description 'Accept operational ports'
 
-      - set firewall name ds418p_OUT rule 10 action accept
-      - set firewall name ds418p_OUT rule 10 description 'Allow traffic to RFC 1918'
-      - set firewall name ds418p_OUT rule 10 source group network-group RFC1918
+      - set firewall name ds418p_LOCAL rule 10 action accept
+      - set firewall name ds418p_LOCAL rule 10 description 'Allow DNS'
+      - set firewall name ds418p_LOCAL rule 10 destination port 53
+      - set firewall name ds418p_LOCAL rule 10 protocol tcp_udp
 
-      - set firewall name ds418p_OUT rule 20 action accept
-      - set firewall name ds418p_OUT rule 20 description 'Allow traffic to allowed Synology IPs'
-      - set firewall name ds418p_OUT rule 20 source group address-group Synology-URLs
+      - set firewall name ds418p_LOCAL rule 20 action accept
+      - set firewall name ds418p_LOCAL rule 20 description 'Allow DHCP'
+      - set firewall name ds418p_LOCAL rule 20 destination port 67
+      - set firewall name ds418p_LOCAL rule 20 protocol udp
 
-      - set interfaces ethernet eth1 vif 51 firewall out name ds418p_OUT
+      - set interfaces ethernet eth1 vif 51 firewall local name ds418p_LOCAL
