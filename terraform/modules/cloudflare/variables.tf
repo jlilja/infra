@@ -18,7 +18,7 @@ variable "dkim_records" {
   }))
 }
 
-variable "protonmail_verification" {
-  description = "The protonmail txt verification dns record."
-  type        = string
-}
+# variable "protonmail_verification" {
+#   description = "The protonmail txt verification dns record."
+#   type        = string
+# }

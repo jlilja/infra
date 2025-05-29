@@ -27,7 +27,7 @@ module "cloudflare_lilja_io_setup" {
     }
   ]
 
-  protonmail_verification = "9a69211edf7217e6d5f99e5507b53feb1b356f0d"
+  # protonmail_verification = "9a69211edf7217e6d5f99e5507b53feb1b356f0d"
 }
 
 moved {
