@@ -3,7 +3,7 @@
   community.network.edgeos_config:
     lines:
       - set firewall name ds418p_IN default-action accept
-      - set firewall name ds418p_IN description 'Traffic IN'
+      - set firewall name ds418p_IN description 'Traffic local to router'
 
       - set firewall name ds418p_IN rule 10 action accept
       - set firewall name ds418p_IN rule 10 description 'Allow traffic to internet'

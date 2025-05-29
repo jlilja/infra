@@ -4,7 +4,7 @@
 # https://github.com/ansible/ansible-lint/issues/3607
 
 - name: Configure edgerouter vlans
-  hosts: edgerouters
+  hosts: all
   connection: network_cli
 
   tasks:

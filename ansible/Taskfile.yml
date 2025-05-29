@@ -5,6 +5,8 @@ env:
   INVENTORY: hosts.yml
 
 tasks:
+  ### ----- Edgerouter tasks ----- ###
+
   configure-edgerouter:
     desc: "Configure edgerouter"
     cmds:
@@ -17,6 +19,7 @@ tasks:
           ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       PLAYBOOK: configure-edgerouter.yml
+      INVENTORY: inventory/edgerouter.ini
 
   configure-edgerouter-firewall:
     desc: "Configure edgerouter firewall"
@@ -30,6 +33,7 @@ tasks:
           ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       PLAYBOOK: configure-edgerouter-firewall.yml
+      INVENTORY: inventory/edgerouter.ini
 
   configure-edgerouter-groups:
     desc: "Configure edgerouter groups"
@@ -44,12 +48,24 @@ tasks:
     env:
       PLAYBOOK: configure-edgerouter-groups.yml
 
+  ### ----- Pihole tasks ----- ###
+
   configure-pihole:
     desc: "Run playbook meant for an initial setup of a Pihole on a Raspberry Pi"
     cmds:
-      - ansible-playbook -i $INVENTORY $PLAYBOOK
+      - |
+        docker run -it --rm --network="host" \
+          -v "$PWD:/ansible" \
+          -v "$PWD/../docker-compose/pihole:/pihole" \
+          -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
+          -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
+          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
+          ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       PLAYBOOK: configure-pihole.yml
+      INVENTORY: inventory/pihole.ini
+
+  ### ----- Synology tasks ----- ###
 
   configure-synology:
     desc: "Set various configs for synology NAS"
@@ -61,6 +77,8 @@ tasks:
           ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass --ask-pass
     env:
       PLAYBOOK: configure-synology.yml
+
+  ### ----- Misc tasks ----- ###
 
   dnf-install-container-environment:
     desc: "Install docker and kubernetes"
@@ -91,6 +109,6 @@ tasks:
           -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
           -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
           -v "$PWD:/ansible:ro" \
-          ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
+          ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       PLAYBOOK: harden-ssh.yml

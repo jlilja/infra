@@ -1,9 +1,0 @@
----
-# https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html
-- name: Install packages
-  ansible.builtin.package:
-    name:
-      - git
-      - curl
-      # Add packages needed for a docker compose install
-    state: present
