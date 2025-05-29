@@ -16,7 +16,7 @@ variable "mx_records" {
 }
 
 variable "txt_records" {
-  type = set(string)
+  type = map(string)
 }
 
 variable "dkim_records" {
@@ -25,6 +25,10 @@ variable "dkim_records" {
     value = string
   }))
 }
+
+# variable "asd_records222" {
+#   type = map(string)
+# }
 
 # variable "protonmail_verification" {
 #   description = "The protonmail txt verification dns record."

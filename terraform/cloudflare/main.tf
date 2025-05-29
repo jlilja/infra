@@ -1,3 +1,10 @@
+locals {
+  domain_name = "lilja.io"
+
+  zone_id   = data.cloudflare_zone.lilja_dot_io.id
+  zone_name = data.cloudflare_zone.lilja_dot_io.name
+}
+
 data "cloudflare_zone" "lilja_dot_io" {
   name = local.domain_name
 }
@@ -5,8 +12,8 @@ data "cloudflare_zone" "lilja_dot_io" {
 module "cloudflare_lilja_io_setup" {
   source = "../modules/cloudflare"
 
-  zone_id   = data.cloudflare_zone.lilja_dot_io.id
-  zone_name = data.cloudflare_zone.lilja_dot_io.name
+  zone_id   = local.zone_id
+  zone_name = local.domain_name
 
   # domain_name = local.domain_name
 
@@ -15,10 +22,11 @@ module "cloudflare_lilja_io_setup" {
     "mailsec.protonmail.ch"
   ]
 
-  txt_records = [
-    "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d", # protonmail_verification
-    "v=spf1 include:_spf.protonmail.ch mx ~all"                         # spf
-  ]
+  txt_records = {
+    local.zone_id = "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d", # protonmail_verification
+    local.zone_id = "v=spf1 include:_spf.protonmail.ch mx ~all",                        # spf
+    "_dmarc"      = "v=DMARC1; p=quarantine",                                           # dmarc
+  }
 
   dkim_records = [
     {

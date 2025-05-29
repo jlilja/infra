@@ -51,11 +51,3 @@ resource "cloudflare_record" "txt_records" {
 
   proxied = false
 }
-
-resource "cloudflare_record" "txt_dmarc" {
-  zone_id = var.zone_id
-  type    = "TXT"
-  name    = "_dmarc"
-  content = "v=DMARC1; p=quarantine"
-  proxied = false
-}
