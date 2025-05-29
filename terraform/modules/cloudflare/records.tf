@@ -10,7 +10,7 @@ resource "cloudflare_record" "mx_proton_mail" {
 
   ttl      = 1
   priority = index(var.mx_records, each.value) + 1
-  comment  = "MX records for ${data.cloudflare_zone.lilja_dot_io.name} zone."
+  comment  = "MX records for ${var.zone_name} zone."
 }
 
 resource "cloudflare_record" "cname_dkim1" {
