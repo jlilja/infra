@@ -22,11 +22,20 @@ module "cloudflare_lilja_io_setup" {
     "mailsec.protonmail.ch"
   ]
 
-  txt_records = {
-    "@"      = "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d", # protonmail_verification
-    "@"      = "v=spf1 include:_spf.protonmail.ch mx ~all",                        # spf
-    "_dmarc" = "v=DMARC1; p=quarantine",                                           # dmarc
-  }
+  txt_records = [
+    {
+      name : "@",                                                                # host
+      value : "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d" # protonmail_verification
+    },
+    {
+      name : "@",                                         # host
+      value : "v=spf1 include:_spf.protonmail.ch mx ~all" # spf
+    },
+    {
+      name : "_dmarc",                 # host
+      value : "v=DMARC1; p=quarantine" # dmarc
+    },
+  ]
 
   dkim_records = [
     {

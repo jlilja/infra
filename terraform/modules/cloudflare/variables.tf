@@ -16,7 +16,10 @@ variable "mx_records" {
 }
 
 variable "txt_records" {
-  type = map(string)
+  type = list(object({
+    name  = string,
+    value = string
+  }))
 }
 
 variable "dkim_records" {

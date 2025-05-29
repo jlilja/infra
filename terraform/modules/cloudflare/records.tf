@@ -40,9 +40,9 @@ resource "cloudflare_record" "cname_dkim1" {
 #   proxied = false
 # }
 
-resource "cloudflare_record" "txt_records" {
+resource "cloudflare_record" "txt_record" {
   type     = "TXT"
-  for_each = var.txt_records
+  for_each = { for record in var.txt_records : record.name => record }
 
   zone_id = var.zone_id
 
