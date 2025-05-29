@@ -42,7 +42,7 @@ resource "cloudflare_record" "cname_dkim1" {
 
 resource "cloudflare_record" "txt_record" {
   type     = "TXT"
-  for_each = { for record in var.txt_records : record.name => record }
+  for_each = { for record in var.txt_records : record.value => value }
 
   zone_id = var.zone_id
 
