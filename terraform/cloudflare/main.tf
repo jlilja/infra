@@ -1,5 +1,5 @@
 module "cloudflare_lilja_io_setup" {
-  source = "./modules/cloudflare"
+  source = "../modules/cloudflare"
 
   domain_name = local.domain_name
 
