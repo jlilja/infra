@@ -8,6 +8,10 @@ module "cloudflare_lilja_io_setup" {
     "mailsec.protonmail.ch"
   ]
 
+  txt_records = [
+    "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d"
+  ]
+
   dkim_records = [
     {
       name : "protonmail._domainkey",

@@ -7,6 +7,10 @@ variable "mx_records" {
   type = list(string)
 }
 
+variable "txt_records" {
+  type = set(string)
+}
+
 variable "dkim_records" {
   type = list(object({
     name  = string,
