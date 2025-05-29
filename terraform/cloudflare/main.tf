@@ -1,7 +1,14 @@
+data "cloudflare_zone" "lilja_dot_io" {
+  name = local.domain_name
+}
+
 module "cloudflare_lilja_io_setup" {
   source = "../modules/cloudflare"
 
-  domain_name = local.domain_name
+  zone_id   = data.cloudflare_zone.lilja_dot_io.id
+  zone_name = data.cloudflare_zone.lilja_dot_io.name
+
+  # domain_name = local.domain_name
 
   mx_records = [
     "mail.protonmail.ch",

@@ -1,9 +1,9 @@
 resource "cloudflare_record" "mx_proton_mail" {
   for_each = toset(var.mx_records)
 
-  zone_id = data.cloudflare_zone.lilja_dot_io.id
+  zone_id = var.zone_id
 
-  name    = data.cloudflare_zone.lilja_dot_io.name
+  name    = each.value.name
   type    = "MX"
   content = each.value
   proxied = false
@@ -16,7 +16,7 @@ resource "cloudflare_record" "mx_proton_mail" {
 resource "cloudflare_record" "cname_dkim1" {
   for_each = { for record in var.dkim_records : record.name => record }
 
-  zone_id = data.cloudflare_zone.lilja_dot_io.id
+  zone_id = var.zone_id
 
   name    = each.value.name
   type    = "CNAME"
@@ -25,15 +25,15 @@ resource "cloudflare_record" "cname_dkim1" {
 }
 
 resource "cloudflare_record" "mx_proton_spf1" {
-  zone_id = data.cloudflare_zone.lilja_dot_io.id
+  zone_id = var.zone_id
   type    = "TXT"
-  name    = data.cloudflare_zone.lilja_dot_io.name
+  name    = var.zone_name
   content = "v=spf1 include:_spf.protonmail.ch mx ~all"
   proxied = false
 }
 
 # resource "cloudflare_record" "mx_proton_protomain_verification" {
-#   zone_id = data.cloudflare_zone.lilja_dot_io.id
+#   zone_id = var.zone_id
 #   type    = "TXT"
 #   name    = data.cloudflare_zone.lilja_dot_io.name
 #   content = "protonmail-verification=${var.protonmail_verification}"
@@ -44,8 +44,8 @@ resource "cloudflare_record" "txt_records" {
   type     = "TXT"
   for_each = var.txt_records
 
-  zone_id = data.cloudflare_zone.lilja_dot_io.id
-  name    = data.cloudflare_zone.lilja_dot_io.name
+  zone_id = var.zone_id
+  name    = var.zone_name
 
   content = each.value
 
@@ -53,7 +53,7 @@ resource "cloudflare_record" "txt_records" {
 }
 
 resource "cloudflare_record" "txt_dmarc" {
-  zone_id = data.cloudflare_zone.lilja_dot_io.id
+  zone_id = var.zone_id
   type    = "TXT"
   name    = "_dmarc"
   content = "v=DMARC1; p=quarantine"

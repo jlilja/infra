@@ -1,6 +1,14 @@
-variable "domain_name" {
-  description = "The cloudflare domain to configure."
-  type        = string
+# variable "domain_name" {
+#   description = "The cloudflare domain to configure."
+#   type        = string
+# }
+
+variable "zone_id" {
+  type = string
+}
+
+variable "zone_name" {
+  type = string
 }
 
 variable "mx_records" {
