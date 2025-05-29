@@ -23,9 +23,9 @@ module "cloudflare_lilja_io_setup" {
   ]
 
   txt_records = {
-    local.zone_id = "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d", # protonmail_verification
-    local.zone_id = "v=spf1 include:_spf.protonmail.ch mx ~all",                        # spf
-    "_dmarc"      = "v=DMARC1; p=quarantine",                                           # dmarc
+    "${local.zone_id}" = "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d", # protonmail_verification
+    "${local.zone_id}" = "v=spf1 include:_spf.protonmail.ch mx ~all",                        # spf
+    "_dmarc"           = "v=DMARC1; p=quarantine",                                           # dmarc
   }
 
   dkim_records = [
