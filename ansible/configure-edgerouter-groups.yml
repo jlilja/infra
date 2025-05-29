@@ -2,11 +2,119 @@
 # Linting of this file is disabled until the following issue is resolved:
 # https://github.com/ansible/ansible-lint/issues/3607
 
-- name: Configure edgerouter firewall
-  hosts: edgerouters
+- name: Configure edgerouter firewall groups
+  hosts: all
   connection: network_cli
 
   tasks:
-    - name: Create RFC1918 group
-      ansible.builtin.import_role:
-        name: edgerouter_create_network_groups
+    - name: Create RFC1918 groups
+      community.network.edgeos_config:
+        lines:
+          - set firewall group network-group RFC1918 description 'RFC1918 ranges'
+
+    - name: Add IPs to RFC1918 group
+      community.network.edgeos_config:
+        lines:
+          - "set firewall group network-group RFC1918 network {{ item }}"
+      loop:
+        - 192.168.0.0/16
+        - 172.16.0.0/12
+        - 10.0.0.0/8
+
+    - name: Create Synology IPs group
+      community.network.edgeos_config:
+        lines:
+          - set firewall group address-group Synology-URLs description 'list of all known addresses used for Synology NAS services'
+
+    - name: Add IPs to Synology group
+      community.network.edgeos_config:
+        lines:
+          - "set firewall group address-group Synology-URLs address {{ item }}"
+      loop:
+        - 104.22.0.171
+        - 108.156.22.87
+        - 108.157.214.102
+        - 108.157.214.112
+        - 108.157.214.115
+        - 108.157.214.115
+        - 108.157.214.25
+        - 108.157.214.25
+        - 108.157.214.55
+        - 108.157.214.7
+        - 108.157.214.71
+        - 108.157.214.71
+        - 108.157.229.117
+        - 108.157.229.35
+        - 112.121.122.67
+        - 114.32.252.100
+        - 114.32.67.211
+        - 114.32.67.238
+        - 114.32.67.34
+        - 122.116.168.124
+        - 123.51.153.87
+        - 123.51.153.87
+        - 125.228.116.235
+        - 132.226.8.169
+        - 138.197.222.19
+        - 138.199.37.169
+        - 142.93.235.134
+        - 142.93.235.134
+        - 142.93.235.17
+        - 142.93.235.17
+        - 142.93.83.92
+        - 142.93.83.92
+        - 142.93.91.101
+        - 142.93.91.101
+        - 143.244.58.91
+        - 159.100.4.208
+        - 159.100.4.215
+        - 159.100.4.222
+        - 167.99.175.230
+        - 172.67.75.147
+        - 18.195.145.6
+        - 185.102.219.107
+        - 185.152.64.138
+        - 185.59.223.109
+        - 185.93.2.155
+        - 185.93.2.157
+        - 185.93.2.158
+        - 185.93.2.187
+        - 203.74.127.91
+        - 206.189.219.255
+        - 209.58.169.44
+        - 209.58.169.46
+        - 3.123.206.192
+        - 3.164.206.121
+        - 3.164.230.105
+        - 3.164.230.76
+        - 3.164.240.106
+        - 3.164.240.59
+        - 3.164.243.76
+        - 3.164.68.100
+        - 3.164.68.20
+        - 3.174.113.2
+        - 3.98.65.151
+        - 34.214.97.194
+        - 35.183.151.54
+        - 46.101.119.59
+        - 46.101.119.59
+        - 46.101.121.10
+        - 46.101.121.10
+        - 52.10.12.61
+        - 52.29.61.103
+        - 52.29.61.103
+        - 52.29.61.103
+        - 52.39.206.233
+        - 52.39.32.173
+        - 52.85.49.2
+        - 52.85.49.75
+        - 52.85.49.96
+        - 64.124.13.135
+        - 64.227.48.237
+        - 84.200.39.196
+        - 89.187.169.109
+        - 89.187.177.150
+        - 89.187.185.196
+        - 89.187.185.91
+        - 89.187.185.92
+        - 89.187.188.251
