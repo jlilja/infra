@@ -45,8 +45,8 @@ resource "cloudflare_record" "txt_records" {
   for_each = var.txt_records
 
   zone_id = var.zone_id
-  name    = var.zone_name
 
+  name    = each.key
   content = each.value
 
   proxied = false
