@@ -24,13 +24,13 @@ resource "cloudflare_record" "cname_dkim1" {
   proxied = false
 }
 
-resource "cloudflare_record" "mx_proton_spf1" {
-  zone_id = var.zone_id
-  type    = "TXT"
-  name    = var.zone_name
-  content = "v=spf1 include:_spf.protonmail.ch mx ~all"
-  proxied = false
-}
+# resource "cloudflare_record" "mx_proton_spf1" {
+#   zone_id = var.zone_id
+#   type    = "TXT"
+#   name    = var.zone_name
+#   content = "v=spf1 include:_spf.protonmail.ch mx ~all"
+#   proxied = false
+# }
 
 # resource "cloudflare_record" "mx_proton_protomain_verification" {
 #   zone_id = var.zone_id

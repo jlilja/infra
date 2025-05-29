@@ -16,7 +16,8 @@ module "cloudflare_lilja_io_setup" {
   ]
 
   txt_records = [
-    "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d"
+    "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d", # protonmail_verification
+    "v=spf1 include:_spf.protonmail.ch mx ~all"                         # spf
   ]
 
   dkim_records = [
