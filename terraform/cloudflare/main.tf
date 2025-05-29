@@ -55,3 +55,8 @@ moved {
   from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_spf1
   to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_records["v=spf1 include:_spf.protonmail.ch mx ~all"]
 }
+
+moved {
+  from = module.cloudflare_lilja_io_setup.cloudflare_record.txt_dmarc
+  to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_records["_dmarc"]
+}
