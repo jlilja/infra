@@ -1,10 +1,10 @@
 resource "cloudflare_record" "mx_records" {
   for_each = toset(var.mx_records)
 
-  zone_id = "@"
+  zone_id = var.zone_id
   type    = "MX"
 
-  name    = var.zone_name
+  name    = "@"
   content = each.value
 
   proxied = false
