@@ -17,14 +17,23 @@ module "cloudflare_lilja_io_setup" {
 
   mx_records = [
     "mail.protonmail.ch",
-    "mailsec.protonmail.ch"
+    "mailsec.protonmail.ch",
   ]
 
-  txt_records = {
-    "${local.zone_name}" = "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d",
-    "${local.zone_name}" = "v=spf1 include:_spf.protonmail.ch mx ~all",
-    "_dmarc"             = "v=DMARC1; p=quarantine"
-  }
+  txt_records = [
+    {
+      key   = "${local.zone_name}",
+      value = "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d"
+    },
+    {
+      key   = "${local.zone_name}",
+      value = "v=spf1 include:_spf.protonmail.ch mx ~all"
+    },
+    {
+      key   = "_dmarc",
+      value = "v=DMARC1; p=quarantine"
+    },
+  ]
 
   cname_records = {
     "protonmail._domainkey"  = "protonmail.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch.",
