@@ -24,16 +24,16 @@ module "cloudflare_lilja_io_setup" {
 
   txt_records = [
     {
-      name : "@",                                                                # host
-      value : "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d" # protonmail_verification
+      name : "@",
+      value : "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d"
     },
     {
-      name : "@",                                         # host
-      value : "v=spf1 include:_spf.protonmail.ch mx ~all" # spf
+      name : "@",
+      value : "v=spf1 include:_spf.protonmail.ch mx ~all"
     },
     {
-      name : "_dmarc",                 # host
-      value : "v=DMARC1; p=quarantine" # dmarc
+      name : "_dmarc",
+      value : "v=DMARC1; p=quarantine"
     },
   ]
 
@@ -57,15 +57,15 @@ module "cloudflare_lilja_io_setup" {
 
 moved {
   from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_protomain_verification
-  to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_records["protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d"]
+  to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["@-protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d"]
 }
 
-# moved {
-#   from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_spf1
-#   to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_records["lilja.io"]
-# }
+moved {
+  from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_spf1
+  to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["@-v=spf1 include:_spf.protonmail.ch mx ~all"]
+}
 
 moved {
   from = module.cloudflare_lilja_io_setup.cloudflare_record.txt_dmarc
-  to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_records["_dmarc"]
+  to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["_dmarc-v=DMARC1; p=quarantine"]
 }
