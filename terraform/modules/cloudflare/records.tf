@@ -21,7 +21,7 @@ resource "cloudflare_record" "cname_records" {
   type    = "CNAME"
 
   name    = each.key
-  content = each.value
+  content = each.value.value
 
   proxied = false
 }
@@ -33,7 +33,7 @@ resource "cloudflare_record" "txt_records" {
   type    = "TXT"
 
   name    = each.key
-  content = each.value
+  content = each.value.value
 
   proxied = false
 }
