@@ -55,15 +55,15 @@ module "cloudflare_lilja_io_setup" {
   # protonmail_verification = "9a69211edf7217e6d5f99e5507b53feb1b356f0d"
 }
 
-# moved {
-#   from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_protomain_verification
-#   to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["@-protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d"]
-# }
+moved {
+  from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_protomain_verification
+  to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["lilja.io-protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d"]
+}
 
-# moved {
-#   from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_spf1
-#   to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["@-v=spf1 include:_spf.protonmail.ch mx ~all"]
-# }
+moved {
+  from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_spf1
+  to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["lilja.io-v=spf1 include:_spf.protonmail.ch mx ~all"]
+}
 
 moved {
   from = module.cloudflare_lilja_io_setup.cloudflare_record.txt_dmarc
