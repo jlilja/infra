@@ -19,11 +19,8 @@ variable "txt_records" {
   type = map(string)
 }
 
-variable "dkim_records" {
-  type = list(object({
-    name  = string,
-    value = string
-  }))
+variable "cname_records" {
+  type = map(string)
 }
 
 # variable "asd_records222" {
