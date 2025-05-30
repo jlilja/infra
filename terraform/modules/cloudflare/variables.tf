@@ -1,8 +1,3 @@
-# variable "domain_name" {
-#   description = "The cloudflare domain to configure."
-#   type        = string
-# }
-
 variable "zone_id" {
   type = string
 }
@@ -22,12 +17,3 @@ variable "txt_records" {
 variable "cname_records" {
   type = map(string)
 }
-
-# variable "asd_records222" {
-#   type = map(string)
-# }
-
-# variable "protonmail_verification" {
-#   description = "The protonmail txt verification dns record."
-#   type        = string
-# }

@@ -26,23 +26,7 @@ resource "cloudflare_record" "cname_records" {
   proxied = false
 }
 
-# resource "cloudflare_record" "mx_proton_spf1" {
-#   zone_id = var.zone_id
-#   type    = "TXT"
-#   name    = var.zone_name
-#   content = "v=spf1 include:_spf.protonmail.ch mx ~all"
-#   proxied = false
-# }
-
-# resource "cloudflare_record" "mx_proton_protomain_verification" {
-#   zone_id = var.zone_id
-#   type    = "TXT"
-#   name    = data.cloudflare_zone.lilja_dot_io.name
-#   content = "protonmail-verification=${var.protonmail_verification}"
-#   proxied = false
-# }
-
-resource "cloudflare_record" "txt_record" {
+resource "cloudflare_record" "txt_records" {
   for_each = { for record in var.txt_records : "${record.key}-${record.value}" => record }
 
   zone_id = var.zone_id

@@ -15,8 +15,6 @@ module "cloudflare_lilja_io_setup" {
   zone_id   = local.zone_id
   zone_name = local.domain_name
 
-  # domain_name = local.domain_name
-
   mx_records = [
     "mail.protonmail.ch",
     "mailsec.protonmail.ch"
@@ -33,21 +31,19 @@ module "cloudflare_lilja_io_setup" {
     "protonmail2._domainkey" = "protonmail2.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch.",
     "protonmail3._domainkey" = "protonmail3.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch.",
   }
-
-  # protonmail_verification = "9a69211edf7217e6d5f99e5507b53feb1b356f0d"
 }
 
-moved {
-  from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_protomain_verification
-  to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["lilja.io-protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d"]
-}
+# moved {
+#   from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_protomain_verification
+#   to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["lilja.io-protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d"]
+# }
 
-moved {
-  from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_spf1
-  to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["lilja.io-v=spf1 include:_spf.protonmail.ch mx ~all"]
-}
+# moved {
+#   from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_spf1
+#   to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["lilja.io-v=spf1 include:_spf.protonmail.ch mx ~all"]
+# }
 
-moved {
-  from = module.cloudflare_lilja_io_setup.cloudflare_record.txt_dmarc
-  to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["_dmarc-v=DMARC1; p=quarantine"]
-}
+# moved {
+#   from = module.cloudflare_lilja_io_setup.cloudflare_record.txt_dmarc
+#   to   = module.cloudflare_lilja_io_setup.cloudflare_record.txt_record["_dmarc-v=DMARC1; p=quarantine"]
+# }
