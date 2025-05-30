@@ -3,7 +3,7 @@ resource "cloudflare_record" "mx_proton_mail" {
 
   zone_id = var.zone_id
 
-  name    = "@"
+  name    = var.zone_name
   type    = "MX"
   content = each.value
   proxied = false
