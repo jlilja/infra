@@ -42,12 +42,12 @@ resource "cloudflare_record" "cname_dkim1" {
 
 resource "cloudflare_record" "txt_record" {
   type     = "TXT"
-  for_each = { for record in var.txt_records : "${record.name}-${record.value}" => record }
+  for_each = { for record in var.txt_records : "${record.key}-${record.value}" => record }
 
   zone_id = var.zone_id
 
-  name    = each.value.name
-  content = each.value.value
+  name    = each.key
+  content = each.value
 
   proxied = false
 }
