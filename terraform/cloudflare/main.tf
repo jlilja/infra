@@ -35,11 +35,20 @@ module "cloudflare_lilja_io_setup" {
     },
   ]
 
-  cname_records = {
-    "protonmail._domainkey"  = "protonmail.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch.",
-    "protonmail2._domainkey" = "protonmail2.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch.",
-    "protonmail3._domainkey" = "protonmail3.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch.",
-  }
+  cname_records = [
+    {
+      key   = "protonmail._domainkey",
+      value = "protonmail.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch."
+    },
+    {
+      key   = "protonmail2._domainkey",
+      value = "protonmail2.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch."
+    },
+    {
+      key   = "protonmail3._domainkey",
+      value = "protonmail3.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch."
+    },
+  ]
 }
 
 # moved {

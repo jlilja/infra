@@ -18,5 +18,8 @@ variable "txt_records" {
 }
 
 variable "cname_records" {
-  type = map(string)
+  type = list(object({
+    key   = string,
+    value = string,
+  }))
 }
