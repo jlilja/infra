@@ -29,3 +29,15 @@
       - containerd.io
       - docker-buildx-plugin
       - docker-compose-plugin
+
+- name: Enable docker startup on boot
+  ansible.builtin.systemd_service:
+    name: docker.service
+    state: started
+    enabled: true
+
+- name: Enable containerd startup on boot
+  ansible.builtin.systemd_service:
+    name: containerd.service
+    state: started
+    enabled: true

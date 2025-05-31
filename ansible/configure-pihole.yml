@@ -10,5 +10,5 @@
   become: true
   roles:
     - install_docker
-    # - update_packages
-    # - copy_directory
+    - update_packages
+    - copy_directory
