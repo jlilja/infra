@@ -24,7 +24,7 @@ tasks:
     desc: Initializes the Terraform project
     dir: terraform/cloudflare
     cmds:
-      - terraform init
+      - terraform init -upgrade
 
   plan:
     desc: Plan new Terraform changes
