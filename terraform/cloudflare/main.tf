@@ -22,30 +22,30 @@ module "cloudflare_lilja_io_setup" {
 
   txt_records = [
     {
-      key   = "${local.zone_name}",
+      name  = "${local.zone_name}",
       value = "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d"
     },
     {
-      key   = "${local.zone_name}",
+      name  = "${local.zone_name}",
       value = "v=spf1 include:_spf.protonmail.ch mx ~all"
     },
     {
-      key   = "_dmarc",
+      name  = "_dmarc",
       value = "v=DMARC1; p=quarantine"
     },
   ]
 
   cname_records = [
     {
-      key   = "protonmail._domainkey",
+      name  = "protonmail._domainkey",
       value = "protonmail.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch."
     },
     {
-      key   = "protonmail2._domainkey",
+      name  = "protonmail2._domainkey",
       value = "protonmail2.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch."
     },
     {
-      key   = "protonmail3._domainkey",
+      name  = "protonmail3._domainkey",
       value = "protonmail3.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch."
     },
   ]

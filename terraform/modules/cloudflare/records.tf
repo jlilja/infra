@@ -15,24 +15,24 @@ resource "cloudflare_record" "mx_records" {
 }
 
 resource "cloudflare_record" "cname_records" {
-  for_each = { for record in var.cname_records : "${record.key}-${record.value}" => record }
+  for_each = { for record in var.cname_records : record.name => record }
 
   zone_id = var.zone_id
   type    = "CNAME"
 
-  name    = each.key
+  name    = each.value.name
   content = each.value.value
 
   proxied = false
 }
 
 resource "cloudflare_record" "txt_records" {
-  for_each = { for record in var.txt_records : "${record.key}-${record.value}" => record }
+  for_each = { for record in var.txt_records : record.name => record }
 
   zone_id = var.zone_id
   type    = "TXT"
 
-  name    = each.key
+  name    = each.value.name
   content = each.value.value
 
   proxied = false

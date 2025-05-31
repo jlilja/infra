@@ -12,14 +12,14 @@ variable "mx_records" {
 
 variable "txt_records" {
   type = list(object({
-    key   = string,
+    name  = string,
     value = string,
   }))
 }
 
 variable "cname_records" {
   type = list(object({
-    key   = string,
+    name  = string,
     value = string,
   }))
 }
