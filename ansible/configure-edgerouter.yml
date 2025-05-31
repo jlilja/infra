@@ -7,6 +7,9 @@
   hosts: all
   connection: network_cli
 
+  vars:
+    PIHOLE_URL: 192.168.30.13
+
   tasks:
     - name: System configuration
       ansible.builtin.import_role:
@@ -98,7 +101,7 @@
         edgeos_create_vlan_cidr: "192.168.50.1/24"
         edgeos_create_vlan_subnet: "192.168.50.0/24"
         edgeos_create_vlan_router: "192.168.50.1"
-        edgeos_create_vlan_dns: "192.168.50.1"
+        edgeos_create_vlan_dns: "{{ PIHOLE_URL }}"
         edgeos_create_vlan_start: "192.168.50.10"
         edgeos_create_vlan_stop: "192.168.50.254"
 
@@ -116,7 +119,7 @@
         edgeos_create_vlan_cidr: "192.168.51.1/28"
         edgeos_create_vlan_subnet: "192.168.51.0/28"
         edgeos_create_vlan_router: "192.168.51.1"
-        edgeos_create_vlan_dns: "192.168.51.1"
+        edgeos_create_vlan_dns: "{{ PIHOLE_URL }}"
         edgeos_create_vlan_start: "192.168.51.1"
         edgeos_create_vlan_stop: "192.168.51.14"
 

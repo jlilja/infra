@@ -10,8 +10,10 @@ resource "unifi_device" "USW_24_G1" {
   }
 
   port_override {
-    number = 23
-    name   = "unifi-cloudkey" # Don't modify until ready
+    number = 5
+    name   = unifi_port_profile.ds418p.name
+
+    port_profile_id = unifi_port_profile.ds418p.id
   }
 
   port_override {
@@ -33,6 +35,11 @@ resource "unifi_device" "USW_24_G1" {
     name   = unifi_port_profile.trusted.name
 
     port_profile_id = unifi_port_profile.trusted.id
+  }
+
+  port_override {
+    number = 23
+    name   = "unifi-cloudkey" # Don't modify until ready
   }
 
   port_override {
