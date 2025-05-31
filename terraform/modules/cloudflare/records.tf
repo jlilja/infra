@@ -20,7 +20,7 @@ resource "cloudflare_record" "cname_records" {
   zone_id = var.zone_id
   type    = "CNAME"
 
-  name    = each.key.value
+  name    = each.key
   content = each.value.value
 
   proxied = false
@@ -32,7 +32,7 @@ resource "cloudflare_record" "txt_records" {
   zone_id = var.zone_id
   type    = "TXT"
 
-  name    = each.key.value
+  name    = each.key
   content = each.value.value
 
   proxied = false
