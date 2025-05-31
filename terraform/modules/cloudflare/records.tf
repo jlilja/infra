@@ -7,9 +7,8 @@ resource "cloudflare_dns_record" "mx_records" {
   name    = var.zone_name
   content = each.value
 
-  proxied = false
-
-  ttl      = 1
+  proxied  = false
+  ttl      = var.record_ttl
   priority = index(var.mx_records, each.value) + 1
   comment  = "MX records for ${var.zone_name} zone."
 }
@@ -24,6 +23,7 @@ resource "cloudflare_dns_record" "cname_records" {
   content = each.value.value
 
   proxied = false
+  ttl     = var.record_ttl
 }
 
 resource "cloudflare_dns_record" "txt_records" {
@@ -36,4 +36,5 @@ resource "cloudflare_dns_record" "txt_records" {
   content = each.value.value
 
   proxied = false
+  ttl     = var.record_ttl
 }

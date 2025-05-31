@@ -3,6 +3,8 @@ locals {
 
   domain_name = "lilja.io"
   zone_id     = "801ec7bc35b2abc9580d847c7b5c6f56" # https://github.com/cloudflare/wrangler-legacy/issues/209#issuecomment-541654484
+
+  one_day_ttl = 86400 # 1 day
 }
 
 module "cloudflare_lilja_io_setup" {
