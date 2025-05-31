@@ -1,19 +1,15 @@
 locals {
+  account_id = "4c1889b8eaebef69bc66a471d91bc6ed" # https://github.com/cloudflare/wrangler-legacy/issues/209#issuecomment-541654484
+
   domain_name = "lilja.io"
-
-  zone_id   = data.cloudflare_zone.lilja_dot_io.id
-  zone_name = data.cloudflare_zone.lilja_dot_io.name
-}
-
-data "cloudflare_zone" "lilja_dot_io" {
-  name = local.domain_name
+  zone_id     = "801ec7bc35b2abc9580d847c7b5c6f56" # https://github.com/cloudflare/wrangler-legacy/issues/209#issuecomment-541654484
 }
 
 module "cloudflare_lilja_io_setup" {
   source = "../modules/cloudflare"
 
-  zone_id   = local.zone_id
   zone_name = local.domain_name
+  zone_id   = local.zone_id
 
   mx_records = [
     "mail.protonmail.ch",
@@ -22,11 +18,11 @@ module "cloudflare_lilja_io_setup" {
 
   txt_records = [
     {
-      name  = "${local.zone_name}",
+      name  = "${local.domain_name}",
       value = "protonmail-verification=9a69211edf7217e6d5f99e5507b53feb1b356f0d"
     },
     {
-      name  = "${local.zone_name}",
+      name  = "${local.domain_name}",
       value = "v=spf1 include:_spf.protonmail.ch mx ~all"
     },
     {
