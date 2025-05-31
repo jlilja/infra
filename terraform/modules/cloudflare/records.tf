@@ -32,7 +32,7 @@ resource "cloudflare_record" "txt_records" {
   zone_id = var.zone_id
   type    = "TXT"
 
-  name    = each.key.value
+  name    = each.value.key
   content = each.value.value
 
   proxied = false
