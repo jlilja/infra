@@ -81,12 +81,12 @@ moved {
   to   = module.cloudflare_lilja_io_setup.cloudflare_record.cname_records["protonmail3._domainkey-protonmail3.domainkey.dqnuquyqjndrlhl3kd676hycw5l4a2hanxco7ab7n56elpexeanaa.domains.proton.ch."]
 }
 
-# moved {
-#   from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_mail["mail.protonmail.ch"]
-#   to   = module.cloudflare_lilja_io_setup.cloudflare_record.mx_records["mail.protonmail.ch"]
-# }
+moved {
+  from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_mail["mail.protonmail.ch"]
+  to   = module.cloudflare_lilja_io_setup.cloudflare_record.mx_records["mail.protonmail.ch"]
+}
 
-# moved {
-#   from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_mail["mailsec.protonmail.ch"]
-#   to   = module.cloudflare_lilja_io_setup.cloudflare_record.mx_records["mailsec.protonmail.ch"]
-# }
+moved {
+  from = module.cloudflare_lilja_io_setup.cloudflare_record.mx_proton_mail["mailsec.protonmail.ch"]
+  to   = module.cloudflare_lilja_io_setup.cloudflare_record.mx_records["mailsec.protonmail.ch"]
+}

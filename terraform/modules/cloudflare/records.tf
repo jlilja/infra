@@ -4,7 +4,7 @@ resource "cloudflare_record" "mx_records" {
   zone_id = var.zone_id
   type    = "MX"
 
-  name    = "@"
+  name    = var.zone_name
   content = each.value
 
   proxied = false
