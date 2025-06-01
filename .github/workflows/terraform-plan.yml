@@ -56,7 +56,7 @@ jobs:
         run: task terraform:cloudflare:plan
 
       - name: Update PR
-        uses: actions/github-script@3908079ba1e7bce10117ad701c321d07e89017a9 # v7
+        uses: actions/github-script@5ee2b97722aeebb4c5d5c867345a6745cd868065 # v7
         id: plan-comment
         env:
           PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
