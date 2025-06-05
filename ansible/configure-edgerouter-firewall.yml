@@ -11,12 +11,6 @@
       ansible.builtin.import_role:
         name: edgerouter_firewall_standard_rules
 
-    # - name: Setup iot firewall
-    #   ansible.builtin.import_role:
-    #     name: edgerouter_firewall_hue
-    #   vars:
-    #     edgerouter_firewall_hue_fw_name: HUE_IN
-
     - name: Setup ds418p firewall
       ansible.builtin.import_role:
         name: edgerouter_firewall_ds418p

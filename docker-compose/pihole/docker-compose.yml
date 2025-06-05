@@ -11,6 +11,8 @@ services:
     image: pihole/pihole:2025.05.1@sha256:db38df3e050606bd014c801c2cbb0b13f263d3122d3d817a8cbcee807688af24
     environment:
       TZ: 'Europe/Stockholm'
+    ports:
+      - 53:53
     restart: always
     volumes:
       - './pihole.toml:/etc/pihole/pihole.toml'

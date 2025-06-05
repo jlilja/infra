@@ -47,6 +47,7 @@ tasks:
           ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       PLAYBOOK: configure-edgerouter-groups.yml
+      INVENTORY: inventory/edgerouter.ini
 
   ### ----- Pihole tasks ----- ###
 
