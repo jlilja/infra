@@ -2,11 +2,33 @@
 # Linting of this file is disabled until the following issue is resolved:
 # https://github.com/ansible/ansible-lint/issues/3607
 
-- name: Configure edgerouter firewall
-  hosts: edgerouters
+- name: Configure edgerouter firewall groups
+  hosts: all
   connection: network_cli
 
   tasks:
-    - name: Create RFC1918 group
-      ansible.builtin.import_role:
-        name: edgerouter_create_network_groups
+    - name: Create RFC1918 groups
+      community.network.edgeos_config:
+        lines:
+          - set firewall group network-group RFC1918 description 'RFC1918 ranges'
+
+    - name: Add IPs to RFC1918 group
+      community.network.edgeos_config:
+        lines:
+          - "set firewall group network-group RFC1918 network {{ item }}"
+      loop:
+        - 192.168.0.0/16
+        - 172.16.0.0/12
+        - 10.0.0.0/8
+
+    - name: Create DNS ip group
+      community.network.edgeos_config:
+        lines:
+          - set firewall group address-group DNS-IPs description 'IPs used to handle DNS requests'
+
+    - name: Add IPs to Synology group
+      community.network.edgeos_config:
+        lines:
+          - "set firewall group address-group DNS-IPs address {{ item }}"
+      loop:
+        - 192.168.30.13

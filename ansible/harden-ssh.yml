@@ -1,13 +1,15 @@
 ---
 
 - name: Set SSH settings
-  hosts: nodes
+  hosts: all
   become: true
 
   handlers:
 
-    - name: Restart ssh
-      ansible.builtin.command: name=sshd state=restarted
+    - name: restart ssh
+      service:
+        name: ssh
+        state: restarted
 
   tasks:
 

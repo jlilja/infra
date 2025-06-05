@@ -44,4 +44,4 @@ _Set hostname on Fedora with https://docs.fedoraproject.org/en-US/quick-docs/cha
 
 [CIDR ranges](./documentation/networks.md)
 
-![Netowrk](./images/network/network.png)
+![Network](./images/network/network.png)
