@@ -2,28 +2,62 @@
 - name: Ruleset eth1.51/in
   community.network.edgeos_config:
     lines:
-      - set firewall name ds418p_IN default-action accept
-      - set firewall name ds418p_IN description 'Traffic local to router'
+      # Setup ruleset for
+      #   VLAN <-> VLAN
+      #   VLAN <-> WAN
 
+      # Default drop
+      - set firewall name ds418p_IN default-action drop
+      - set firewall name ds418p_IN description 'VLAN to WAN'
+
+      # Allow SSH access from trusted VLAN
+      - set firewall name ds418p_IN rule 10 description 'Accept SSH access from trusted VLAN'
       - set firewall name ds418p_IN rule 10 action accept
-      - set firewall name ds418p_IN rule 10 description 'Allow traffic to internet'
-      - set firewall name ds418p_IN rule 10 protocol tcp_udp
+      - set firewall name ds418p_IN rule 10 protocol tcp
       - set firewall name ds418p_IN rule 10 state established   enable
       - set firewall name ds418p_IN rule 10 state invalid       disable
       - set firewall name ds418p_IN rule 10 state new           enable
       - set firewall name ds418p_IN rule 10 state related       enable
+      - set firewall name ds418p_IN rule 10 source port 2022
+      - set firewall name ds418p_IN rule 10 destination group network-group vlan-10-network-group
 
-      - set firewall name ds418p_IN rule 20 action drop
-      - set firewall name ds418p_IN rule 20 description 'Drop established/related to RFC1918'
-      - set firewall name ds418p_IN rule 20 source group network-group RFC1918
+      # Allow Web UI access from trusted VLAN
+      - set firewall name ds418p_IN rule 20 description 'Accept Web UI access from trusted VLAN'
+      - set firewall name ds418p_IN rule 20 action accept
+      - set firewall name ds418p_IN rule 20 protocol tcp_udp
+      - set firewall name ds418p_IN rule 20 source port 5000
+      - set firewall name ds418p_IN rule 20 destination group network-group vlan-10-network-group
 
+      # Allow access to DNS in DNS VLAN
+      - set firewall name ds418p_IN rule 30 description 'Accept established/related to DNS-IPs'
+      - set firewall name ds418p_IN rule 30 action accept
+      - set firewall name ds418p_IN rule 30 protocol tcp_udp
+      - set firewall name ds418p_IN rule 30 destination port 53
+      - set firewall name ds418p_IN rule 30 destination group address-group DNS-IPs
+
+      # Drop traffic to other VLANs
+      - set firewall name ds418p_IN rule 40 description 'Drop to RFC1918 networks'
+      - set firewall name ds418p_IN rule 40 action drop
+      - set firewall name ds418p_IN rule 40 protocol all
+      - set firewall name ds418p_IN rule 40 destination group network-group RFC1918
+
+      # Allow traffic to WAN
+      - set firewall name ds418p_IN rule 50 action accept
+      - set firewall name ds418p_IN rule 50 description 'Allow traffic to WAN'
+      - set firewall name ds418p_IN rule 50 protocol tcp_udp
+      - set firewall name ds418p_IN rule 50 state established   enable
+      - set firewall name ds418p_IN rule 50 state invalid       disable
+      - set firewall name ds418p_IN rule 50 state new           enable
+      - set firewall name ds418p_IN rule 50 state related       enable
+
+      # Set rules for VLAN 51 direction IN
       - set interfaces ethernet eth1 vif 51 firewall in name ds418p_IN
 
 - name: Ruleset eth1.51/local
   community.network.edgeos_config:
     lines:
       - set firewall name ds418p_LOCAL default-action drop
-      - set firewall name ds418p_LOCAL description 'Accept operational ports'
+      - set firewall name ds418p_LOCAL description 'VLAN to router'
 
       - set firewall name ds418p_LOCAL rule 10 action accept
       - set firewall name ds418p_LOCAL rule 10 description 'Allow DNS'
