@@ -6,8 +6,9 @@
 # Other playbooks will maintain the installation of Pihole and further maintenence.
 
 - name: Setup Raspberry Pi
-  hosts: pimachines
+  hosts: all
   become: true
   roles:
-    - install_packages
+    - install_docker
     - update_packages
+    - copy_directory

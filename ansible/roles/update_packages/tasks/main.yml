@@ -3,4 +3,4 @@
 - name: Update all packages to present
   ansible.builtin.package:
     name: "*"
-    state: latest
+    state: present
