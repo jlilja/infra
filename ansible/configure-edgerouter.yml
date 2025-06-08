@@ -9,7 +9,9 @@
 
   vars:
     PIHOLE_URL: 192.168.30.13
-    DHCP_LEASE_TTL: 3600 # 1 hour
+
+    FIVE_MINUTES_TLL: 300
+    ONE_HOUR_TTL: 3600
 
   tasks:
     - name: System configuration
@@ -24,7 +26,7 @@
         edgeos_create_vlan_description: "VLAN 10 - Trusted. Used for devices with general access to other VLANS"
 
         vlan_id: 10
-        edgeos_create_vlan_lease: "{{ DHCP_LEASE_TTL }}"
+        edgeos_create_vlan_lease: "{{ FIVE_MINUTES_TLL }}"
         edgeos_create_vlan_interface: "eth1.10"
 
         edgeos_create_vlan_cidr: "192.168.10.1/24"
@@ -44,7 +46,7 @@
         edgeos_create_vlan_description: "VLAN 20 - Homelab. Experimental environment and WIP work"
 
         vlan_id: 20
-        edgeos_create_vlan_lease: "{{ DHCP_LEASE_TTL }}"
+        edgeos_create_vlan_lease: "{{ FIVE_MINUTES_TLL }}"
         edgeos_create_vlan_interface: "eth1.20"
 
         edgeos_create_vlan_cidr: "192.168.20.1/24"
@@ -62,7 +64,7 @@
         edgeos_create_vlan_description: "VLAN 30 - DNS. Services related to DNS management"
 
         vlan_id: 30
-        edgeos_create_vlan_lease: "{{ DHCP_LEASE_TTL }}"
+        edgeos_create_vlan_lease: "{{ FIVE_MINUTES_TLL }}"
         edgeos_create_vlan_interface: "eth1.30"
 
         edgeos_create_vlan_cidr: "192.168.30.1/24"
@@ -80,7 +82,7 @@
         edgeos_create_vlan_description: "VLAN 40 - Infrastructure. Infra devices living in an isolated environment"
 
         vlan_id: 40
-        edgeos_create_vlan_lease: "{{ DHCP_LEASE_TTL }}"
+        edgeos_create_vlan_lease: "{{ FIVE_MINUTES_TLL }}"
         edgeos_create_vlan_interface: "eth1.40"
 
         edgeos_create_vlan_cidr: "192.168.40.1/24"
@@ -98,7 +100,7 @@
         edgeos_create_vlan_description: "VLAN 50 - NAS. NAS devices"
 
         vlan_id: 50
-        edgeos_create_vlan_lease: "{{ DHCP_LEASE_TTL }}"
+        edgeos_create_vlan_lease: "{{ FIVE_MINUTES_TLL }}"
         edgeos_create_vlan_interface: "eth1.50"
 
         edgeos_create_vlan_cidr: "192.168.50.1/24"
@@ -116,7 +118,7 @@
         edgeos_create_vlan_description: "VLAN 51 - ds418p vlan"
 
         vlan_id: 51
-        edgeos_create_vlan_lease: "{{ DHCP_LEASE_TTL }}"
+        edgeos_create_vlan_lease: "{{ FIVE_MINUTES_TLL }}"
         edgeos_create_vlan_interface: "eth1.51"
 
         edgeos_create_vlan_cidr: "192.168.51.1/28"
@@ -134,7 +136,7 @@
         edgeos_create_vlan_description: "VLAN 60 - IOT. Stupid IOT devices"
 
         vlan_id: 60
-        edgeos_create_vlan_lease: "{{ DHCP_LEASE_TTL }}"
+        edgeos_create_vlan_lease: "{{ ONE_HOUR_TTL }}"
         edgeos_create_vlan_interface: "eth1.60"
 
         edgeos_create_vlan_cidr: "192.168.60.1/24"
@@ -152,7 +154,7 @@
         edgeos_create_vlan_description: "VLAN 61 - smart lightning. Separate vlan only for IOT smart lights"
 
         vlan_id: 61
-        edgeos_create_vlan_lease: "{{ DHCP_LEASE_TTL }}"
+        edgeos_create_vlan_lease: "{{ ONE_HOUR_TTL }}"
         edgeos_create_vlan_interface: "eth1.61"
 
         edgeos_create_vlan_cidr: "192.168.61.1/28"
