@@ -31,7 +31,7 @@
 
         edgeos_create_vlan_cidr: "192.168.10.1/24"
         vlan_subnet: "192.168.10.0/24"
-        edgeos_create_vlan_router: "192.168.10.1"
+        gateway_address: "192.168.10.1"
         vlan_dns: "192.168.10.1"
         dhcp_start: "192.168.10.10"
         dhcp_end: "192.168.10.254"
@@ -51,7 +51,7 @@
 
         edgeos_create_vlan_cidr: "192.168.20.1/24"
         vlan_subnet: "192.168.20.0/24"
-        edgeos_create_vlan_router: "192.168.20.1"
+        gateway_address: "192.168.20.1"
         vlan_dns: "192.168.20.1"
         dhcp_start: "192.168.20.10"
         dhcp_end: "192.168.20.254"
@@ -69,7 +69,7 @@
 
         edgeos_create_vlan_cidr: "192.168.30.1/24"
         vlan_subnet: "192.168.30.0/24"
-        edgeos_create_vlan_router: "192.168.30.1"
+        gateway_address: "192.168.30.1"
         vlan_dns: "192.168.30.1"
         dhcp_start: "192.168.30.10"
         dhcp_end: "192.168.30.254"
@@ -87,7 +87,7 @@
 
         edgeos_create_vlan_cidr: "192.168.40.1/24"
         vlan_subnet: "192.168.40.0/24"
-        edgeos_create_vlan_router: "192.168.40.1"
+        gateway_address: "192.168.40.1"
         vlan_dns: "192.168.40.1"
         dhcp_start: "192.168.40.10"
         dhcp_end: "192.168.40.254"
@@ -105,7 +105,7 @@
 
         edgeos_create_vlan_cidr: "192.168.50.1/24"
         vlan_subnet: "192.168.50.0/24"
-        edgeos_create_vlan_router: "192.168.50.1"
+        gateway_address: "192.168.50.1"
         vlan_dns: "{{ PIHOLE_URL }}"
         dhcp_start: "192.168.50.10"
         dhcp_end: "192.168.50.254"
@@ -123,7 +123,7 @@
 
         edgeos_create_vlan_cidr: "192.168.51.1/28"
         vlan_subnet: "192.168.51.0/28"
-        edgeos_create_vlan_router: "192.168.51.1"
+        gateway_address: "192.168.51.1"
         vlan_dns: "{{ PIHOLE_URL }}"
         dhcp_start: "192.168.51.1"
         dhcp_end: "192.168.51.14"
@@ -141,7 +141,7 @@
 
         edgeos_create_vlan_cidr: "192.168.60.1/24"
         vlan_subnet: "192.168.60.0/24"
-        edgeos_create_vlan_router: "192.168.60.1"
+        gateway_address: "192.168.60.1"
         vlan_dns: "192.168.60.1"
         dhcp_start: "192.168.60.10"
         dhcp_end: "192.168.60.254"
@@ -159,7 +159,7 @@
 
         edgeos_create_vlan_cidr: "192.168.61.1/28"
         vlan_subnet: "192.168.61.0/28"
-        edgeos_create_vlan_router: "192.168.61.1"
+        gateway_address: "192.168.61.1"
         vlan_dns: "192.168.61.1"
         dhcp_start: "192.168.61.1"
         dhcp_end: "192.168.61.14"

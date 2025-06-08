@@ -8,7 +8,7 @@
 
       # DHCP settings
       - set service dhcp-server shared-network-name {{ vlan_name }} authoritative enable
-      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} default-router {{ edgeos_create_vlan_router }}
+      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} default-router {{ gateway_address }}
       - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} dns-server {{ vlan_dns }}
       - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} lease {{ edgeos_create_vlan_lease }}
       - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} start {{ dhcp_start }} stop {{ dhcp_end }}

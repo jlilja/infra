@@ -42,13 +42,14 @@
       - set firewall name ds418p_IN rule 40 destination group network-group RFC1918
 
       # Allow traffic to WAN
+      - set firewall name ds418p_IN rule 50 description 'Allow HTTPS traffic to WAN'
       - set firewall name ds418p_IN rule 50 action accept
-      - set firewall name ds418p_IN rule 50 description 'Allow traffic to WAN'
       - set firewall name ds418p_IN rule 50 protocol tcp_udp
       - set firewall name ds418p_IN rule 50 state established   enable
       - set firewall name ds418p_IN rule 50 state invalid       disable
       - set firewall name ds418p_IN rule 50 state new           enable
       - set firewall name ds418p_IN rule 50 state related       enable
+      - set firewall name ds418p_IN rule 30 destination port 443
 
       # Set rules for VLAN 51 direction IN
       - set interfaces ethernet eth1 vif 51 firewall in name ds418p_IN
