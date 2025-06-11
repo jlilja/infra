@@ -5,3 +5,7 @@ includes:
   pihole:
     taskfile: pihole/Taskfile.yml
     dir: pihole
+
+  elk:
+    taskfile: elk/Taskfile.yml
+    dir: elk
