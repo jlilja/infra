@@ -5,9 +5,17 @@ updates:
   - package-ecosystem: "terraform"
     directories:
       - "/terraform/cloudflare"
+      - "/terraform/dns"
       - "/terraform/edgerouter"
-      - "/terraform/pihole"
+      - "/terraform/elk"
       - "/terraform/unifi"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "docker-compose"
+    directories:
+      - "/docker-compose/pihole"
+      - "/docker-compose/elk"
     schedule:
       interval: "monthly"
 
@@ -23,10 +31,5 @@ updates:
 
   - package-ecosystem: "pip"
     directory: "/dockerfiles/ansible"
-    schedule:
-      interval: "monthly"
-
-  - package-ecosystem: "docker-compose"
-    directory: "/docker-compose/pihole"
     schedule:
       interval: "monthly"

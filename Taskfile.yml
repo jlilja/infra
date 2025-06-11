@@ -4,7 +4,7 @@ version: "3"
 includes:
   terraform:cloudflare: terraform/cloudflare/Taskfile.yml
   terraform:edgerouter: terraform/edgerouter/Taskfile.yml
-  terraform:pihole: terraform/pihole/Taskfile.yml
+  terraform:elk: terraform/elk/Taskfile.yml
   terraform:unifi: terraform/unifi/Taskfile.yml
 
   k8s:webserver: k8s/apps/webserver/Taskfile.yml
@@ -22,4 +22,3 @@ tasks:
     cmds:
       - task terraform:cloudflare:format
       - task terraform:edgerouter:format
-      - task terraform:pihole:format
