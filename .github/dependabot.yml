@@ -5,7 +5,6 @@ updates:
   - package-ecosystem: "terraform"
     directories:
       - "/terraform/cloudflare"
-      - "/terraform/dns"
       - "/terraform/edgerouter"
       - "/terraform/elk"
       - "/terraform/unifi"
