@@ -97,12 +97,13 @@ tasks:
           -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
           -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
           -v "$PWD:/ansible:ro" \
-          ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
+          ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       PLAYBOOK: update-packages.yml
+      INVENTORY: inventory/nodes.ini
 
-  harden-ssh:
-    desc: "Secure ssh configs"
+  setup-pubkey-auth:
+    desc: "Create ansible user and set pubkey ssh authentication"
     cmds:
       - |
         docker run -it --rm --network="host" \
@@ -112,4 +113,5 @@ tasks:
           -v "$PWD:/ansible:ro" \
           ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
-      PLAYBOOK: harden-ssh.yml
+      PLAYBOOK: setup-pubkey-auth.yml
+      INVENTORY: inventory/nodes.ini
