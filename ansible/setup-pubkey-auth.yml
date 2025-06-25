@@ -1,0 +1,51 @@
+---
+- name: Set SSH settings
+  hosts: all
+  become: true
+
+  handlers:
+    - name: restart ssh
+      service:
+        name: ssh
+        state: restarted
+
+  tasks:
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html
+    - name: Create user if not already exist
+      ansible.builtin.user:
+        name: "{{ new_ansible_user }}"
+
+    # https://docs.ansible.com/ansible/latest/collections/ansible/posix/authorized_key_module.html
+    - name: Set authorized keys from Github repo
+      ansible.posix.authorized_key:
+        user: "{{ new_ansible_user }}"
+        state: present
+        key: "{{ keys_repository }}"
+
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/hostname_module.html
+    - name: Set a hostname
+      ansible.builtin.hostname:
+        name: "{{ hostname }}"
+
+    # Taken from https://github.com/geerlingguy/ansible-for-devops/blob/master/security/main.yml
+    - name: Update SSH configuration to be more secure.
+      ansible.builtin.lineinfile:
+        dest: /etc/ssh/sshd_config
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+        state: present
+        validate: "sshd -t -f %s"
+      with_items:
+        - regexp: "^PasswordAuthentication"
+          line: "PasswordAuthentication no" # Disable password login, only allow pubkey auth
+        - regexp: "^PermitRootLogin"
+          line: "PermitRootLogin no" # Disable ssh login to root user
+      notify: restart ssh
+
+    - name: Add sudo rights for deployment user.
+      ansible.builtin.lineinfile:
+        dest: /etc/sudoers
+        regexp: '^{{ new_ansible_user }}'
+        line: '{{ new_ansible_user }} ALL=(ALL) NOPASSWD: ALL'
+        state: present
+        validate: 'visudo -cf %s'
