@@ -37,6 +37,8 @@ If a Terraform provider is not available, and Terraform's data type is neither a
 | Margarita   | Desktop  | Raspberry Pi | 3 Model B              | 1.2 GHz ARM BCM2837            | N/A                   | v8_64  | 1 GB                | Raspbian          |
 | Irishcoffee | Desktop  | N/A          | N/A                    | 3.8 GHz AMD Ryzen 7            | AMD Radeon RX 7600 XT | x86_64 | 16GB                | Fedora 40 Desktop |
 | Baileys     | Desktop  | Lenovo       | T495                   | 2.10 GHz AMD Ryzen 5 PRO 3500U | AMD Radeon RX Vega 8  | x86_64 | 40GB                | Fedora 40 Desktop |
+| Lennarts    | Headless | Raspberry Pi | 3 Model B              | 1.2 GHz ARM BCM2837            | N/A                   | v8_64  | ?                   | Raspbian          |
+
 
 _Set hostname on Fedora with https://docs.fedoraproject.org/en-US/quick-docs/changing-hostname/_
 
