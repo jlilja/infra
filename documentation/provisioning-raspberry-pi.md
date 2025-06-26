@@ -4,7 +4,11 @@ This is to document the procees of setting up a raspberry pi from scratch until 
 
 ## Provisioning
 
-sudo dd if=./2025-05-13-raspios-bookworm-armhf-lite.img of=/dev/mmcblk0 bs=1M status=progress conv=fsync
+1. Download the raspios image.
+2. If its a .xz file, unpack it with `unxz filename.img.xz`.
+3. Use gparted and clean up the memory card.
+4. `sudo dd if=./filename.img of=/dev/mmcblk0 bs=1M status=progress conv=fsync`.
+5. Touch a file called `ssh` in the `/boot` directory.
 
 https://forums.raspberrypi.com/viewtopic.php?p=1311050#p1311050
 
