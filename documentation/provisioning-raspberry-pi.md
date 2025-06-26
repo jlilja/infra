@@ -8,7 +8,7 @@ This is to document the procees of setting up a raspberry pi from scratch until 
 2. If its a .xz file, unpack it with `unxz filename.img.xz`.
 3. Use gparted and clean up the memory card.
 4. `sudo dd if=./filename.img of=/dev/mmcblk0 bs=1M status=progress conv=fsync`.
-5. Touch a file called `ssh` in the `/boot` directory.
+5. Touch a file called `ssh` in the root of the partition called `bootfs`.
 
 https://forums.raspberrypi.com/viewtopic.php?p=1311050#p1311050
 
