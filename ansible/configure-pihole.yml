@@ -11,4 +11,3 @@
   roles:
     - install_docker
     - update_packages
-    - copy_directory

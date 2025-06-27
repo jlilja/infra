@@ -5,3 +5,15 @@ includes:
   elk:
     taskfile: elk/Taskfile.yml
     dir: elk
+
+tasks:
+  copy-all-docker-compose-projects:
+    desc: "Copy all docker-compose projects"
+    cmds:
+      - scp -r docker-compose/elk ansible@192.168.40.10:/home/ansible
+      - scp -r docker-compose/pihole pi@192.168.30.13:/home/pi
+
+  copy-elk:
+    desc: "Copy elk docker-compose project"
+    cmds:
+      - scp -r docker-compose/elk ansible@192.168.40.10:/home/ansible
