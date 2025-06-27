@@ -10,6 +10,13 @@ resource "unifi_device" "USW_24_G1" {
   }
 
   port_override {
+    number = 3
+    name   = unifi_port_profile.iot.name
+
+    port_profile_id = unifi_port_profile.iot.id
+  }
+
+  port_override {
     number = 5
     name   = unifi_port_profile.ds418p.name
 
@@ -35,6 +42,13 @@ resource "unifi_device" "USW_24_G1" {
     name   = unifi_port_profile.trusted.name
 
     port_profile_id = unifi_port_profile.trusted.id
+  }
+
+  port_override {
+    number = 22
+    name   = unifi_port_profile.infra.name
+
+    port_profile_id = unifi_port_profile.infra.id
   }
 
   port_override {
