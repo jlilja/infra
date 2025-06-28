@@ -1,5 +1,4 @@
 ---
-
 # Linting of this file is disabled until the following issue is resolved:
 # https://github.com/ansible/ansible-lint/issues/3607
 
@@ -142,7 +141,7 @@
         edgeos_create_vlan_cidr: "192.168.60.1/24"
         vlan_subnet: "192.168.60.0/24"
         gateway_address: "192.168.60.1"
-        vlan_dns: "192.168.60.1"
+        vlan_dns: "{{ PIHOLE_URL }}"
         dhcp_start: "192.168.60.10"
         dhcp_end: "192.168.60.254"
 

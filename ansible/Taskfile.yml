@@ -7,7 +7,7 @@ env:
 tasks:
   ### ----- Edgerouter tasks ----- ###
 
-  configure-edgerouter:
+  configure-edgerouter-vlans:
     desc: "Configure edgerouter"
     cmds:
       - |
@@ -18,7 +18,7 @@ tasks:
           -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
           ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
-      PLAYBOOK: configure-edgerouter.yml
+      PLAYBOOK: configure-edgerouter-vlans.yml
       INVENTORY: inventory/edgerouter.ini
 
   configure-edgerouter-firewall:
