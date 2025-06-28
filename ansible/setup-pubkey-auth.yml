@@ -1,6 +1,6 @@
 ---
 - name: Set SSH settings
-  hosts: all
+  hosts: raspberrypi
   become: true
 
   handlers:

@@ -51,20 +51,19 @@ tasks:
 
   ### ----- Pihole tasks ----- ###
 
-  configure-pihole:
+  install-docker:
     desc: "Run playbook meant for an initial setup of a Pihole on a Raspberry Pi"
     cmds:
       - |
         docker run -it --rm --network="host" \
           -v "$PWD:/ansible" \
-          -v "$PWD/../docker-compose/pihole:/pihole" \
           -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
           -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
           -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
           ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
-      PLAYBOOK: configure-pihole.yml
-      INVENTORY: inventory/pihole.ini
+      PLAYBOOK: install-docker.yml
+      INVENTORY: inventory/nodes.ini
 
   ### ----- Synology tasks ----- ###
 

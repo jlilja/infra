@@ -1,7 +1,7 @@
 ---
 
 - name: Install dependencies
-  hosts: nodes
+  hosts: raspberrypi
   become: true
   tasks:
 
