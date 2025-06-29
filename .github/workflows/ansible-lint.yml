@@ -3,9 +3,7 @@ name: Ansible lint
 on:
   pull_request:
     paths:
-      - "./ansible/**.yml"
-      - ".github/workflows/ansible-link.yml"
-      - "./requirements.yml"
+      - "*/**.yml"
   workflow_dispatch:
 
 jobs:
