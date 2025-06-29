@@ -1,6 +1,6 @@
 ---
 - name: Set SSH settings
-  hosts: raspberrypi
+  hosts: all
   become: true
 
   handlers:
@@ -37,9 +37,11 @@
         validate: "sshd -t -f %s"
       with_items:
         - regexp: "^PasswordAuthentication"
-          line: "PasswordAuthentication no" # Disable password login, only allow pubkey auth
+          line: "PasswordAuthentication no" # Disable password login.
         - regexp: "^PermitRootLogin"
-          line: "PermitRootLogin no" # Disable ssh login to root user
+          line: "PermitRootLogin no" # Disable ssh login to root user.
+        - regexp: '^PubkeyAuthentication'
+          line: 'PubkeyAuthentication yes' # Only allow login via public key.
       notify: restart ssh
 
     - name: Add sudo rights for deployment user.
