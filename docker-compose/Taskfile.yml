@@ -5,3 +5,25 @@ includes:
   elk:
     taskfile: elk/Taskfile.yml
     dir: elk
+
+env:
+  LENNARTS: ansible@lennarts.local
+  MARGARITA: pi@margarita.local
+  JAMESON: j@jameson.local
+
+tasks:
+  copy-elk:
+    desc: "Copy elk docker-compose project"
+    cmds:
+      - scp -r docker-compose/elk $JAMESON:/home/j
+
+  copy-pihole:
+    desc: "Copy pihole docker-compose project"
+    cmds:
+      - scp -r docker-compose/pihole $MARGARITA:/home/pi
+
+  copy-all-docker-compose-projects:
+    desc: "Copy all docker-compose projects"
+    cmds:
+      - task: copy-elk
+      - task: copy-pihole

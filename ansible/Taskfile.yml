@@ -49,23 +49,6 @@ tasks:
       PLAYBOOK: configure-edgerouter-groups.yml
       INVENTORY: inventory/edgerouter.ini
 
-  ### ----- Pihole tasks ----- ###
-
-  configure-pihole:
-    desc: "Run playbook meant for an initial setup of a Pihole on a Raspberry Pi"
-    cmds:
-      - |
-        docker run -it --rm --network="host" \
-          -v "$PWD:/ansible" \
-          -v "$PWD/../docker-compose/pihole:/pihole" \
-          -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
-          -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
-          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
-          ansible-playbook -i $INVENTORY $PLAYBOOK
-    env:
-      PLAYBOOK: configure-pihole.yml
-      INVENTORY: inventory/pihole.ini
-
   ### ----- Synology tasks ----- ###
 
   configure-synology:
@@ -79,14 +62,21 @@ tasks:
     env:
       PLAYBOOK: configure-synology.yml
 
-  ### ----- Misc tasks ----- ###
+  ### ----- Generic linux tasks ----- ###
 
-  dnf-install-container-environment:
-    desc: "Install docker and kubernetes"
+  install-docker:
+    desc: "Install docker on raspbian and ubuntu"
     cmds:
-      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass
+      - |
+        docker run -it --rm --network="host" \
+          -v "$PWD:/ansible" \
+          -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
+          -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
+          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
+          ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
-      PLAYBOOK: dnf-install-packages.yml
+      PLAYBOOK: install-docker.yml
+      INVENTORY: inventory/nodes.ini
 
   update-packages:
     desc: "Update packages"
