@@ -7,16 +7,31 @@
       - ca-certificates
 
 - name: Add docker keyring and repository
+  when: ansible_distribution == 'Debian'
   block:
-    - name: Add Docker public key to keyring
+    - name: Add Docker public key to keyring to Debian system
       ansible.builtin.get_url:
         url: https://download.docker.com/linux/debian/gpg
         dest: /etc/apt/keyrings/docker.asc
         # checksum: sha256:bb42f0db45d46bab5f9ec619e1a47360b94c27142e57aa71f7050d08672309e0 TODO: Get actual value for this
 
-    - name: Add Docker Debian repository
+    - name: Add Docker Debian repository to Debian system
       ansible.builtin.apt_repository:
-        repo: "deb [arch=armhf signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+        repo: "deb [arch={{ ansible_facts.architecture }} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+        state: present
+
+- name: Add docker keyring and repository
+  when: ansible_distribution == 'Ubuntu'
+  block:
+    - name: Add Docker public key to keyring to Ubuntu system
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        dest: /etc/apt/keyrings/docker.asc
+        # checksum: sha256:bb42f0db45d46bab5f9ec619e1a47360b94c27142e57aa71f7050d08672309e0 TODO: Get actual value for this
+
+    - name: Add Docker Debian repository to Ubuntu system
+      ansible.builtin.apt_repository:
+        repo: "deb [arch={{ 'amd64' if ansible_architecture == 'x86_64' }} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
         state: present
 
 - name: Install Docker Packages
