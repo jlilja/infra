@@ -28,28 +28,35 @@
       - set firewall name ds418p_IN rule 20 source port 5000
       - set firewall name ds418p_IN rule 20 destination group network-group vlan-10-network-group
 
-      # Allow access to DNS in DNS VLAN
-      - set firewall name ds418p_IN rule 30 description 'Accept established/related to DNS-IPs'
+      # Allow Plex port access from trusted VLAN
+      - set firewall name ds418p_IN rule 30 description 'Accept Plex access from trusted VLAN'
       - set firewall name ds418p_IN rule 30 action accept
       - set firewall name ds418p_IN rule 30 protocol tcp_udp
-      - set firewall name ds418p_IN rule 30 destination port 53
-      - set firewall name ds418p_IN rule 30 destination group address-group DNS-IPs
+      - set firewall name ds418p_IN rule 30 source port 32400
+      - set firewall name ds418p_IN rule 30 destination group network-group vlan-10-network-group
+
+      # Allow access to DNS in DNS VLAN
+      - set firewall name ds418p_IN rule 40 description 'Accept established/related to DNS-IPs'
+      - set firewall name ds418p_IN rule 40 action accept
+      - set firewall name ds418p_IN rule 40 protocol tcp_udp
+      - set firewall name ds418p_IN rule 40 destination port 53
+      - set firewall name ds418p_IN rule 40 destination group address-group DNS-IPs
 
       # Drop traffic to other VLANs
-      - set firewall name ds418p_IN rule 40 description 'Drop to RFC1918 networks'
-      - set firewall name ds418p_IN rule 40 action drop
-      - set firewall name ds418p_IN rule 40 protocol all
-      - set firewall name ds418p_IN rule 40 destination group network-group RFC1918
+      - set firewall name ds418p_IN rule 50 description 'Drop to RFC1918 networks'
+      - set firewall name ds418p_IN rule 50 action drop
+      - set firewall name ds418p_IN rule 50 protocol all
+      - set firewall name ds418p_IN rule 50 destination group network-group RFC1918
 
       # Allow traffic to WAN
-      - set firewall name ds418p_IN rule 50 description 'Allow HTTPS traffic to WAN'
-      - set firewall name ds418p_IN rule 50 action accept
-      - set firewall name ds418p_IN rule 50 protocol tcp_udp
-      - set firewall name ds418p_IN rule 50 state established   enable
-      - set firewall name ds418p_IN rule 50 state invalid       disable
-      - set firewall name ds418p_IN rule 50 state new           enable
-      - set firewall name ds418p_IN rule 50 state related       enable
-      - set firewall name ds418p_IN rule 30 destination port 443
+      - set firewall name ds418p_IN rule 60 description 'Allow HTTPS traffic to WAN'
+      - set firewall name ds418p_IN rule 60 action accept
+      - set firewall name ds418p_IN rule 60 protocol tcp_udp
+      - set firewall name ds418p_IN rule 60 state established   enable
+      - set firewall name ds418p_IN rule 60 state invalid       disable
+      - set firewall name ds418p_IN rule 60 state new           enable
+      - set firewall name ds418p_IN rule 60 state related       enable
+      - set firewall name ds418p_IN rule 60 destination port 443
 
       # Set rules for VLAN 51 direction IN
       - set interfaces ethernet eth1 vif 51 firewall in name ds418p_IN
