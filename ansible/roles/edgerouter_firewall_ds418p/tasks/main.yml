@@ -1,5 +1,5 @@
 ---
-- name: Ruleset eth1.51/in
+- name: Ruleset eth1.51/in (ds418p)
   community.network.edgeos_config:
     lines:
       # Setup ruleset for
@@ -61,20 +61,16 @@
       # Set rules for VLAN 51 direction IN
       - set interfaces ethernet eth1 vif 51 firewall in name ds418p_IN
 
-- name: Ruleset eth1.51/local
+- name: Ruleset eth1.51/local (ds418p)
   community.network.edgeos_config:
     lines:
       - set firewall name ds418p_LOCAL default-action drop
       - set firewall name ds418p_LOCAL description 'VLAN to router'
 
       - set firewall name ds418p_LOCAL rule 10 action accept
-      - set firewall name ds418p_LOCAL rule 10 description 'Allow DNS'
-      - set firewall name ds418p_LOCAL rule 10 destination port 53
-      - set firewall name ds418p_LOCAL rule 10 protocol tcp_udp
+      - set firewall name ds418p_LOCAL rule 10 description 'Allow DHCP'
+      - set firewall name ds418p_LOCAL rule 10 destination port 67
+      - set firewall name ds418p_LOCAL rule 10 protocol udp
 
-      - set firewall name ds418p_LOCAL rule 20 action accept
-      - set firewall name ds418p_LOCAL rule 20 description 'Allow DHCP'
-      - set firewall name ds418p_LOCAL rule 20 destination port 67
-      - set firewall name ds418p_LOCAL rule 20 protocol udp
-
+      # Set rules for VLAN 51 direction LOCAL
       - set interfaces ethernet eth1 vif 51 firewall local name ds418p_LOCAL
