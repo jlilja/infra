@@ -14,3 +14,7 @@
     - name: Setup ds418p firewall
       ansible.builtin.import_role:
         name: edgerouter_firewall_ds418p
+
+    - name: Setup hue firewall
+      ansible.builtin.import_role:
+        name: edgerouter_firewall_hue
