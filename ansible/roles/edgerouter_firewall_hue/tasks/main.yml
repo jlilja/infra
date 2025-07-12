@@ -1,12 +1,40 @@
 ---
-- name: Create firewall ruleset for hue smart lightning
+- name: Ruleset eth1.60/in (hue)
   community.network.edgeos_config:
     lines:
-      - set firewall name {{ edgerouter_firewall_hue_fw_name }} default-action drop
-      - set firewall name {{ edgerouter_firewall_hue_fw_name }} description 'Trafic IN'
+      - set firewall name hue_IN default-action drop
+      - set firewall name hue_IN description 'VLAN to WAN'
 
-      - set firewall name {{ edgerouter_firewall_hue_fw_name }} rule 10 action accept
-      - set firewall name {{ edgerouter_firewall_hue_fw_name }} rule 10 description 'Allow trafic from RFC 1918'
-      - set firewall name {{ edgerouter_firewall_hue_fw_name }} rule 10 destination group network-group RFC1918
+      # Allow Web UI access from trusted VLAN
+      - set firewall name hue_IN rule 10 description 'Accept Web UI access from trusted VLAN'
+      - set firewall name hue_IN rule 10 action accept
+      - set firewall name hue_IN rule 10 protocol tcp_udp
+      - set firewall name hue_IN rule 10 source port 80
+      - set firewall name hue_IN rule 10 destination group network-group vlan-10-network-group
 
-      - set interfaces ethernet eth1 vif 60 firewall in name {{ edgerouter_firewall_hue_fw_name }}
+      # Allow access to DNS in DNS VLAN
+      - set firewall name hue_IN rule 20 description 'Accept established/related to DNS-IPs'
+      - set firewall name hue_IN rule 20 action accept
+      - set firewall name hue_IN rule 20 protocol tcp_udp
+      - set firewall name hue_IN rule 20 destination port 53
+      - set firewall name hue_IN rule 20 destination group address-group DNS-IPs
+
+      # Drop traffic to other VLANs
+      - set firewall name hue_IN rule 30 description 'Drop to RFC1918 networks'
+      - set firewall name hue_IN rule 30 action drop
+      - set firewall name hue_IN rule 30 protocol all
+      - set firewall name hue_IN rule 30 destination group network-group RFC1918
+
+      # Allow traffic to WAN
+      - set firewall name hue_IN rule 40 description 'Allow HTTPS traffic to WAN'
+      - set firewall name hue_IN rule 40 action accept
+      - set firewall name hue_IN rule 40 protocol tcp_udp
+      - set firewall name hue_IN rule 40 state established   enable
+      - set firewall name hue_IN rule 40 state invalid       disable
+      - set firewall name hue_IN rule 40 state new           enable
+      - set firewall name hue_IN rule 40 state related       enable
+      - set firewall name hue_IN rule 40 destination port 443
+
+      # Set rules for VLAN 60 direction IN
+      - set interfaces ethernet eth1 vif 60 firewall in name hue_IN
+# https://thesai.org/Downloads/Volume15No2/Paper_2-Assessing_and_Mitigating_Network_Vulnerabilities.pdf

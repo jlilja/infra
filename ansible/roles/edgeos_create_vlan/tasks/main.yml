@@ -1,20 +1,34 @@
 ---
+
 - name: Creating vlan {{ vlan_name }}
   community.network.edgeos_config:
     lines:
       # VLAN interface settings
-      - set interfaces ethernet eth1 vif {{ vlan_id }} description '{{ edgeos_create_vlan_description }}'
-      - set interfaces ethernet eth1 vif {{ vlan_id }} address {{ edgeos_create_vlan_cidr }}
+      - set interfaces ethernet eth1 vif {{ vlan_id }} description 'VLAN {{ vlan_id }} - {{ vlan_name }} - {{ description }}'
+      - set interfaces ethernet eth1 vif {{ vlan_id }} address {{ vlan_cidr }}
 
       # DHCP settings
       - set service dhcp-server shared-network-name {{ vlan_name }} authoritative enable
       - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} default-router {{ gateway_address }}
-      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} dns-server {{ vlan_dns }}
-      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} lease {{ edgeos_create_vlan_lease }}
+      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} lease {{ dhcp_lease }}
       - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} start {{ dhcp_start }} stop {{ dhcp_end }}
 
       # Create DNS interface for VLAN
-      - set service dns forwarding listen-on {{ edgeos_create_vlan_interface }}
+      - set service dns forwarding listen-on {{ interface }}
+
+- name: Use Pihole for {{ vlan_name }}
+  when: "use_pihole_dns|default(True)"
+  community.network.edgeos_config:
+    lines:
+      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} dns-server 192.168.30.13
+      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} dns-server 192.168.30.13
+
+- name: Use custom dns address for {{ vlan_name }}
+  when: dns_address|default("") != "" and use_pihole_dns|default(True)
+  community.network.edgeos_config:
+    lines:
+      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} dns-server {{ dns_address }}
+      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} dns-server {{ dns_address }}
 
 - name: Creating network group for vlan {{ vlan_name }}
   when: "create_network_group|default(True)"
