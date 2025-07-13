@@ -17,7 +17,7 @@
 
     - name: Create VLAN 10
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: trusted
         description: "Used for devices with general access to other VLANS"
@@ -35,7 +35,7 @@
 
     - name: Create VLAN 20
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: homelab
         description: "Experimental environment and WIP work"
@@ -53,7 +53,7 @@
 
     - name: Create VLAN 30
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: dns
         description: "Services related to DNS management"
@@ -75,7 +75,7 @@
 
     - name: Create VLAN 40
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: infra
         description: "Infra devices living in an isolated environment"
@@ -96,7 +96,7 @@
 
     - name: Create VLAN 50
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: nas
         description: "NAS devices"
@@ -114,7 +114,7 @@
 
     - name: Create VLAN 51
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: ds418p
         description: "ds418p vlan"
@@ -130,11 +130,9 @@
         dhcp_end: "192.168.51.14"
         dhcp_lease: "{{ FIVE_MINUTES_TLL }}"
 
-        use_pihole_dns: true
-
     - name: Create VLAN 60
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: iot
         description: "Stupid IOT devices"
@@ -150,11 +148,9 @@
         dhcp_end: "192.168.60.254"
         dhcp_lease: "{{ ONE_HOUR_TTL }}"
 
-        use_pihole_dns: true
-
     - name: Create VLAN 61
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: smartlightning
         description: "Separate vlan only for IOT smart lights"
@@ -169,5 +165,3 @@
         dhcp_start: "192.168.61.1"
         dhcp_end: "192.168.61.14"
         dhcp_lease: "{{ ONE_HOUR_TTL }}"
-
-        use_pihole_dns: true
