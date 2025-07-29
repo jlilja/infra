@@ -59,5 +59,7 @@
 - name: Set DNS servers
   community.network.edgeos_config:
     lines:
-      - set system name-server 8.8.8.8
-      - set system name-server 4.2.2.1
+      - set system name-server {{ item }}
+  loop:
+    - 8.8.8.8
+    - 4.2.2.1
