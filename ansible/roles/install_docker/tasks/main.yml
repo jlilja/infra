@@ -35,7 +35,7 @@
         state: present
 
 - name: Install Docker Packages
-  apt:
+  ansible.builtin.apt:
     state: present
     update_cache: true
     name:
