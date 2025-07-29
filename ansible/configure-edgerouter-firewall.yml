@@ -16,3 +16,7 @@
     - name: Setup iot firewall
       ansible.builtin.import_role:
         name: edgerouter_firewall_iot
+
+    - name: Setup dns firewall
+      ansible.builtin.import_role:
+        name: edgerouter_firewall_dns

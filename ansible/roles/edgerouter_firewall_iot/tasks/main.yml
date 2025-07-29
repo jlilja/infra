@@ -39,7 +39,7 @@
       - set interfaces ethernet eth1 vif 60 firewall in name iot_IN
 # https://thesai.org/Downloads/Volume15No2/Paper_2-Assessing_and_Mitigating_Network_Vulnerabilities.pdf
 
-- name: Ruleset eth1.51/local (iot)
+- name: Ruleset eth1.60/local (iot)
   community.network.edgeos_config:
     lines:
       - set firewall name iot_LOCAL default-action drop
