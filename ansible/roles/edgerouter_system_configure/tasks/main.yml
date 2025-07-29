@@ -48,10 +48,13 @@
 - name: Set NTP servers
   community.network.edgeos_config:
     lines:
-      - set system ntp server 0.ubnt.pool.ntp.org
-      - set system ntp server 1.ubnt.pool.ntp.org
-      - set system ntp server 2.ubnt.pool.ntp.org
-      - set system ntp server 3.ubnt.pool.ntp.org
+      - "set system ntp server {{ item }}"
+  loop:
+    - 0.ubnt.pool.ntp.org
+    - 1.ubnt.pool.ntp.org
+    - 2.ubnt.pool.ntp.org
+    - 3.ubnt.pool.ntp.org
+
 
 - name: Set DNS servers
   community.network.edgeos_config:
