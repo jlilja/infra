@@ -12,21 +12,8 @@
       - set firewall name dns_IN rule 10 source port 80
       - set firewall name dns_IN rule 10 destination group network-group vlan-10-network-group
 
-      # # Allow access to DNS in DNS VLAN
-      # - set firewall name dns_IN rule 20 description 'Accept established/related to DNS-IPs'
-      # - set firewall name dns_IN rule 20 action accept
-      # - set firewall name dns_IN rule 20 protocol tcp_udp
-      # - set firewall name dns_IN rule 20 destination port 53
-      # - set firewall name dns_IN rule 20 destination group address-group DNS-IPs
-
-      # # Drop traffic to other VLANs
-      # - set firewall name dns_IN rule 30 description 'Drop to RFC1918 networks'
-      # - set firewall name dns_IN rule 30 action drop
-      # - set firewall name dns_IN rule 30 protocol all
-      # - set firewall name dns_IN rule 30 destination group network-group RFC1918
-
       # Allow traffic to WAN
-      - set firewall name dns_IN rule 40 description 'Allow HTTPS traffic to WAN'
+      - set firewall name dns_IN rule 40 description 'Allow traffic to WAN'
       - set firewall name dns_IN rule 40 action accept
       - set firewall name dns_IN rule 40 protocol tcp_udp
       - set firewall name dns_IN rule 40 state established   enable
