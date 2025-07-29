@@ -4,8 +4,10 @@ name: Plan Terraform code on PR
 on:
   pull_request:
     paths:
-      - "**/*.tf"
-      - "terraform/**/*.hcl"
+      - "terraform/cloudflare/*.tf"
+      - "terraform/cloudflare/*.hcl"
+      - "terraform/modules/**/*.tf"
+
       - ".github/workflows/terraform-apply.yml"
       - ".github/workflows/terraform-plan.yml"
   workflow_dispatch:

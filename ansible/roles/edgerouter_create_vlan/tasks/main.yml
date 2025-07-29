@@ -1,0 +1,38 @@
+---
+
+- name: "{{ vlan_id }} ({{ vlan_name }}) - Creating vlan"
+  community.network.edgeos_config:
+    lines:
+      # VLAN interface settings
+      - set interfaces ethernet eth1 vif {{ vlan_id }} description 'VLAN {{ vlan_id }} - {{ vlan_name }} - {{ description }}'
+      - set interfaces ethernet eth1 vif {{ vlan_id }} address {{ vlan_cidr }}
+
+      # DHCP settings
+      - set service dhcp-server shared-network-name {{ vlan_name }} authoritative enable
+      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} default-router {{ gateway_address }}
+      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} lease {{ dhcp_lease }}
+      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} start {{ dhcp_start }} stop {{ dhcp_end }}
+
+- name: "{{ vlan_id }} ({{ vlan_name }}) - Use Pihole dns"
+  when: "use_pihole_dns|default(True)"
+  vars:
+    PIHOLE_DNS: 192.168.30.13
+  community.network.edgeos_config:
+    lines:
+      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} dns-server {{ PIHOLE_DNS }}
+
+- name: "{{ vlan_id }} ({{ vlan_name }}) - Use custom dns address vlan"
+  when: dns_address|default("") != "" and use_pihole_dns|default(True)
+  community.network.edgeos_config:
+    lines:
+      - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} dns-server {{ dns_address }}
+
+      # Create DNS interface for VLAN
+      - set service dns forwarding listen-on {{ interface }}
+
+- name: "{{ vlan_id }} ({{ vlan_name }}) - Creating network group for vlan"
+  when: "create_network_group|default(True)"
+  community.network.edgeos_config:
+    lines:
+      - "set firewall group network-group vlan-{{ vlan_id }}-network-group description 'network group for vlan {{ vlan_id }}'"
+      - "set firewall group network-group vlan-{{ vlan_id }}-network-group network {{ vlan_subnet }}"

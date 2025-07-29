@@ -7,8 +7,6 @@
   connection: network_cli
 
   vars:
-    PIHOLE_URL: 192.168.30.13
-
     FIVE_MINUTES_TLL: 300
     ONE_HOUR_TTL: 3600
 
@@ -19,146 +17,150 @@
 
     - name: Create VLAN 10
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: trusted
-        edgeos_create_vlan_description: "VLAN 10 - Trusted. Used for devices with general access to other VLANS"
+        description: "Used for devices with general access to other VLANS"
 
+        interface: "eth1.10"
         vlan_id: 10
-        edgeos_create_vlan_lease: "{{ FIVE_MINUTES_TLL }}"
-        edgeos_create_vlan_interface: "eth1.10"
 
-        edgeos_create_vlan_cidr: "192.168.10.1/24"
+        vlan_cidr: "192.168.10.1/24"
         vlan_subnet: "192.168.10.0/24"
         gateway_address: "192.168.10.1"
-        vlan_dns: "192.168.10.1"
+
         dhcp_start: "192.168.10.10"
         dhcp_end: "192.168.10.254"
-
-        create_set_router: true
+        dhcp_lease: "{{ FIVE_MINUTES_TLL }}"
 
     - name: Create VLAN 20
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: homelab
-        edgeos_create_vlan_description: "VLAN 20 - Homelab. Experimental environment and WIP work"
+        description: "Experimental environment and WIP work"
 
+        interface: "eth1.20"
         vlan_id: 20
-        edgeos_create_vlan_lease: "{{ FIVE_MINUTES_TLL }}"
-        edgeos_create_vlan_interface: "eth1.20"
 
-        edgeos_create_vlan_cidr: "192.168.20.1/24"
+        vlan_cidr: "192.168.20.1/24"
         vlan_subnet: "192.168.20.0/24"
         gateway_address: "192.168.20.1"
-        vlan_dns: "192.168.20.1"
+
         dhcp_start: "192.168.20.10"
+        dhcp_lease: "{{ FIVE_MINUTES_TLL }}"
         dhcp_end: "192.168.20.254"
 
     - name: Create VLAN 30
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: dns
-        edgeos_create_vlan_description: "VLAN 30 - DNS. Services related to DNS management"
+        description: "Services related to DNS management"
 
+        interface: "eth1.30"
         vlan_id: 30
-        edgeos_create_vlan_lease: "{{ FIVE_MINUTES_TLL }}"
-        edgeos_create_vlan_interface: "eth1.30"
 
-        edgeos_create_vlan_cidr: "192.168.30.1/24"
+        vlan_cidr: "192.168.30.1/24"
         vlan_subnet: "192.168.30.0/24"
         gateway_address: "192.168.30.1"
-        vlan_dns: "192.168.30.1"
+
         dhcp_start: "192.168.30.10"
+        dhcp_lease: "{{ FIVE_MINUTES_TLL }}"
         dhcp_end: "192.168.30.254"
+
+        use_pihole_dns: false
+        dns_address: "192.168.30.1"
 
     - name: Create VLAN 40
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: infra
-        edgeos_create_vlan_description: "VLAN 40 - Infrastructure. Infra devices living in an isolated environment"
+        description: "Infra devices living in an isolated environment"
 
+        interface: "eth1.40"
         vlan_id: 40
-        edgeos_create_vlan_lease: "{{ FIVE_MINUTES_TLL }}"
-        edgeos_create_vlan_interface: "eth1.40"
 
-        edgeos_create_vlan_cidr: "192.168.40.1/24"
+        vlan_cidr: "192.168.40.1/24"
         vlan_subnet: "192.168.40.0/24"
         gateway_address: "192.168.40.1"
-        vlan_dns: "192.168.40.1"
+
         dhcp_start: "192.168.40.10"
+        dhcp_lease: "{{ FIVE_MINUTES_TLL }}"
         dhcp_end: "192.168.40.254"
+
+        use_pihole_dns: false
+        dns_address: "192.168.40.1"
 
     - name: Create VLAN 50
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: nas
-        edgeos_create_vlan_description: "VLAN 50 - NAS. NAS devices"
+        description: "NAS devices"
 
+        interface: "eth1.50"
         vlan_id: 50
-        edgeos_create_vlan_lease: "{{ FIVE_MINUTES_TLL }}"
-        edgeos_create_vlan_interface: "eth1.50"
 
-        edgeos_create_vlan_cidr: "192.168.50.1/24"
+        vlan_cidr: "192.168.50.1/24"
         vlan_subnet: "192.168.50.0/24"
         gateway_address: "192.168.50.1"
-        vlan_dns: "{{ PIHOLE_URL }}"
+
         dhcp_start: "192.168.50.10"
         dhcp_end: "192.168.50.254"
+        dhcp_lease: "{{ FIVE_MINUTES_TLL }}"
 
     - name: Create VLAN 51
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: ds418p
-        edgeos_create_vlan_description: "VLAN 51 - ds418p vlan"
+        description: "ds418p vlan"
 
+        interface: "eth1.51"
         vlan_id: 51
-        edgeos_create_vlan_lease: "{{ FIVE_MINUTES_TLL }}"
-        edgeos_create_vlan_interface: "eth1.51"
 
-        edgeos_create_vlan_cidr: "192.168.51.1/28"
+        vlan_cidr: "192.168.51.1/28"
         vlan_subnet: "192.168.51.0/28"
         gateway_address: "192.168.51.1"
-        vlan_dns: "{{ PIHOLE_URL }}"
+
         dhcp_start: "192.168.51.1"
         dhcp_end: "192.168.51.14"
+        dhcp_lease: "{{ FIVE_MINUTES_TLL }}"
 
     - name: Create VLAN 60
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: iot
-        edgeos_create_vlan_description: "VLAN 60 - IOT. Stupid IOT devices"
+        description: "Stupid IOT devices"
 
+        interface: "eth1.60"
         vlan_id: 60
-        edgeos_create_vlan_lease: "{{ ONE_HOUR_TTL }}"
-        edgeos_create_vlan_interface: "eth1.60"
 
-        edgeos_create_vlan_cidr: "192.168.60.1/24"
+        vlan_cidr: "192.168.60.1/24"
         vlan_subnet: "192.168.60.0/24"
         gateway_address: "192.168.60.1"
-        vlan_dns: "{{ PIHOLE_URL }}"
+
         dhcp_start: "192.168.60.10"
         dhcp_end: "192.168.60.254"
+        dhcp_lease: "{{ ONE_HOUR_TTL }}"
 
     - name: Create VLAN 61
       ansible.builtin.import_role:
-        name: edgeos_create_vlan
+        name: edgerouter_create_vlan
       vars:
         vlan_name: smartlightning
-        edgeos_create_vlan_description: "VLAN 61 - smart lightning. Separate vlan only for IOT smart lights"
+        description: "Separate vlan only for IOT smart lights"
 
+        interface: "eth1.61"
         vlan_id: 61
-        edgeos_create_vlan_lease: "{{ ONE_HOUR_TTL }}"
-        edgeos_create_vlan_interface: "eth1.61"
 
-        edgeos_create_vlan_cidr: "192.168.61.1/28"
+        vlan_cidr: "192.168.61.1/28"
         vlan_subnet: "192.168.61.0/28"
         gateway_address: "192.168.61.1"
-        vlan_dns: "192.168.61.1"
+
         dhcp_start: "192.168.61.1"
         dhcp_end: "192.168.61.14"
+        dhcp_lease: "{{ ONE_HOUR_TTL }}"

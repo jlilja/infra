@@ -1,0 +1,46 @@
+---
+- name: Ruleset eth1.30/in (dns)
+  community.network.edgeos_config:
+    lines:
+      - set firewall name dns_IN default-action accept
+      - set firewall name dns_IN description 'VLAN to WAN'
+
+      # Allow Web UI access from trusted VLAN
+      - set firewall name dns_IN rule 10 description 'Pihole - Accept Web UI access from trusted VLAN'
+      - set firewall name dns_IN rule 10 action accept
+      - set firewall name dns_IN rule 10 protocol tcp_udp
+      - set firewall name dns_IN rule 10 source port 80
+      - set firewall name dns_IN rule 10 destination group network-group vlan-10-network-group
+
+      # Allow traffic to WAN
+      - set firewall name dns_IN rule 40 description 'Allow traffic to WAN'
+      - set firewall name dns_IN rule 40 action accept
+      - set firewall name dns_IN rule 40 protocol tcp_udp
+      - set firewall name dns_IN rule 40 state established   enable
+      - set firewall name dns_IN rule 40 state invalid       disable
+      - set firewall name dns_IN rule 40 state new           enable
+      - set firewall name dns_IN rule 40 state related       enable
+      # - set firewall name dns_IN rule 40 destination port 443
+
+      # Set rules for VLAN 30 direction IN
+      - set interfaces ethernet eth1 vif 30 firewall in name dns_IN
+# https://thesai.org/Downloads/Volume15No2/Paper_2-Assessing_and_Mitigating_Network_Vulnerabilities.pdf
+
+- name: Ruleset eth1.30/local (dns)
+  community.network.edgeos_config:
+    lines:
+      - set firewall name dns_LOCAL default-action accept
+      - set firewall name dns_LOCAL description 'VLAN to router'
+
+      - set firewall name dns_LOCAL rule 10 action accept
+      - set firewall name dns_LOCAL rule 10 description 'Allow DHCP'
+      - set firewall name dns_LOCAL rule 10 destination port 67
+      - set firewall name dns_LOCAL rule 10 protocol udp
+
+      - set firewall name dns_LOCAL rule 10 action accept
+      - set firewall name dns_LOCAL rule 10 description 'Allow DNS'
+      - set firewall name dns_LOCAL rule 10 destination port 53
+      - set firewall name dns_LOCAL rule 10 protocol udp
+
+      # Set rules for VLAN 51 direction LOCAL
+      - set interfaces ethernet eth1 vif 30 firewall local name dns_LOCAL
