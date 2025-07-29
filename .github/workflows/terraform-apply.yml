@@ -4,8 +4,12 @@ name: Apply Terraform code on main
 on:
   push:
     paths:
-      - "**/*.tf"
-      - "**/*.hcl"
+      - "terraform/cloudflare/*.tf"
+      - "terraform/cloudflare/*.hcl"
+      - "terraform/modules/**/*.tf"
+
+      - ".github/workflows/terraform-apply.yml"
+      - ".github/workflows/terraform-plan.yml"
     branches:
       - main
   workflow_dispatch:

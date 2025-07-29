@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - "./ansible/**.yml"
-      - ".github/workflows/ansible-link.yml"
+      - ".github/workflows/ansible-lint.yml"
       - "./requirements.yml"
   workflow_dispatch:
 
