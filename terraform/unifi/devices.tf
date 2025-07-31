@@ -39,9 +39,9 @@ resource "unifi_device" "USW_24_G1" {
 
   port_override {
     number = 17
-    name   = unifi_port_profile.dns.name
+    name   = unifi_port_profile.trusted.name
 
-    port_profile_id = unifi_port_profile.dns.id
+    port_profile_id = unifi_port_profile.trusted.id
   }
 
   port_override {
