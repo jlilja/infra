@@ -6,6 +6,7 @@ includes:
   terraform:edgerouter: terraform/edgerouter/Taskfile.yml
   terraform:elk: terraform/elk/Taskfile.yml
   terraform:unifi: terraform/unifi/Taskfile.yml
+  terraform:grafana: terraform/grafana/Taskfile.yml
 
   k8s:webserver: k8s/apps/webserver/Taskfile.yml
 
