@@ -52,6 +52,13 @@ resource "unifi_device" "USW_24_G1" {
   }
 
   port_override {
+    number = 20
+    name   = unifi_port_profile.infra.name
+
+    port_profile_id = unifi_port_profile.infra.id
+  }
+
+  port_override {
     number = 22
     name   = unifi_port_profile.infra.name
 
