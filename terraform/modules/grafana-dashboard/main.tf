@@ -260,47 +260,53 @@ resource "grafana_dashboard" "dashboard" {
         "type" : "stat"
       },
       {
-        "datasource" : {
-          "type" : "prometheus",
-          "uid" : "grafanacloud-prom"
+        "id" : 3,
+        "type" : "timeseries",
+        "title" : "Memory",
+        "gridPos" : {
+          "x" : 0,
+          "y" : 8,
+          "h" : 8,
+          "w" : 12
         },
         "fieldConfig" : {
           "defaults" : {
-            "color" : {
-              "mode" : "palette-classic"
-            },
             "custom" : {
-              "axisBorderShow" : false,
-              "axisCenteredZero" : false,
-              "axisColorMode" : "text",
-              "axisLabel" : "",
-              "axisPlacement" : "auto",
+              "drawStyle" : "line",
+              "lineInterpolation" : "linear",
               "barAlignment" : 0,
               "barWidthFactor" : 0.6,
-              "drawStyle" : "line",
+              "lineWidth" : 1,
               "fillOpacity" : 30,
               "gradientMode" : "none",
-              "hideFrom" : {
-                "legend" : false,
-                "tooltip" : false,
-                "viz" : false
-              },
+              "spanNulls" : false,
               "insertNulls" : false,
-              "lineInterpolation" : "linear",
-              "lineWidth" : 1,
+              "showPoints" : "auto",
+              "showValues" : false,
               "pointSize" : 5,
+              "stacking" : {
+                "mode" : "none",
+                "group" : "A"
+              },
+              "axisPlacement" : "auto",
+              "axisLabel" : "",
+              "axisColorMode" : "text",
+              "axisBorderShow" : false,
               "scaleDistribution" : {
                 "type" : "linear"
               },
-              "showPoints" : "auto",
-              "spanNulls" : false,
-              "stacking" : {
-                "group" : "A",
-                "mode" : "none"
+              "axisCenteredZero" : false,
+              "hideFrom" : {
+                "tooltip" : false,
+                "viz" : false,
+                "legend" : false
               },
               "thresholdsStyle" : {
                 "mode" : "off"
               }
+            },
+            "color" : {
+              "mode" : "palette-classic"
             },
             "mappings" : [],
             "thresholds" : {
@@ -308,7 +314,7 @@ resource "grafana_dashboard" "dashboard" {
               "steps" : [
                 {
                   "color" : "green",
-                  "value" : 0
+                  "value" : null
                 },
                 {
                   "color" : "red",
@@ -320,43 +326,20 @@ resource "grafana_dashboard" "dashboard" {
           },
           "overrides" : []
         },
-        "gridPos" : {
-          "h" : 8,
-          "w" : 12,
-          "x" : 0,
-          "y" : 8
-        },
-        "id" : 3,
-        "options" : {
-          "legend" : {
-            "calcs" : [],
-            "displayMode" : "list",
-            "placement" : "bottom",
-            "showLegend" : true
-          },
-          "tooltip" : {
-            "hideZeros" : false,
-            "mode" : "single",
-            "sort" : "none"
-          }
-        },
-        "pluginVersion" : "12.2.0-16677249643",
+        "pluginVersion" : "12.2.0-17245430286.patch2",
         "targets" : [
           {
-            "datasource" : {
-              "type" : "prometheus",
-              "uid" : "grafanacloud-prom"
-            },
-            "disableTextWrap" : false,
-            "editorMode" : "builder",
-            "expr" : "node_memory_MemTotal_bytes{job=\"$device_name\"}",
-            "fullMetaSearch" : false,
-            "includeNullMetadata" : true,
-            "instant" : true,
-            "legendFormat" : "memory_total",
-            "range" : true,
             "refId" : "A",
-            "useBackend" : false
+            "expr" : "node_memory_Buffers_bytes{job=\"$device_name\"}",
+            "range" : true,
+            "instant" : false,
+            "datasource" : {
+              "uid" : "grafanacloud-prom",
+              "type" : "prometheus"
+            },
+            "hide" : false,
+            "editorMode" : "builder",
+            "legendFormat" : "Buffer"
           },
           {
             "datasource" : {
@@ -365,19 +348,60 @@ resource "grafana_dashboard" "dashboard" {
             },
             "disableTextWrap" : false,
             "editorMode" : "code",
-            "expr" : "node_memory_MemTotal_bytes{job=\"$device_name\"} - node_memory_MemAvailable_bytes{job=\"$device_name\"}",
+            "expr" : "node_memory_MemTotal_bytes{job=\"$device_name\"} - node_memory_Buffers_bytes{job=\"$device_name\"} - node_memory_MemFree_bytes{job=\"$device_name\"} - node_memory_Cached_bytes{job=\"$device_name\"}",
             "fullMetaSearch" : false,
             "includeNullMetadata" : true,
-            "instant" : true,
+            "instant" : false,
             "key" : "Q-aa0bb47d-339e-4192-a9db-2d4e4b3cc487-1",
-            "legendFormat" : "memory_usage",
+            "legendFormat" : "Used",
             "range" : true,
             "refId" : "B",
             "useBackend" : false
+          },
+          {
+            "refId" : "C",
+            "expr" : "node_memory_Cached_bytes{job=\"$device_name\"}",
+            "range" : true,
+            "instant" : false,
+            "datasource" : {
+              "uid" : "grafanacloud-prom",
+              "type" : "prometheus"
+            },
+            "hide" : false,
+            "editorMode" : "code",
+            "legendFormat" : "Cached"
+          },
+          {
+            "refId" : "D",
+            "expr" : "node_memory_MemFree_bytes{job=\"$device_name\"}",
+            "range" : true,
+            "instant" : false,
+            "datasource" : {
+              "uid" : "grafanacloud-prom",
+              "type" : "prometheus"
+            },
+            "hide" : false,
+            "editorMode" : "code",
+            "legendFormat" : "Free"
           }
         ],
-        "title" : "Memory",
-        "type" : "timeseries"
+        "datasource" : {
+          "type" : "prometheus",
+          "uid" : "grafanacloud-prom"
+        },
+        "options" : {
+          "tooltip" : {
+            "mode" : "single",
+            "sort" : "none",
+            "hideZeros" : false
+          },
+          "legend" : {
+            "showLegend" : true,
+            "displayMode" : "list",
+            "placement" : "bottom",
+            "calcs" : []
+          }
+        }
       },
       {
         "id" : 1,
