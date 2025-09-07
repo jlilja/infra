@@ -23,47 +23,53 @@ resource "grafana_dashboard" "dashboard" {
     "links" : [],
     "panels" : [
       {
-        "datasource" : {
-          "type" : "prometheus",
-          "uid" : "grafanacloud-prom"
+        "id" : 4,
+        "type" : "timeseries",
+        "title" : "CPU",
+        "gridPos" : {
+          "x" : 0,
+          "y" : 8,
+          "h" : 8,
+          "w" : 12
         },
         "fieldConfig" : {
           "defaults" : {
-            "color" : {
-              "mode" : "palette-classic"
-            },
             "custom" : {
-              "axisBorderShow" : false,
-              "axisCenteredZero" : false,
-              "axisColorMode" : "text",
-              "axisLabel" : "",
-              "axisPlacement" : "auto",
+              "drawStyle" : "line",
+              "lineInterpolation" : "linear",
               "barAlignment" : 0,
               "barWidthFactor" : 0.6,
-              "drawStyle" : "line",
+              "lineWidth" : 1,
               "fillOpacity" : 0,
               "gradientMode" : "none",
-              "hideFrom" : {
-                "legend" : false,
-                "tooltip" : false,
-                "viz" : false
-              },
+              "spanNulls" : false,
               "insertNulls" : false,
-              "lineInterpolation" : "linear",
-              "lineWidth" : 1,
+              "showPoints" : "auto",
+              "showValues" : false,
               "pointSize" : 5,
+              "stacking" : {
+                "mode" : "none",
+                "group" : "A"
+              },
+              "axisPlacement" : "auto",
+              "axisLabel" : "",
+              "axisColorMode" : "text",
+              "axisBorderShow" : false,
               "scaleDistribution" : {
                 "type" : "linear"
               },
-              "showPoints" : "auto",
-              "spanNulls" : false,
-              "stacking" : {
-                "group" : "A",
-                "mode" : "none"
+              "axisCenteredZero" : false,
+              "hideFrom" : {
+                "tooltip" : false,
+                "viz" : false,
+                "legend" : false
               },
               "thresholdsStyle" : {
                 "mode" : "off"
               }
+            },
+            "color" : {
+              "mode" : "palette-classic"
             },
             "mappings" : [],
             "thresholds" : {
@@ -71,50 +77,48 @@ resource "grafana_dashboard" "dashboard" {
               "steps" : [
                 {
                   "color" : "green",
-                  "value" : 0
+                  "value" : null
                 },
                 {
                   "color" : "red",
                   "value" : 80
                 }
               ]
-            }
+            },
+            "unit" : "percentunit"
           },
           "overrides" : []
         },
-        "gridPos" : {
-          "h" : 8,
-          "w" : 12,
-          "x" : 0,
-          "y" : 0
-        },
-        "id" : 4,
-        "options" : {
-          "legend" : {
-            "calcs" : [],
-            "displayMode" : "list",
-            "placement" : "bottom",
-            "showLegend" : true
-          },
-          "tooltip" : {
-            "hideZeros" : false,
-            "mode" : "single",
-            "sort" : "none"
-          }
-        },
-        "pluginVersion" : "12.2.0-16677249643",
+        "pluginVersion" : "12.2.0-17245430286.patch2",
         "targets" : [
           {
             "editorMode" : "code",
-            "expr" : "100 * avg(1 - rate(node_cpu_seconds_total{mode=\"idle\", job=\"$device_name\"}[5m]))",
+            "expr" : "avg without(instance,job,cpu) (rate(node_cpu_seconds_total{mode!=\"idle\", job=\"$device_name\"}[5m]))",
             "hide" : false,
             "legendFormat" : "__auto",
             "range" : true,
-            "refId" : "A"
+            "refId" : "A",
+            "instant" : false,
+            "exemplar" : false
           }
         ],
-        "title" : "CPU",
-        "type" : "timeseries"
+        "datasource" : {
+          "type" : "prometheus",
+          "uid" : "grafanacloud-prom"
+        },
+        "options" : {
+          "tooltip" : {
+            "mode" : "single",
+            "sort" : "none",
+            "hideZeros" : false
+          },
+          "legend" : {
+            "showLegend" : true,
+            "displayMode" : "list",
+            "placement" : "bottom",
+            "calcs" : []
+          }
+        }
       },
       {
         "datasource" : {
@@ -376,47 +380,53 @@ resource "grafana_dashboard" "dashboard" {
         "type" : "timeseries"
       },
       {
-        "datasource" : {
-          "type" : "prometheus",
-          "uid" : "grafanacloud-prom"
+        "id" : 1,
+        "type" : "timeseries",
+        "title" : "Temperature",
+        "gridPos" : {
+          "x" : 12,
+          "y" : 8,
+          "h" : 8,
+          "w" : 12
         },
         "fieldConfig" : {
           "defaults" : {
-            "color" : {
-              "mode" : "palette-classic"
-            },
             "custom" : {
-              "axisBorderShow" : false,
-              "axisCenteredZero" : false,
-              "axisColorMode" : "text",
-              "axisLabel" : "",
-              "axisPlacement" : "auto",
+              "drawStyle" : "line",
+              "lineInterpolation" : "linear",
               "barAlignment" : 0,
               "barWidthFactor" : 0.6,
-              "drawStyle" : "line",
+              "lineWidth" : 1,
               "fillOpacity" : 0,
               "gradientMode" : "none",
-              "hideFrom" : {
-                "legend" : false,
-                "tooltip" : false,
-                "viz" : false
-              },
+              "spanNulls" : false,
               "insertNulls" : false,
-              "lineInterpolation" : "linear",
-              "lineWidth" : 1,
+              "showPoints" : "auto",
+              "showValues" : false,
               "pointSize" : 5,
+              "stacking" : {
+                "mode" : "none",
+                "group" : "A"
+              },
+              "axisPlacement" : "auto",
+              "axisLabel" : "",
+              "axisColorMode" : "text",
+              "axisBorderShow" : false,
               "scaleDistribution" : {
                 "type" : "linear"
               },
-              "showPoints" : "auto",
-              "spanNulls" : false,
-              "stacking" : {
-                "group" : "A",
-                "mode" : "none"
+              "axisCenteredZero" : false,
+              "hideFrom" : {
+                "tooltip" : false,
+                "viz" : false,
+                "legend" : false
               },
               "thresholdsStyle" : {
                 "mode" : "off"
               }
+            },
+            "color" : {
+              "mode" : "palette-classic"
             },
             "mappings" : [],
             "thresholds" : {
@@ -424,7 +434,7 @@ resource "grafana_dashboard" "dashboard" {
               "steps" : [
                 {
                   "color" : "green",
-                  "value" : 0
+                  "value" : null
                 },
                 {
                   "color" : "red",
@@ -432,31 +442,13 @@ resource "grafana_dashboard" "dashboard" {
                 }
               ]
             },
-            "unit" : "celsius"
+            "unit" : "celsius",
+            "max" : 90,
+            "min" : 30
           },
           "overrides" : []
         },
-        "gridPos" : {
-          "h" : 8,
-          "w" : 12,
-          "x" : 12,
-          "y" : 8
-        },
-        "id" : 1,
-        "options" : {
-          "legend" : {
-            "calcs" : [],
-            "displayMode" : "list",
-            "placement" : "bottom",
-            "showLegend" : true
-          },
-          "tooltip" : {
-            "hideZeros" : false,
-            "mode" : "single",
-            "sort" : "none"
-          }
-        },
-        "pluginVersion" : "12.2.0-16677249643",
+        "pluginVersion" : "12.2.0-17245430286.patch2",
         "targets" : [
           {
             "datasource" : {
@@ -468,15 +460,30 @@ resource "grafana_dashboard" "dashboard" {
             "expr" : "max(node_hwmon_temp_celsius{job=\"$device_name\"})",
             "fullMetaSearch" : false,
             "includeNullMetadata" : true,
-            "instant" : true,
+            "instant" : false,
             "legendFormat" : "Temperature",
             "range" : true,
             "refId" : "A",
             "useBackend" : false
           }
         ],
-        "title" : "Temperature",
-        "type" : "timeseries"
+        "datasource" : {
+          "type" : "prometheus",
+          "uid" : "grafanacloud-prom"
+        },
+        "options" : {
+          "tooltip" : {
+            "mode" : "single",
+            "sort" : "none",
+            "hideZeros" : false
+          },
+          "legend" : {
+            "showLegend" : true,
+            "displayMode" : "list",
+            "placement" : "bottom",
+            "calcs" : []
+          }
+        }
       },
       {
         "datasource" : {
@@ -591,29 +598,19 @@ resource "grafana_dashboard" "dashboard" {
         {
           "allowCustomValue" : false,
           "current" : {
-            "text" : "jameson",
+            "text" : var.device_name,
             "value" : var.device_name
 
           },
           "name" : "device_name",
           "options" : [
             {
-              "selected" : false,
-              "text" : "node",
-              "value" : "node"
-            },
-            {
-              "selected" : false,
-              "text" : "margarita",
-              "value" : "margarita"
-            },
-            {
               "selected" : true,
-              "text" : "jameson",
-              "value" : "jameson"
+              "text" : var.device_name,
+              "value" : "node"
             }
           ],
-          "query" : "node,margarita,jameson",
+          "query" : var.device_name,
           "type" : "custom"
         }
       ]
