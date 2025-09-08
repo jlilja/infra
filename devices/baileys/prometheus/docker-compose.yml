@@ -17,8 +17,8 @@ services:
       - /sys:/host/sys:ro
       - /:/rootfs:ro
 
-      - ~./basic_auth_username:/prometheus/username
-      - ~./basic_auth_password:/prometheus/password
+      - ./basic_auth_username:/etc/secrets/username
+      - ./basic_auth_password:/etc/secrets/password
     command:
       - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
