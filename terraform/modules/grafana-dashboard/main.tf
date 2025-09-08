@@ -612,6 +612,113 @@ resource "grafana_dashboard" "dashboard" {
           }
         ],
         "type" : "gauge"
+      },
+      {
+        "id" : 7,
+        "type" : "timeseries",
+        "title" : "Network",
+        "gridPos" : {
+          "x" : 12,
+          "y" : 16,
+          "h" : 8,
+          "w" : 12
+        },
+        "fieldConfig" : {
+          "defaults" : {
+            "custom" : {
+              "drawStyle" : "line",
+              "lineInterpolation" : "linear",
+              "barAlignment" : 0,
+              "barWidthFactor" : 0.6,
+              "lineWidth" : 1,
+              "fillOpacity" : 0,
+              "gradientMode" : "none",
+              "spanNulls" : false,
+              "insertNulls" : false,
+              "showPoints" : "auto",
+              "showValues" : false,
+              "pointSize" : 5,
+              "stacking" : {
+                "mode" : "none",
+                "group" : "A"
+              },
+              "axisPlacement" : "auto",
+              "axisLabel" : "",
+              "axisColorMode" : "text",
+              "axisBorderShow" : false,
+              "scaleDistribution" : {
+                "type" : "linear"
+              },
+              "axisCenteredZero" : false,
+              "hideFrom" : {
+                "tooltip" : false,
+                "viz" : false,
+                "legend" : false
+              },
+              "thresholdsStyle" : {
+                "mode" : "off"
+              }
+            },
+            "color" : {
+              "mode" : "palette-classic"
+            },
+            "mappings" : [],
+            "thresholds" : {
+              "mode" : "absolute",
+              "steps" : [
+                {
+                  "value" : null,
+                  "color" : "green"
+                },
+                {
+                  "value" : 80,
+                  "color" : "red"
+                }
+              ]
+            },
+            "unit" : "KBs"
+          },
+          "overrides" : []
+        },
+        "pluginVersion" : "12.2.0-17245430286.patch2",
+        "targets" : [
+          {
+            "refId" : "A",
+            "editorMode" : "code",
+            "expr" : "irate(node_network_receive_bytes_total{job=\"$device_name\"}[5m])",
+            "legendFormat" : "{{device}} receive",
+            "range" : true
+          },
+          {
+            "refId" : "B",
+            "editorMode" : "code",
+            "expr" : "irate(node_network_transmit_bytes_total{job=\"$device_name\"}[5m])",
+            "legendFormat" : "{{device}} transmit",
+            "range" : true,
+            "hide" : false,
+            "datasource" : {
+              "uid" : "grafanacloud-prom",
+              "type" : "prometheus"
+            }
+          }
+        ],
+        "datasource" : {
+          "uid" : "grafanacloud-prom",
+          "type" : "prometheus"
+        },
+        "options" : {
+          "tooltip" : {
+            "mode" : "single",
+            "sort" : "none",
+            "hideZeros" : false
+          },
+          "legend" : {
+            "showLegend" : true,
+            "displayMode" : "list",
+            "placement" : "bottom",
+            "calcs" : []
+          }
+        }
       }
     ],
     "preload" : false,
