@@ -1,0 +1,3 @@
+name: margarita
+# repository_url: https://github.com/jlilja/infra.git
+working_dir: devices/margarita/pihole/
