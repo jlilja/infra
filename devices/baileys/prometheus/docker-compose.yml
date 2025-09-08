@@ -16,9 +16,6 @@ services:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
       - /:/rootfs:ro
-
-      - ./basic_auth_username:/etc/secrets/username
-      - ./basic_auth_password:/etc/secrets/password
     command:
       - '--path.procfs=/host/proc'
       - '--path.rootfs=/rootfs'
@@ -36,6 +33,9 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
+
+      - ./basic_auth_username:/etc/secrets/username
+      - ./basic_auth_password:/etc/secrets/password
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
