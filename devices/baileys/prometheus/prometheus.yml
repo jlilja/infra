@@ -12,7 +12,7 @@ scrape_configs:
       - targets: ["node-exporter:9100"]
 
 remote_write:
-  - url: <REDACTED_URL>
+  - url: "https://prometheus-prod-39-prod-eu-north-0.grafana.net/api/prom/push"
     basic_auth:
-      username: <REDACTED_USERNAME>
-      password: <REDACTED_PASSWORD>
+      username: "/etc/secrets/basic_auth_username"
+      password: "/etc/secrets/basic_auth_password"

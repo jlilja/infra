@@ -9,7 +9,7 @@ volumes:
 
 services:
   node-exporter:
-    image: prom/node-exporter:latest
+    image: prom/node-exporter:v1.9.0@sha256:7255209a304d0bb0695f258410054be62ec0c5e3913ddbe08586f14837b0a797
     container_name: node-exporter
     restart: unless-stopped
     volumes:
@@ -27,12 +27,15 @@ services:
       - monitoring
 
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v3.5.0@sha256:8672a850efe2f9874702406c8318704edb363587f8c2ca88586b4c8fdb5cea24
     container_name: prometheus
     restart: unless-stopped
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
+
+      - /home/jonas/basic_auth_username:/etc/secrets/basic_auth_username
+      - /home/jonas/basic_auth_password:/etc/secrets/basic_auth_password
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
