@@ -14,5 +14,5 @@ scrape_configs:
 remote_write:
   - url: "https://prometheus-prod-39-prod-eu-north-0.grafana.net/api/prom/push"
     basic_auth:
-      username_file: "/etc/secrets/username"
-      password_file: "/etc/secrets/password"
+      username_file: "/etc/secrets/basic_auth_username"
+      password_file: "/etc/secrets/basic_auth_password"

@@ -34,8 +34,8 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
 
-      - /home/jonas/basic_auth_username.txt:/etc/secrets/username
-      - /home/jonas/basic_auth_password.txt:/etc/secrets/password
+      - /home/jonas/basic_auth_username:/etc/secrets/basic_auth_username
+      - /home/jonas/basic_auth_password:/etc/secrets/basic_auth_password
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
