@@ -9,7 +9,7 @@ volumes:
 
 services:
   node-exporter:
-    image: prom/node-exporter:v1.9.0@sha256:7255209a304d0bb0695f258410054be62ec0c5e3913ddbe08586f14837b0a797
+    image: prom/node-exporter:v1.9.1@sha256:d00a542e409ee618a4edc67da14dd48c5da66726bbd5537ab2af9c1dfc442c8a
     container_name: node-exporter
     restart: unless-stopped
     volumes:
