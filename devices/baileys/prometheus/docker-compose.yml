@@ -34,8 +34,8 @@ services:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
 
-      - /var/lib/dnf/repos/fedora-6c3a9e5977a00788/countme:/etc/secrets/username.txt
-      - ~/basic_auth_password.txt:/etc/secrets/password.txt
+      - /home/jonas/basic_auth_username.txt:/etc/secrets/username.txt
+      - /home/jonas/basic_auth_password.txt:/etc/secrets/password.txt
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
