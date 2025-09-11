@@ -2,3 +2,7 @@
 name: jameson
 repository_url: https://github.com/jlilja/infra.git
 working_dir: devices/jameson/prometheus/
+---
+name: jameson
+repository_url: https://github.com/jlilja/infra.git
+working_dir: devices/jameson/elk/
