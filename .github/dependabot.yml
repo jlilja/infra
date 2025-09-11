@@ -14,10 +14,11 @@ updates:
   - package-ecosystem: "docker-compose"
     directories:
       - "/devices/margarita/pihole"
+
       - "/devices/jameson/elk"
+      - "/devices/jameson/prometheus"
 
       - "/devices/baileys/prometheus"
-      - "/devices/baileys/portainer"
     schedule:
       interval: "monthly"
 
