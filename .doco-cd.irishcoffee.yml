@@ -1,0 +1,4 @@
+---
+name: irish-coffee
+repository_url: https://github.com/jlilja/infra.git
+working_dir: devices/irishcoffee/prometheus/
