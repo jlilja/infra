@@ -2,7 +2,7 @@ module "fedora-thinkpad" {
   source = "../modules/grafana-dashboard"
 
   title       = "Fedora Thinkpad"
-  device_name = "node"
+  device_name = "baileys"
 }
 
 module "jameson" {
@@ -24,4 +24,11 @@ module "truenas" {
 
   title       = "truenas (Hexos)"
   device_name = "truenas"
+}
+
+module "fedora-desktop" {
+  source = "../modules/grafana-dashboard"
+
+  title       = "Fedora Desktop"
+  device_name = "irishcoffee"
 }
