@@ -35,10 +35,12 @@
     "targets": [
         {
             "editorMode": "builder",
-            "expr": "max(node_cpu_frequency_max_hertz{job=\"$device_name\"})",
+            "expr": "max(node_cpu_frequency_max_hertz{job=\"$device_name\", instance=\"node-exporter:9100\"})",
             "legendFormat": "__auto",
-            "range": true,
-            "refId": "A"
+            "range": false,
+            "refId": "A",
+            "instant": true,
+            "exemplar": false
         }
     ],
     "datasource": {
