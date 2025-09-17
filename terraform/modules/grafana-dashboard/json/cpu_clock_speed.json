@@ -5,7 +5,7 @@
     "gridPos": {
         "x": 12,
         "y": 0,
-        "h": 8,
+        "h": 5,
         "w": 4
     },
     "fieldConfig": {
@@ -17,10 +17,6 @@
                     {
                         "color": "green",
                         "value": null
-                    },
-                    {
-                        "color": "red",
-                        "value": 80
                     }
                 ]
             },
@@ -35,12 +31,12 @@
     "targets": [
         {
             "editorMode": "builder",
+            "exemplar": false,
             "expr": "max(node_cpu_frequency_max_hertz{job=\"$device_name\", instance=\"node-exporter:9100\"})",
+            "instant": true,
             "legendFormat": "__auto",
             "range": false,
-            "refId": "A",
-            "instant": true,
-            "exemplar": false
+            "refId": "A"
         }
     ],
     "datasource": {

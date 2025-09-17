@@ -11,6 +11,7 @@ locals {
   memory      = jsondecode(file("${path.module}/json/memory.json"))
   temperature = jsondecode(file("${path.module}/json/temperature.json"))
   network     = jsondecode(file("${path.module}/json/network.json"))
+  uptime      = jsondecode(file("${path.module}/json/uptime.json"))
 }
 
 resource "grafana_dashboard" "dashboard" {
@@ -39,8 +40,9 @@ resource "grafana_dashboard" "dashboard" {
     "panels" : [
       "${local.cpu}",
       "${local.architecture}",
-      "${local.cpu_cores}",
       "${local.cpu_clock_speed}",
+      "${local.cpu_cores}",
+      "${local.uptime}",
       "${local.memory}",
       "${local.temperature}",
       "${local.disk_space_used}",
