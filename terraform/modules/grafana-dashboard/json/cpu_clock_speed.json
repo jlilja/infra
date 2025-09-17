@@ -1,0 +1,67 @@
+{
+    "id": 5,
+    "type": "stat",
+    "title": "Max speed",
+    "gridPos": {
+        "x": 12,
+        "y": 0,
+        "h": 8,
+        "w": 4
+    },
+    "fieldConfig": {
+        "defaults": {
+            "mappings": [],
+            "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                    {
+                        "color": "green",
+                        "value": null
+                    },
+                    {
+                        "color": "red",
+                        "value": 80
+                    }
+                ]
+            },
+            "color": {
+                "mode": "thresholds"
+            },
+            "unit": "rothz"
+        },
+        "overrides": []
+    },
+    "pluginVersion": "12.2.0-17610496912",
+    "targets": [
+        {
+            "editorMode": "builder",
+            "expr": "max(node_cpu_frequency_max_hertz{job=\"$device_name\", instance=\"node-exporter:9100\"})",
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "A",
+            "instant": true,
+            "exemplar": false
+        }
+    ],
+    "datasource": {
+        "type": "prometheus",
+        "uid": "grafanacloud-prom"
+    },
+    "options": {
+        "reduceOptions": {
+            "values": false,
+            "calcs": [
+                "lastNotNull"
+            ],
+            "fields": ""
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard"
+    }
+}
