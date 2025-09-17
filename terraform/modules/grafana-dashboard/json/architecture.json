@@ -1,0 +1,74 @@
+{
+    "id": 6,
+    "type": "stat",
+    "title": "Architecture",
+    "gridPos": {
+        "x": 0,
+        "y": 0,
+        "h": 8,
+        "w": 4
+    },
+    "fieldConfig": {
+        "defaults": {
+            "mappings": [],
+            "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                    {
+                        "color": "green",
+                        "value": null
+                    },
+                    {
+                        "color": "red",
+                        "value": 80
+                    }
+                ]
+            },
+            "color": {
+                "mode": "thresholds"
+            }
+        },
+        "overrides": []
+    },
+    "transformations": [
+        {
+            "id": "labelsToFields",
+            "options": {
+                "valueLabel": "__name__"
+            }
+        }
+    ],
+    "pluginVersion": "12.2.0-17610496912",
+    "targets": [
+        {
+            "editorMode": "builder",
+            "exemplar": false,
+            "expr": "node_uname_info{job=\"$device_name\"}",
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "A"
+        }
+    ],
+    "datasource": {
+        "uid": "grafanacloud-prom"
+    },
+    "options": {
+        "reduceOptions": {
+            "values": true,
+            "calcs": [
+                "lastNotNull"
+            ],
+            "fields": "/^machine$/",
+            "limit": 1
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard"
+    }
+}

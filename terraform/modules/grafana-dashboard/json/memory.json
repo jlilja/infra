@@ -1,0 +1,144 @@
+{
+    "id": 3,
+    "type": "timeseries",
+    "title": "Memory",
+    "gridPos": {
+        "x": 12,
+        "y": 8,
+        "h": 8,
+        "w": 12
+    },
+    "fieldConfig": {
+        "defaults": {
+            "custom": {
+                "drawStyle": "line",
+                "lineInterpolation": "linear",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "lineWidth": 1,
+                "fillOpacity": 30,
+                "gradientMode": "none",
+                "spanNulls": false,
+                "insertNulls": false,
+                "showPoints": "auto",
+                "showValues": false,
+                "pointSize": 5,
+                "stacking": {
+                    "mode": "none",
+                    "group": "A"
+                },
+                "axisPlacement": "auto",
+                "axisLabel": "",
+                "axisColorMode": "text",
+                "axisBorderShow": false,
+                "scaleDistribution": {
+                    "type": "linear"
+                },
+                "axisCenteredZero": false,
+                "hideFrom": {
+                    "tooltip": false,
+                    "viz": false,
+                    "legend": false
+                },
+                "thresholdsStyle": {
+                    "mode": "off"
+                }
+            },
+            "color": {
+                "mode": "palette-classic"
+            },
+            "mappings": [],
+            "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                    {
+                        "color": "green",
+                        "value": null
+                    },
+                    {
+                        "color": "red",
+                        "value": 80
+                    }
+                ]
+            },
+            "unit": "bytes"
+        },
+        "overrides": []
+    },
+    "pluginVersion": "12.2.0-17610496912",
+    "targets": [
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "grafanacloud-prom"
+            },
+            "editorMode": "builder",
+            "expr": "node_memory_Buffers_bytes{job=\"$device_name\"}",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Buffer",
+            "range": true,
+            "refId": "A"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "grafanacloud-prom"
+            },
+            "disableTextWrap": false,
+            "editorMode": "code",
+            "expr": "node_memory_MemTotal_bytes{job=\"$device_name\"} - node_memory_Buffers_bytes{job=\"$device_name\"} - node_memory_MemFree_bytes{job=\"$device_name\"} - node_memory_Cached_bytes{job=\"$device_name\"}",
+            "fullMetaSearch": false,
+            "includeNullMetadata": true,
+            "instant": false,
+            "key": "Q-aa0bb47d-339e-4192-a9db-2d4e4b3cc487-1",
+            "legendFormat": "Used",
+            "range": true,
+            "refId": "B",
+            "useBackend": false
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "node_memory_Cached_bytes{job=\"$device_name\"}",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Cached",
+            "range": true,
+            "refId": "C"
+        },
+        {
+            "datasource": {
+                "type": "prometheus",
+                "uid": "grafanacloud-prom"
+            },
+            "editorMode": "code",
+            "expr": "node_memory_MemFree_bytes{job=\"$device_name\"}",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "Free",
+            "range": true,
+            "refId": "D"
+        }
+    ],
+    "datasource": {
+        "type": "prometheus",
+        "uid": "grafanacloud-prom"
+    },
+    "options": {
+        "tooltip": {
+            "mode": "single",
+            "sort": "none",
+            "hideZeros": false
+        },
+        "legend": {
+            "showLegend": true,
+            "displayMode": "list",
+            "placement": "bottom",
+            "calcs": []
+        }
+    }
+}
