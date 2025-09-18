@@ -1,0 +1,64 @@
+{
+    "id": 11,
+    "type": "stat",
+    "title": "Uptime",
+    "gridPos": {
+        "x": 20,
+        "y": 0,
+        "h": 5,
+        "w": 4
+    },
+    "fieldConfig": {
+        "defaults": {
+            "mappings": [],
+            "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                    {
+                        "color": "green",
+                        "value": null
+                    }
+                ]
+            },
+            "color": {
+                "mode": "thresholds"
+            },
+            "unit": "s",
+            "decimals": 1
+        },
+        "overrides": []
+    },
+    "pluginVersion": "12.2.0-17610496912",
+    "targets": [
+        {
+            "editorMode": "code",
+            "exemplar": false,
+            "expr": "max(node_cpu_seconds_total{job=\"$device_name\"}) * 100",
+            "instant": true,
+            "legendFormat": "__auto",
+            "range": false,
+            "refId": "A"
+        }
+    ],
+    "datasource": {
+        "type": "prometheus",
+        "uid": "grafanacloud-prom"
+    },
+    "options": {
+        "reduceOptions": {
+            "values": false,
+            "calcs": [
+                "lastNotNull"
+            ],
+            "fields": ""
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "wideLayout": true,
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "showPercentChange": false,
+        "percentChangeColorMode": "standard"
+    }
+}
