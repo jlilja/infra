@@ -4,7 +4,7 @@
     "title": "Network",
     "gridPos": {
         "x": 0,
-        "y": 16,
+        "y": 13,
         "h": 8,
         "w": 12
     },
@@ -16,7 +16,7 @@
                 "barAlignment": 0,
                 "barWidthFactor": 0.6,
                 "lineWidth": 1,
-                "fillOpacity": 0,
+                "fillOpacity": 20,
                 "gradientMode": "none",
                 "spanNulls": false,
                 "insertNulls": false,
@@ -69,10 +69,11 @@
     "targets": [
         {
             "editorMode": "code",
-            "expr": "irate(node_network_receive_bytes_total{job=\"$device_name\"}[5m])",
+            "expr": "- irate(node_network_receive_bytes_total{job=\"$device_name\", instance=\"node-exporter:9100\"}[10m])",
             "legendFormat": "{{device}} receive",
             "range": true,
-            "refId": "A"
+            "refId": "A",
+            "exemplar": false
         },
         {
             "datasource": {
@@ -80,11 +81,24 @@
                 "uid": "grafanacloud-prom"
             },
             "editorMode": "code",
-            "expr": "irate(node_network_transmit_bytes_total{job=\"$device_name\"}[5m])",
+            "expr": "irate(node_network_transmit_bytes_total{job=\"$device_name\", instance=\"node-exporter:9100\"}[10m])",
             "hide": false,
             "legendFormat": "{{device}} transmit",
             "range": true,
             "refId": "B"
+        },
+        {
+            "refId": "C",
+            "expr": "irate(node_network_receive_drop_total{job=\"$device_name\", instance=\"node-exporter:9100\"}[10m])",
+            "range": true,
+            "instant": false,
+            "datasource": {
+                "uid": "grafanacloud-prom",
+                "type": "prometheus"
+            },
+            "hide": false,
+            "editorMode": "code",
+            "legendFormat": "{{device}} drop"
         }
     ],
     "datasource": {
