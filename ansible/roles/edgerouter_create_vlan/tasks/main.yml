@@ -16,13 +16,13 @@
 - name: "{{ vlan_id }} ({{ vlan_name }}) - Use Pihole dns"
   when: "use_pihole_dns|default(True)"
   vars:
-    PIHOLE_DNS: 192.168.30.13
+    PIHOLE_DNS: 192.168.30.15
   community.network.edgeos_config:
     lines:
       - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} dns-server {{ PIHOLE_DNS }}
 
 - name: "{{ vlan_id }} ({{ vlan_name }}) - Use custom dns address vlan"
-  when: dns_address|default("") != "" and use_pihole_dns|default(True) != True
+  when: dns_address|default("") != "" and use_pihole_dns|default(False) == False
   community.network.edgeos_config:
     lines:
       - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} dns-server {{ dns_address }}
