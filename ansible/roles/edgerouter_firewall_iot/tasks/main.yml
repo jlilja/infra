@@ -50,5 +50,10 @@
       - set firewall name iot_LOCAL rule 10 destination port 67
       - set firewall name iot_LOCAL rule 10 protocol udp
 
+      - set firewall name iot_LOCAL rule 20 action accept
+      - set firewall name iot_LOCAL rule 20 description 'Allow DNS'
+      - set firewall name iot_LOCAL rule 20 destination port 53
+      - set firewall name iot_LOCAL rule 20 protocol udp
+
       # Set rules for VLAN 51 direction LOCAL
       - set interfaces ethernet eth1 vif 60 firewall local name iot_LOCAL
