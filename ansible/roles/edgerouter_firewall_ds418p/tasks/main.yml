@@ -72,5 +72,10 @@
       - set firewall name ds418p_LOCAL rule 10 destination port 67
       - set firewall name ds418p_LOCAL rule 10 protocol udp
 
+      - set firewall name ds418p_LOCAL rule 20 action accept
+      - set firewall name ds418p_LOCAL rule 20 description 'Allow DNS'
+      - set firewall name ds418p_LOCAL rule 20 destination port 53
+      - set firewall name ds418p_LOCAL rule 20 protocol udp
+
       # Set rules for VLAN 51 direction LOCAL
       - set interfaces ethernet eth1 vif 51 firewall local name ds418p_LOCAL
