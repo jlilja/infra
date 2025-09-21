@@ -5,7 +5,7 @@
     "gridPos": {
         "x": 16,
         "y": 0,
-        "h": 8,
+        "h": 5,
         "w": 4
     },
     "fieldConfig": {
@@ -15,12 +15,12 @@
                 "mode": "absolute",
                 "steps": [
                     {
-                        "value": null,
-                        "color": "green"
+                        "color": "green",
+                        "value": null
                     },
                     {
-                        "value": 80,
-                        "color": "red"
+                        "color": "red",
+                        "value": 80
                     }
                 ]
             },
@@ -33,18 +33,18 @@
     "pluginVersion": "12.2.0-17610496912",
     "targets": [
         {
-            "refId": "A",
             "editorMode": "code",
+            "exemplar": false,
             "expr": "count without(cpu, mode) (node_cpu_seconds_total{job=\"$device_name\", instance=\"node-exporter:9100\", mode=\"idle\"})",
+            "instant": true,
             "legendFormat": "__auto",
             "range": false,
-            "instant": true,
-            "exemplar": false
+            "refId": "A"
         }
     ],
     "datasource": {
-        "uid": "grafanacloud-prom",
-        "type": "prometheus"
+        "type": "prometheus",
+        "uid": "grafanacloud-prom"
     },
     "options": {
         "reduceOptions": {
