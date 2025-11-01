@@ -8,7 +8,7 @@ services:
   #     - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
 
   pihole:
-    image: pihole/pihole:2025.05.1@sha256:db38df3e050606bd014c801c2cbb0b13f263d3122d3d817a8cbcee807688af24
+    image: pihole/pihole:2025.10.3@sha256:7f2dff3f60615e1b9982824cab30e10d399bd1178691e13a96359ea50323db69
     environment:
       TZ: 'Europe/Stockholm'
     ports:
