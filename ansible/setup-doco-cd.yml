@@ -1,0 +1,46 @@
+---
+- name: Setup doco-cd docker compose project
+  hosts: localhost
+  # become: true
+
+  vars_prompt:
+    - name: basic_auth_username
+      prompt: basic_auth_username
+      private: true
+
+    - name: basic_auth_password
+      prompt: basic_auth_password
+      private: true
+
+  tasks:
+    - name: Create basic_auth_username file
+      when: basic_auth_username | length > 0
+      ansible.builtin.file:
+        path: /etc/basic_auth_username
+        mode: "0644"
+        state: touch
+
+    - name: Update basic_auth_username file
+      when: basic_auth_username | length > 0
+      ansible.builtin.copy:
+        content: "{{ basic_auth_username }}"
+        dest: /etc/basic_auth_username
+        mode: "0644"
+
+    - name: Create basic_auth_password file
+      when: basic_auth_password | length > 0
+      ansible.builtin.file:
+        path: /etc/basic_auth_password
+        mode: "0644"
+        state: touch
+
+    - name: Update basic_auth_password file
+      when: basic_auth_password | length > 0
+      ansible.builtin.copy:
+        content: "{{ basic_auth_password }}"
+        dest: /etc/basic_auth_password
+        mode: "0644"
+
+    - name: asdadssa
+      ansible.builtin.command: |
+        ls

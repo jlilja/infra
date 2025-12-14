@@ -105,3 +105,14 @@ tasks:
     env:
       PLAYBOOK: setup-pubkey-auth.yml
       INVENTORY: inventory/nodes.ini
+
+  ### ----- Doco cd tasks ----- ###
+
+  setup-doco-cd:
+    desc: "Setup doco-cd docker compose project"
+    cmds:
+      - |
+        ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass -v
+    env:
+      PLAYBOOK: setup-doco-cd.yml
+      INVENTORY: inventory/nodes.ini
