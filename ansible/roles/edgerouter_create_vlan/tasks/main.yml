@@ -21,6 +21,9 @@
     lines:
       - set service dhcp-server shared-network-name {{ vlan_name }} subnet {{ vlan_subnet }} dns-server {{ PIHOLE_DNS }}
 
+      # Clean up old dns service provided by router if it was ever set.
+      - delete service dns forwarding listen-on {{ interface }}
+
 - name: "{{ vlan_id }} ({{ vlan_name }}) - Use custom dns address vlan"
   when: dns_address|default("") != "" and use_pihole_dns|default(False) == False
   community.network.edgeos_config:

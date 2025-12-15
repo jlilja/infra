@@ -127,6 +127,23 @@
         dhcp_end: "192.168.51.14"
         dhcp_lease: "{{ FIVE_MINUTES_TLL }}"
 
+    - name: Create VLAN 52
+      ansible.builtin.import_role:
+        name: edgerouter_create_vlan
+      vars:
+        vlan_name: ds418p-mgmt
+        description: "ds418p management vlan"
+
+        interface: "eth1.52"
+        vlan_id: 52
+
+        vlan_cidr: "192.168.52.1/28"
+        vlan_subnet: "192.168.52.0/28"
+        gateway_address: "192.168.52.1"
+
+        dhcp_start: "192.168.52.1"
+        dhcp_end: "192.168.52.14"
+        dhcp_lease: "{{ FIVE_MINUTES_TLL }}"
 
     - name: Create VLAN 60
       ansible.builtin.import_role:

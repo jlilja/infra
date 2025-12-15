@@ -40,6 +40,13 @@ resource "unifi_network" "ds418p" {
   vlan_id = 51
 }
 
+resource "unifi_network" "ds418p-mgmt" {
+  name    = local.DS418P-mgmt
+  purpose = "vlan-only"
+
+  vlan_id = 52
+}
+
 resource "unifi_network" "iot" {
   name    = local.IOT
   purpose = "vlan-only"

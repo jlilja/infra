@@ -106,6 +106,24 @@ resource "unifi_port_profile" "ds418p" {
   }
 }
 
+resource "unifi_port_profile" "ds418p-mgmt" {
+  name = unifi_network.ds418p-mgmt.name
+
+  native_networkconf_id  = unifi_network.ds418p-mgmt.id
+  tagged_networkconf_ids = [unifi_network.ds418p-mgmt.id]
+
+  forward  = "customize"
+  poe_mode = "auto"
+
+  site = unifi_site.default.name
+
+  lifecycle {
+    ignore_changes = [
+      tagged_networkconf_ids
+    ]
+  }
+}
+
 resource "unifi_port_profile" "iot" {
   name = unifi_network.iot.name
 

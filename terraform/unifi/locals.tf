@@ -6,13 +6,14 @@ locals {
 
 # Networks
 locals {
-  TRUSTED = "trusted"
-  HOMELAB = "homelab"
-  DNS     = "dns"
-  INFRA   = "infra"
-  NAS     = "nas"
-  DS418P  = "ds418p"
-  IOT     = "iot"
+  TRUSTED     = "trusted"
+  HOMELAB     = "homelab"
+  DNS         = "dns"
+  INFRA       = "infra"
+  NAS         = "nas"
+  DS418P      = "ds418p"
+  DS418P-mgmt = "ds418p-mgmt"
+  IOT         = "iot"
 }
 
 # Infra devices

@@ -31,6 +31,13 @@ resource "unifi_device" "USW_24_G1" {
   }
 
   port_override {
+    number = 7
+    name   = unifi_port_profile.ds418p-mgmt.name
+
+    port_profile_id = unifi_port_profile.ds418p-mgmt.id
+  }
+
+  port_override {
     number = 9
     name   = unifi_port_profile.trusted.name
 
