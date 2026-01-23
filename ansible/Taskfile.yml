@@ -112,7 +112,7 @@ tasks:
     desc: "Setup doco-cd docker compose project"
     cmds:
       - |
-        ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass -v
+        ansible-playbook -i $INVENTORY $PLAYBOOK -v
     env:
       PLAYBOOK: setup-doco-cd.yml
       INVENTORY: inventory/nodes.ini
