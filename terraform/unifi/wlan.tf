@@ -3,7 +3,7 @@ module "wifi" {
 
   ssid       = "tesseract"
   password   = var.unifi_wlan_password
-  network_id = unifi_network.trusted.id
+  network_id = module.trusted.network_id
 }
 
 module "wifi-guest" {
@@ -11,14 +11,14 @@ module "wifi-guest" {
 
   ssid       = "tesseract-guest"
   password   = var.unifi_wlan_guest_password
-  network_id = unifi_network.trusted.id
+  network_id = module.trusted.network_id
   guest      = true
 }
 
-module "wifi-iot" {
-  source = "./modules/wlan"
+# module "wifi-iot" {
+#   source = "./modules/wlan"
 
-  ssid       = "tesseract-iot"
-  password   = var.unifi_wlan_iot_password
-  network_id = unifi_network.iot.id
-}
+#   ssid       = "tesseract-iot"
+#   password   = var.unifi_wlan_iot_password
+#   network_id = module.iot.network_id
+# }
