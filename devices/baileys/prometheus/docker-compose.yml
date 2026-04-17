@@ -27,7 +27,7 @@ services:
       - monitoring
 
   prometheus:
-    image: prom/prometheus:v3.5.0@sha256:63805ebb8d2b3920190daf1cb14a60871b16fd38bed42b857a3182bc621f4996
+    image: prom/prometheus:v3.11.2@sha256:5550dc63da361dc30f6fe02ac0e4dfc736ededfef3c8d12a634db04a67824d78
     container_name: prometheus
     restart: unless-stopped
     volumes:
