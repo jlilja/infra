@@ -1,0 +1,24 @@
+---
+
+# Creating an ansible user for traceability. Assigning the user to the docker group
+# so that it will not need sudo permissions for docker related tasks. Assigning
+# password "!" is the equivalent of --disabled-password so that it can't be logged in
+# using a username/password combination. Only pubkey authentication allowed.
+- name: Add the user 'ansible'
+  ansible.builtin.user:
+    name: "{{ user_name }}"
+    comment: User used for ansible scripts
+    groups: "{{ group }}"
+    password: '!' # Equivalent to --disabled-password
+
+# Putting ansible user in sudoers file to make it passwordless for the times it docker-compose.yml
+# need sudo privilegies except for docker.
+#
+# TODO: Slim down which binaries it is allowed to call with passwordless sudo.
+- name: Make ansible user nopassword
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%ANSIBLE ALL='
+    line: '%ANSIBLE ALL=(ALL) NOPASSWD: ALL'
+    validate: '/usr/sbin/visudo -cf %s'

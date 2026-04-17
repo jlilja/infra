@@ -1,7 +1,6 @@
 ---
 - name: Setup doco-cd docker compose project
   hosts: nuc
-  become: true
 
   vars_prompt:
     - name: basic_auth_username

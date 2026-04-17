@@ -19,6 +19,8 @@ updates:
       - "/devices/jameson/prometheus"
 
       - "/devices/baileys/prometheus"
+
+      - "/doco-cd/**/"
     schedule:
       interval: "monthly"
 
