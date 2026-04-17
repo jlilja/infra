@@ -1,0 +1,5 @@
+---
+- name: Setup all things for Ansible
+  hosts: nuc
+  roles:
+    - create_ansible_user

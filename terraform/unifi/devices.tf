@@ -4,26 +4,33 @@ resource "unifi_device" "USW_24_G1" {
   mac = "18:e8:29:b0:41:da"
 
   port_override {
-    number = 1
-    name   = "router"
+    number          = 1
+    name            = module.ds418p-data.network_name
+    port_profile_id = module.ds418p-data.network_port_profile_id
   }
 
   port_override {
-    number          = 5
+    number          = 3
     name            = module.ds418p-data.network_name
     port_profile_id = module.ds418p-data.network_port_profile_id
   }
 
   port_override {
     number          = 7
-    name            = module.ds418p-mgmt.network_name
-    port_profile_id = module.ds418p-mgmt.network_port_profile_id
+    name            = module.trusted.network_name
+    port_profile_id = module.trusted.network_port_profile_id
   }
 
   port_override {
     number          = 9
-    name            = module.trusted.network_name
-    port_profile_id = module.trusted.network_port_profile_id
+    name            = module.truenas-data.network_name
+    port_profile_id = module.truenas-data.network_port_profile_id
+  }
+
+  port_override {
+    number          = 11
+    name            = module.truenas-data.network_name
+    port_profile_id = module.truenas-data.network_port_profile_id
   }
 }
 
