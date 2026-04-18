@@ -17,7 +17,8 @@
 
     - name: Add Docker Debian repository to Debian system
       ansible.builtin.apt_repository:
-        repo: "deb [arch={{ ansible_facts.architecture }} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"
+
+        repo: "deb [arch={{ ansible_facts.architecture }} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable" # noqa: yaml[line-length]
         state: present
 
 - name: Add docker keyring and repository
@@ -31,7 +32,7 @@
 
     - name: Add Docker Debian repository to Ubuntu system
       ansible.builtin.apt_repository:
-        repo: "deb [arch={{ 'amd64' if ansible_architecture == 'x86_64' }} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        repo: "deb [arch={{ 'amd64' if ansible_architecture == 'x86_64' }} signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable" # noqa: yaml[line-length]
         state: present
 
 - name: Install Docker Packages
