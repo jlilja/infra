@@ -1,0 +1,8 @@
+---
+name: margarita-prometheus
+repository_url: https://github.com/jlilja/infra.git
+working_dir: devices/margarita/prometheus/
+---
+name: margarita-pihole
+repository_url: https://github.com/jlilja/infra.git
+working_dir: devices/margarita/pihole/

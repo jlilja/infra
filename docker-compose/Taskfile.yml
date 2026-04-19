@@ -1,7 +1,0 @@
----
-version: "3"
-
-includes:
-  elk:
-    taskfile: elk/Taskfile.yml
-    dir: elk

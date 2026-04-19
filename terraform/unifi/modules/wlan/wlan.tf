@@ -15,4 +15,10 @@ resource "unifi_wlan" "wifi" {
   network_id    = var.network_id
   ap_group_ids  = [data.unifi_ap_group.default.id]
   user_group_id = data.unifi_user_group.default.id
+
+  lifecycle {
+    ignore_changes = [
+      network_id
+    ]
+  }
 }

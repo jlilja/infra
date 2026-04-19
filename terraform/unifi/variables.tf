@@ -8,7 +8,6 @@ variable "unifi_password" {
   sensitive = true
 }
 
-
 ## WLANs ##
 variable "unifi_wlan_password" {
   type      = string

@@ -1,0 +1,13 @@
+services:
+  app:
+    container_name: doco-cd
+    image: ghcr.io/kimdre/doco-cd:0.80
+    restart: unless-stopped
+    environment:
+      TZ: Europe/Stockholm
+      METRICS_PORT: 9999
+      POLL_CONFIG_FILE: /poll-config.yml
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./poll-config.yml:/poll-config.yml:ro
