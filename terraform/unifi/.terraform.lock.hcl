@@ -22,7 +22,7 @@ provider "registry.terraform.io/hashicorp/time" {
 
 provider "registry.terraform.io/ubiquiti-community/unifi" {
   version     = "0.41.3"
-  constraints = "0.41.3"
+  constraints = ">= 0.41.0, 0.41.3"
   hashes = [
     "h1:ksSB4bmefV/5B4EUrAdy1DXhVvFzgs83EihAXly4z4Q=",
     "zh:239f297e94e784698f49c7adcd098f97108f71759b1771981da495b1b612e911",
