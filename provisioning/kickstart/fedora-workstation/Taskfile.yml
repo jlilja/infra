@@ -1,0 +1,11 @@
+---
+version: "3"
+
+tasks:
+  copy-ks-into-iso:
+    cmds:
+      - cp ks.cfg iso/
+
+  build-iso-from-dir:
+    cmds:
+      - xorriso -as mkisofs -o ks.iso iso/
