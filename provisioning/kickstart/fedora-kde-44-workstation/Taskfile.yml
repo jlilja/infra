@@ -2,10 +2,13 @@
 version: "3"
 
 tasks:
-  copy-ks-into-iso:
+  create-iso-from-files:
     cmds:
-      - cp ks.cfg iso/
-
-  build-iso-from-dir:
-    cmds:
+      - rm -r iso
+      - mkdir iso
+      - cp ks.cfg cloud-init.yml
       - xorriso -as mkisofs -o ks.iso iso/
+
+  write-iso-to-usb:
+    cmds:
+      - sudo dd if=ks.iso of=/dev/sda bs=8M status=progress
