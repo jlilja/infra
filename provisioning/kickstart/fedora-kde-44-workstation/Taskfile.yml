@@ -4,9 +4,10 @@ version: "3"
 tasks:
   create-iso-from-files:
     cmds:
-      - rm -r iso
+      - rm -r iso || true
+      - rm ks.iso || true
       - mkdir iso
-      - cp ks.cfg cloud-init.yml
+      - cp ks.cfg cloud-init.yml iso
       - xorriso -as mkisofs -o ks.iso iso/
 
   write-iso-to-usb:
