@@ -9,7 +9,13 @@ tasks:
       - mkdir iso
       - cp ks.cfg cloud-init.yml iso
       - xorriso -as mkisofs -o ks.iso iso/
+      - sha256sum ks.iso
 
   write-iso-to-usb:
+    deps:
+      - create-iso-from-files
     cmds:
-      - sudo dd if=ks.iso of=/dev/sda bs=8M status=progress
+      - sync
+      - sudo dd if=ks.iso of=/dev/sda bs=8M status=progress conv=fsync
+      - sync
+      - sha256sum ks.iso
