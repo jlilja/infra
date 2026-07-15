@@ -4,18 +4,22 @@ version: "3"
 tasks:
   create-iso-from-files:
     cmds:
-      - rm -r iso || true
-      - rm ks.iso || true
-      - mkdir iso
-      - cp ks.cfg cloud-init.yml iso
-      - xorriso -as mkisofs -o ks.iso iso/
-      - sha256sum ks.iso
+      - rm -rf iso
+      - rm -f ks.iso
+      - mkdir -p iso
+      - cp ./ks.cfg ./cloud-init.yml iso/
+      - sha256sum ./ks.cfg ./cloud-init.yml
+      - sha256sum iso/*
+      - xorriso -as mkisofs -V JONAS-KS-44 -o ks.iso iso/
+      - xorriso -indev ks.iso -ls
+      - mkdir -p /tmp/iso-check
+      - xorriso -osirrox on -indev ks.iso -extract / /tmp/iso-check
+      - sha256sum /tmp/iso-check/ks.cfg /tmp/iso-check/cloud-init.yml
 
   write-iso-to-usb:
     deps:
       - create-iso-from-files
     cmds:
+      - sudo dd if=ks.iso of=/dev/sdb bs=8M status=progress conv=fsync
       - sync
-      - sudo dd if=ks.iso of=/dev/sda bs=8M status=progress conv=fsync
-      - sync
-      - sha256sum ks.iso
+      - sudo blkid /dev/sdb
