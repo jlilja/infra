@@ -1,0 +1,7 @@
+---
+version: "3"
+
+tasks:
+  podman-compose-up:
+    cmds:
+      - sudo docker compose -f pihole.yml up
