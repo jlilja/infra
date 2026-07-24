@@ -1,0 +1,22 @@
+#cloud-config
+
+hostname: fedora-workstation
+fqdn: fedora-workstation.local
+
+timezone: Europe/Stockholm
+
+package_update: true
+
+packages:
+   - htop
+   - git
+   - cowsay
+
+write_files:
+   - path: /etc/motd
+     permissions: "0644"
+     content: |
+        Fedora configured by cloud-init on https://github.com/jlilja/infra
+
+runcmd:
+   - systemctl set-default graphical.target
