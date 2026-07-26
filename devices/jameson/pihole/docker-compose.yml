@@ -20,8 +20,11 @@ services:
   caddy:
     image: caddy-server:latest
     restart: unless-stopped
-    env_file:
-      - .caddy_env
+    env:
+      - OVH_ENDPOINT
+      - APPLICATION_KEY
+      - APPLICATION_SECRET
+      - CONSUMER_KEY
     ports:
       - "443:443"
       - "443:443/udp"
@@ -37,4 +40,4 @@ volumes:
 
 secrets:
   pihole_webpasswd:
-    file: ./pihole_password.txt
+    environment: PIHOLE_PASSWORD
