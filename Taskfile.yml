@@ -2,13 +2,10 @@
 version: "3"
 
 includes:
-  terraform:cloudflare: terraform/cloudflare/Taskfile.yml
-  terraform:edgerouter: terraform/edgerouter/Taskfile.yml
-  terraform:elk: terraform/elk/Taskfile.yml
-  terraform:unifi: terraform/unifi/Taskfile.yml
-  terraform:grafana: terraform/grafana/Taskfile.yml
-
-  k8s:webserver: k8s/apps/webserver/Taskfile.yml
+  terraform:cloudflare: apps/cloudflare/Taskfile.yml
+  terraform:elk: apps/elk/Taskfile.yml
+  terraform:unifi: apps/unifi/Taskfile.yml
+  terraform:grafana: apps/grafana/Taskfile.yml
 
   docker: dockerfiles/Taskfile.yml
 
@@ -20,4 +17,3 @@ tasks:
   terraform-format:
     cmds:
       - task terraform:cloudflare:format
-      - task terraform:edgerouter:format
