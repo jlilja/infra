@@ -7,7 +7,7 @@ services:
       - "192.168.10.11:53:53/udp"
     environment:
       TZ: 'Europe/Stockholm'
-      FTLCONF_webserver_api_password: pihole_webpasswd
+      WEBPASSWORD_FILE: /run/secrets/pihole_webpasswd
       FTLCONF_dns_listeningMode: 'ALL'
     volumes:
       - './pihole.toml:/etc/pihole/pihole.toml'
