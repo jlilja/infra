@@ -20,6 +20,7 @@ services:
   caddy:
     image: caddy-server:latest
     restart: unless-stopped
+    pull_policy: never
     environment:
       - OVH_ENDPOINT
       - APPLICATION_KEY
