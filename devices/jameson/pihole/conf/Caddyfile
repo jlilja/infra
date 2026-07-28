@@ -1,4 +1,9 @@
 dns.liljalab.com {
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    }
+
     tls {
         dns ovh {
             endpoint {$OVH_ENDPOINT}
