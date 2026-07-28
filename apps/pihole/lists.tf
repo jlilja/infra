@@ -8,7 +8,7 @@ resource "pihole_list" "hagezi_dns_blocklist_multi_pro" {
 resource "pihole_list" "hagezi_dns_blocklist_tif" {
   address = "https://cdn.jsdelivr.net/gh/hagezi/dns-blocklists@latest/adblock/tif.txt"
   type    = "block"
-  enabled = true
+  enabled = false
   comment = "https://github.com/hagezi/dns-blocklists#closed_lock_with_key-threat-intelligence-feeds---increases-security-significantly-recommended-"
 }
 
