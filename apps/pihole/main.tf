@@ -1,6 +1,15 @@
+## Machines ##
+
+resource "pihole_local_dns" "jameson" {
+  hostname = "jameson.liljalab.com"
+  ip       = "192.168.10.11"
+}
+
+## Services ##
+
 resource "pihole_local_dns" "dns" {
   hostname = "dns.liljalab.com"
-  ip       = "192.168.32.31"
+  ip       = "192.168.10.11"
 }
 
 resource "pihole_local_dns" "router" {
