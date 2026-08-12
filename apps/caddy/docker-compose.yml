@@ -1,0 +1,22 @@
+services:
+  caddy:
+    image: caddy-server:latest
+    restart: unless-stopped
+    pull_policy: never
+    environment:
+      - OVH_ENDPOINT
+      - APPLICATION_KEY
+      - APPLICATION_SECRET
+      - CONSUMER_KEY
+    ports:
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./conf:/etc/caddy
+      - ./site:/srv
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:
