@@ -13,5 +13,5 @@ dns.liljalab.com {
         }
     }
 
-    reverse_proxy pihole:80
+    reverse_proxy 127.0.0.1:80
 }

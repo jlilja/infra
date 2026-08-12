@@ -2,7 +2,13 @@
 name: jameson-prometheus
 repository_url: https://github.com/jlilja/infra.git
 working_dir: devices/jameson/prometheus/
+
 ---
 name: jameson-pihole
 repository_url: https://github.com/jlilja/infra.git
 working_dir: devices/jameson/pihole/
+
+---
+name: jameson-caddy
+repository_url: https://github.com/jlilja/infra.git
+working_dir: apps/caddy/
