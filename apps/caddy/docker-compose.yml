@@ -11,6 +11,8 @@ services:
     ports:
       - "443:443"
       - "443:443/udp"
+    networks:
+      - proxy
     volumes:
       - ./conf:/etc/caddy
       - ./site:/srv
@@ -20,3 +22,7 @@ services:
 volumes:
   caddy_data:
   caddy_config:
+
+networks:
+  proxy:
+    name: proxy
