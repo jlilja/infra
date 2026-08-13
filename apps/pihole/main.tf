@@ -9,7 +9,7 @@ resource "pihole_local_dns" "jameson" {
 
 resource "pihole_local_dns" "immich" {
   hostname = "immich.liljalab.com"
-  ip       = "192.168.10.1"
+  ip       = "192.168.10.11"
 }
 
 resource "pihole_local_dns" "truenas" {
@@ -26,5 +26,10 @@ resource "pihole_local_dns" "dns" {
 
 resource "pihole_local_dns" "router" {
   hostname = "router.liljalab.com"
-  ip       = "192.168.10.1"
+  ip       = "192.168.10.11"
+}
+
+resource "pihole_local_dns" "cloudkey" {
+  hostname = "cloudkey.liljalab.com"
+  ip       = "192.168.10.11"
 }
