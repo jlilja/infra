@@ -7,6 +7,18 @@ resource "pihole_local_dns" "jameson" {
 
 ## Services ##
 
+resource "pihole_local_dns" "immich" {
+  hostname = "immich.liljalab.com"
+  ip       = "192.168.10.1"
+}
+
+resource "pihole_local_dns" "truenas" {
+  hostname = "truenas.liljalab.com"
+  ip       = "192.168.10.11"
+}
+
+## Infrastructure ##
+
 resource "pihole_local_dns" "dns" {
   hostname = "dns.liljalab.com"
   ip       = "192.168.10.11"
