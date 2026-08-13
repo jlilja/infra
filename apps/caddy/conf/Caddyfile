@@ -32,3 +32,20 @@ truenas.liljalab.com {
 
     reverse_proxy 192.168.53.5
 }
+
+immich.liljalab.com {
+        header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    }
+
+    tls {
+        dns ovh {
+            endpoint {$OVH_ENDPOINT}
+            application_key {$APPLICATION_KEY}
+            application_secret {$APPLICATION_SECRET}
+            consumer_key {$CONSUMER_KEY}
+        }
+    }
+
+    reverse_proxy 192.168.53.5:2283
+}
