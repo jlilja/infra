@@ -5,75 +5,17 @@ env:
   INVENTORY: hosts.yml
 
 tasks:
-  ### ----- Edgerouter tasks ----- ###
-
-  configure-edgerouter-vlans:
-    desc: "Configure edgerouter"
-    cmds:
-      - |
-        docker run -it --rm --network="host" \
-          -v "$PWD:/ansible" \
-          -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
-          -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
-          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
-          ansible-playbook -i $INVENTORY $PLAYBOOK
-    env:
-      PLAYBOOK: configure-edgerouter-vlans.yml
-      INVENTORY: inventory/edgerouter.ini
-
-  configure-edgerouter-firewall:
-    desc: "Configure edgerouter firewall"
-    cmds:
-      - |
-        docker run -it --rm --network="host" \
-          -v "$PWD:/ansible" \
-          -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
-          -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
-          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
-          ansible-playbook -i $INVENTORY $PLAYBOOK
-    env:
-      PLAYBOOK: configure-edgerouter-firewall.yml
-      INVENTORY: inventory/edgerouter.ini
-
-  configure-edgerouter-groups:
-    desc: "Configure edgerouter groups"
-    cmds:
-      - |
-        docker run -it --rm --network="host" \
-          -v "$PWD:/ansible" \
-          -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
-          -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
-          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
-          ansible-playbook -i $INVENTORY $PLAYBOOK
-    env:
-      PLAYBOOK: configure-edgerouter-groups.yml
-      INVENTORY: inventory/edgerouter.ini
-
-  ### ----- Synology tasks ----- ###
-
   configure-synology:
     desc: "Set various configs for synology NAS"
     cmds:
-      - |
-        docker run -it --rm --network="host" \
-          -v "$PWD:/ansible:ro" \
-          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
-          ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass --ask-pass
+      - ansible-playbook -i $INVENTORY $PLAYBOOK --ask-become-pass --ask-pass
     env:
       PLAYBOOK: configure-synology.yml
-
-  ### ----- Generic linux tasks ----- ###
 
   create-ansible-user:
     desc: "Create ansible user with docker group"
     cmds:
-      - |
-        docker run -it --rm --network="host" \
-          -v "$PWD:/ansible" \
-          -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
-          -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
-          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
-          ansible-playbook -i $INVENTORY $PLAYBOOK
+      - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       PLAYBOOK: setup-ansible.yml
       INVENTORY: inventory/nodes.ini
@@ -81,13 +23,7 @@ tasks:
   install-docker:
     desc: "Install docker on raspbian and ubuntu"
     cmds:
-      - |
-        docker run -it --rm --network="host" \
-          -v "$PWD:/ansible" \
-          -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
-          -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
-          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
-          ansible-playbook -i $INVENTORY $PLAYBOOK
+      - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       PLAYBOOK: install-docker.yml
       INVENTORY: inventory/nodes.ini
@@ -95,13 +31,7 @@ tasks:
   update-packages:
     desc: "Update packages"
     cmds:
-      - |
-        docker run -it --rm --network="host" \
-          -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
-          -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
-          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
-          -v "$PWD:/ansible:ro" \
-          ansible-playbook -i $INVENTORY $PLAYBOOK
+      - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       PLAYBOOK: update-packages.yml
       INVENTORY: inventory/nodes.ini
@@ -109,24 +39,16 @@ tasks:
   setup-pubkey-auth:
     desc: "Create ansible user and set pubkey ssh authentication"
     cmds:
-      - |
-        docker run -it --rm --network="host" \
-          -e "SSH_AUTH_SOCK=/.1password/agent.sock" \
-          -v "$HOME/.1password/agent.sock:/.1password/agent.sock:ro" \
-          -v "$HOME/.ssh/known_hosts:/etc/ssh/ssh_known_hosts:ro" \
-          -v "$PWD:/ansible:ro" \
-          ansible-playbook -i $INVENTORY $PLAYBOOK
+      - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       PLAYBOOK: setup-pubkey-auth.yml
       INVENTORY: inventory/nodes.ini
 
-  ### ----- Doco cd tasks ----- ###
 
   setup-doco-cd:
     desc: "Setup doco-cd docker compose project"
     cmds:
-      - |
-        ansible-playbook -i $INVENTORY $PLAYBOOK
+      - ansible-playbook -i $INVENTORY $PLAYBOOK
     env:
       PLAYBOOK: setup-doco-cd.yml
       INVENTORY: inventory/nodes.ini
