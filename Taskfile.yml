@@ -7,12 +7,6 @@ includes:
   terraform:unifi: apps/unifi/Taskfile.yml
   terraform:grafana: apps/grafana/Taskfile.yml
 
-  docker: dockerfiles/Taskfile.yml
-
-  ansible:
-    taskfile: ansible/Taskfile.yml
-    dir: ansible
-
 tasks:
   terraform-format:
     cmds:
