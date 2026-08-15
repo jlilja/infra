@@ -6,7 +6,7 @@ working_dir: devices/jameson/prometheus/
 ---
 name: jameson-pihole
 repository_url: https://github.com/jlilja/infra.git
-working_dir: devices/jameson/pihole/
+working_dir: apps/pihole/docker/
 
 ---
 name: jameson-caddy

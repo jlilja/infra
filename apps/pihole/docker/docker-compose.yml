@@ -8,16 +8,28 @@ services:
       - "192.168.10.11:53:53/udp"
     networks:
       - proxy
+      - unbound
     environment:
       TZ: 'Europe/Stockholm'
+      
       WEBPASSWORD_FILE: /run/secrets/pihole_webpasswd
+
       FTLCONF_dns_listeningMode: 'ALL'
+      FTLCONF_dns_upstreams: unbound
     volumes:
       - './pihole.toml:/etc/pihole/pihole.toml'
     cap_add:
       - NET_ADMIN
     secrets:
       - pihole_webpasswd
+    restart: unless-stopped
+
+  unbound:
+    image: klutchell/unbound:1.26.0@sha256:5020cfe1218aeda38777f88279220162e602c3a44efc684550dbf46137106a16
+    networks:
+      - unbound
+    # volumes:
+    #   - /path/to/config:/etc/unbound/custom.conf.d
     restart: unless-stopped
 
 secrets:
@@ -27,3 +39,5 @@ secrets:
 networks:
   proxy:
     name: proxy
+  unbound:
+    name: unbound
