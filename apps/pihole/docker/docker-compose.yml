@@ -29,13 +29,6 @@ services:
     image: klutchell/unbound:1.26.0@sha256:5020cfe1218aeda38777f88279220162e602c3a44efc684550dbf46137106a16
     networks:
       - unbound
-    # healthcheck:
-    #   # Use the drill wrapper binary to reduce the exit codes to 0 or 1 for healthchecks
-    #   test: ['CMD', 'drill-hc', '@127.0.0.1', 'dnssec.works']
-    #   interval: 30s
-    #   timeout: 30s
-    #   retries: 3
-    #   start_period: 30s
     # volumes:
     #   - /path/to/config:/etc/unbound/custom.conf.d
     restart: unless-stopped
