@@ -1,4 +1,4 @@
-#cloud-config
+# cloud-config
 
 hostname: fedora-workstation
 fqdn: fedora-workstation.local
