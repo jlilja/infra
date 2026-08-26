@@ -1,9 +1,10 @@
-dns.liljalab.com {
-
+(headers) {
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains"
     }
+}
 
+(ovh) {
     tls {
         dns ovh {
             endpoint {$OVH_ENDPOINT}
@@ -12,74 +13,39 @@ dns.liljalab.com {
             consumer_key {$CONSUMER_KEY}
         }
     }
+}
+
+dns.liljalab.com {
+    import headers
+    import ovh
 
     reverse_proxy pihole:80
 }
 
 truenas.liljalab.com {
-        header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains"
-    }
-
-    tls {
-        dns ovh {
-            endpoint {$OVH_ENDPOINT}
-            application_key {$APPLICATION_KEY}
-            application_secret {$APPLICATION_SECRET}
-            consumer_key {$CONSUMER_KEY}
-        }
-    }
+    import headers
+    import ovh
 
     reverse_proxy 192.168.53.5
 }
 
 immich.liljalab.com {
-        header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains"
-    }
-
-    tls {
-        dns ovh {
-            endpoint {$OVH_ENDPOINT}
-            application_key {$APPLICATION_KEY}
-            application_secret {$APPLICATION_SECRET}
-            consumer_key {$CONSUMER_KEY}
-        }
-    }
+    import headers
+    import ovh
 
     reverse_proxy 192.168.53.5:2283
 }
 
 router.liljalab.com {
-        header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains"
-    }
-
-    tls {
-        dns ovh {
-            endpoint {$OVH_ENDPOINT}
-            application_key {$APPLICATION_KEY}
-            application_secret {$APPLICATION_SECRET}
-            consumer_key {$CONSUMER_KEY}
-        }
-    }
+    import headers
+    import ovh
 
     reverse_proxy 192.168.1.1
 }
 
 cloudkey.liljalab.com {
-        header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains"
-    }
-
-    tls {
-        dns ovh {
-            endpoint {$OVH_ENDPOINT}
-            application_key {$APPLICATION_KEY}
-            application_secret {$APPLICATION_SECRET}
-            consumer_key {$CONSUMER_KEY}
-        }
-    }
+    import headers
+    import ovh
 
     reverse_proxy 192.168.1.13
 }
