@@ -40,12 +40,12 @@ router.liljalab.com {
     import headers
     import ovh
 
-    reverse_proxy 192.168.1.1
+    reverse_proxy 192.168.1.1/#/login
 }
 
 cloudkey.liljalab.com {
     import headers
     import ovh
 
-    reverse_proxy 192.168.1.13
+    reverse_proxy 192.168.1.13/login
 }
