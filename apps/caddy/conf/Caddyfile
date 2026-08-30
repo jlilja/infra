@@ -41,6 +41,7 @@ router.liljalab.com {
     import ovh
 
     # Unifi OS expects us to talk https regardless, so we need to proxy to it, otherwise we get a redirect loop.
+    # Once it reaches Unifi's proxy Caddy will want to verify the authenticity, but this time aroun we skip it.
     reverse_proxy https://192.168.1.1 {
         transport http {
             tls_insecure_skip_verify
@@ -53,6 +54,7 @@ cloudkey.liljalab.com {
     import ovh
 
     # Cloudkey expects us to talk https regardless, so we need to proxy to it, otherwise we get a redirect loop.
+    # Once it reaches Cloudkey's proxy Caddy will want to verify the authenticity, but this time aroun we skip it.
     reverse_proxy https://192.168.1.13 {
         transport http {
             tls_insecure_skip_verify
