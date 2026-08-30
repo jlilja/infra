@@ -47,5 +47,5 @@ cloudkey.liljalab.com {
     import headers
     import ovh
 
-    reverse_proxy 192.168.1.13/login
+    reverse_proxy 192.168.1.13
 }
