@@ -40,12 +40,14 @@ router.liljalab.com {
     import headers
     import ovh
 
-    reverse_proxy 192.168.1.1/#/login
+    # Unifi OS expects us to talk https regardless, so we need to proxy to it, otherwise we get a redirect loop.
+    reverse_proxy https://192.168.1.1
 }
 
 cloudkey.liljalab.com {
     import headers
     import ovh
 
-    reverse_proxy 192.168.1.13
+    # Cloudkey expects us to talk https regardless, so we need to proxy to it, otherwise we get a redirect loop.
+    reverse_proxy https://192.168.1.13
 }
