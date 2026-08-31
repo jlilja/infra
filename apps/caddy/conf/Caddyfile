@@ -36,6 +36,13 @@ immich.liljalab.com {
     reverse_proxy 192.168.53.5:2283
 }
 
+plex.liljalab.com {
+    import header
+    import ovh
+
+    reverse_proxy 192.168.53.5:32400
+}
+
 router.liljalab.com {
     import headers
     import ovh
