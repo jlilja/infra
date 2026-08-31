@@ -1,35 +1,18 @@
-## Machines ##
-
-resource "pihole_local_dns" "jameson" {
-  hostname = "jameson.liljalab.com"
-  ip       = "192.168.10.11"
-}
-
-## Services ##
-
-resource "pihole_local_dns" "immich" {
-  hostname = "immich.liljalab.com"
-  ip       = "192.168.10.11"
-}
-
-resource "pihole_local_dns" "truenas" {
-  hostname = "truenas.liljalab.com"
-  ip       = "192.168.10.11"
-}
-
-## Infrastructure ##
-
-resource "pihole_local_dns" "dns" {
-  hostname = "dns.liljalab.com"
-  ip       = "192.168.10.11"
-}
-
-resource "pihole_local_dns" "router" {
-  hostname = "router.liljalab.com"
-  ip       = "192.168.10.11"
+locals {
+  jameson_tls_terminated_services = [
+    "cloudkey.liljalab.com",
+    "dns.liljalab.com",
+    "immich.liljalab.com",
+    "jameson.liljalab.com",
+    "plex.liljalab.com",
+    "router.liljalab.com",
+    "truenas.liljalab.com",
+  ]
 }
 
 resource "pihole_local_dns" "cloudkey" {
-  hostname = "cloudkey.liljalab.com"
+  for_each = toset(local.jameson_tls_terminated_services)
+
+  hostname = each.value
   ip       = "192.168.10.11"
 }
