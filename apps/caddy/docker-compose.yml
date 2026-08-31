@@ -1,6 +1,6 @@
 services:
   caddy:
-    image: caddy-server:latest
+    image: badouralix/caddy-dns-ovh:2.9.1@sha256:dd12a91dd2af70e3855cf1806ef7750526d740e6290f43a43e82ff90a8e881a4
     restart: unless-stopped
     pull_policy: never
     environment:
