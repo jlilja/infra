@@ -26,7 +26,16 @@ truenas.liljalab.com {
     import headers
     import ovh
 
-    reverse_proxy 192.168.53.5
+    reverse_proxy 192.168.53.5 {
+        # To allow API calls with API tokens to pass to Truenas without Truenas
+        # invalidating the token, because of a insecure connection between
+        # proxy and origin. So we need to be explicit that this runs over
+        # https by passing the appropriate headers injected at a proxy level.
+
+        header_up X-Forwarded-Proto https
+        header_up X-Forwarded-Host {host}
+        header_up X-Forwarded-Port 443
+    }
 }
 
 immich.liljalab.com {
