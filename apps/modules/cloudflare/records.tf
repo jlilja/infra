@@ -1,4 +1,4 @@
-resource "cloudflare_record" "mx_records" {
+resource "cloudflare_dns_record" "mx_records" {
   for_each = toset(var.mx_records)
 
   zone_id = var.zone_id
@@ -7,14 +7,13 @@ resource "cloudflare_record" "mx_records" {
   name    = var.zone_name
   content = each.value
 
-  proxied = false
-
-  ttl      = 1
+  proxied  = false
+  ttl      = var.record_ttl
   priority = index(var.mx_records, each.value) + 1
   comment  = "MX records for ${var.zone_name} zone."
 }
 
-resource "cloudflare_record" "cname_records" {
+resource "cloudflare_dns_record" "cname_records" {
   for_each = { for record in var.cname_records : "${record.name}-${record.value}" => record }
 
   zone_id = var.zone_id
@@ -24,9 +23,10 @@ resource "cloudflare_record" "cname_records" {
   content = each.value.value
 
   proxied = false
+  ttl     = var.record_ttl
 }
 
-resource "cloudflare_record" "txt_records" {
+resource "cloudflare_dns_record" "txt_records" {
   for_each = { for record in var.txt_records : "${record.name}-${record.value}" => record }
 
   zone_id = var.zone_id
@@ -36,4 +36,5 @@ resource "cloudflare_record" "txt_records" {
   content = each.value.value
 
   proxied = false
+  ttl     = var.record_ttl
 }
