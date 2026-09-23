@@ -9,7 +9,7 @@ updates:
       - "/apps/grafana"
       - "/apps/modules/**/*.tf"
       - "/apps/ovh"
-      - "/apps/pihole"
+      - "/apps/pihole/terraform"
       - "/apps/truenas"
       - "/apps/unifi"
 
@@ -18,7 +18,7 @@ updates:
 
   - package-ecosystem: "docker-compose"
     directories:
-      - "/devices/margarita/pihole"
+      - "/apps/pihole/docker"
 
       - "/devices/jameson/elk"
       - "/devices/jameson/prometheus"
