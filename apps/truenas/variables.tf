@@ -3,3 +3,8 @@ variable "api_key" {
   sensitive = true
   description = "Truenas api key"
 }
+
+variable "truenas_username" {
+  sensitive = true
+  type = string
+}
