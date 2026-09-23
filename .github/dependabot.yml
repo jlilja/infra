@@ -4,10 +4,15 @@ version: 2
 updates:
   - package-ecosystem: "terraform"
     directories:
-      - "/terraform/cloudflare"
-      - "/terraform/edgerouter"
-      - "/terraform/elk"
-      - "/terraform/unifi"
+      - "/apps/cloudflare"
+      - "/apps/elk"
+      - "/apps/grafana"
+      - "/apps/modules/**/*.tf"
+      - "/apps/ovh"
+      - "/apps/pihole"
+      - "/apps/truenas"
+      - "/apps/unifi"
+
     schedule:
       interval: "monthly"
 
