@@ -1,50 +1,50 @@
 (headers) {
-    header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains"
-    }
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+	}
 }
 
 (ovh) {
-    tls {
-        dns ovh {
-            endpoint {$OVH_ENDPOINT}
-            application_key {$APPLICATION_KEY}
-            application_secret {$APPLICATION_SECRET}
-            consumer_key {$CONSUMER_KEY}
-        }
-    }
+	tls {
+		dns ovh {
+			endpoint {$OVH_ENDPOINT}
+			application_key {$APPLICATION_KEY}
+			application_secret {$APPLICATION_SECRET}
+			consumer_key {$CONSUMER_KEY}
+		}
+	}
 }
 
 dns.liljalab.com {
-    import headers
-    import ovh
+	import headers
+	import ovh
 
-    reverse_proxy pihole:80
+	reverse_proxy pihole:80
 }
 
 truenas.liljalab.com {
-    import headers
-    import ovh
+	import headers
+	import ovh
 
-    reverse_proxy https://192.168.53.5 {
-        transport http {
-            tls_insecure_skip_verify
-        }
-    }
+	reverse_proxy https://192.168.53.5 {
+		transport http {
+			tls_insecure_skip_verify
+		}
+	}
 }
 
 immich.liljalab.com {
-    import headers
-    import ovh
+	import headers
+	import ovh
 
-    reverse_proxy 192.168.86.33:2283
+	reverse_proxy 192.168.86.33:2283
 }
 
 plex.liljalab.com {
-    import headers
-    import ovh
+	import headers
+	import ovh
 
-    reverse_proxy 192.168.86.33:32400
+	reverse_proxy 192.168.86.33:32400
 }
 
 # router.liljalab.com {
