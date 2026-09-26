@@ -18,6 +18,8 @@ services:
       - ./site:/srv
       - caddy_data:/data
       - caddy_config:/config
+    post_start:
+      - command: caddy reload
 
 volumes:
   caddy_data:
