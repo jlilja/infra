@@ -1,13 +1,28 @@
 services:
   app:
     container_name: doco-cd
-    image: ghcr.io/kimdre/doco-cd:0.80
+    image: ghcr.io/kimdre/doco-cd:0.119.0
     restart: unless-stopped
     environment:
       TZ: Europe/Stockholm
       METRICS_PORT: 9999
       POLL_CONFIG_FILE: /poll-config.yml
 
+      # Pass the host's environment variable into the Doco-CD container
+      PIHOLE_PASSWORD: ${PIHOLE_PASSWORD}
+
+      OVH_ENDPOINT: ${OVH_ENDPOINT}
+      APPLICATION_KEY: ${APPLICATION_KEY}
+      APPLICATION_SECRET: ${APPLICATION_SECRET}
+      CONSUMER_KEY: ${CONSUMER_KEY}
+
+      # Allow Doco-CD to forward its environment to docker compose
+      PASS_ENV: "true"
+
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./poll-config.yml:/poll-config.yml:ro
+      - data:/data
+
+volumes:
+  data:

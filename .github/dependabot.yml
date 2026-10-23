@@ -12,22 +12,15 @@ updates:
       - "/apps/pihole/terraform"
       - "/apps/truenas"
       - "/apps/unifi"
-
     schedule:
-      interval: "monthly"
+      interval: "weekly"
 
   - package-ecosystem: "docker-compose"
     directories:
       - "/apps/pihole/docker"
-
-      - "/devices/jameson/elk"
-      - "/devices/jameson/prometheus"
-
-      - "/devices/baileys/prometheus"
-
       - "/doco-cd/jameson"
     schedule:
-      interval: "monthly"
+      interval: "weekly"
 
   - package-ecosystem: "github-actions"
     directory: "/"
