@@ -2,18 +2,18 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/dklesev/pihole" {
-  version     = "1.0.7"
-  constraints = "1.0.7"
+  version     = "1.0.9"
+  constraints = "1.0.9"
   hashes = [
-    "h1:yvrDuO2H9jKFn68jI2LOs8jWYjHSM9HVciC+264Oefo=",
-    "zh:0a00a680ffe1cd2e59183df166d8b07e7107a33305ed603dfdb19f35b859b369",
-    "zh:21951899f858e023f2d678a36378ad3bc9eef691d37da0edbf74b69364b549e0",
-    "zh:3d37ac1f238764eb210f18281a2cbf92b2031b9470401f42e09b78973ccf9b35",
-    "zh:699bc28544b2d369ec4ee6c1f0b268a010fa88fb209538eb53504d9eb2c33e27",
-    "zh:69d6ef3eed8c9954587745afe06faefd7da55d5b3b07e595dc5708a9384f1766",
-    "zh:8863a0f450613d48ba3ea8ea6735dde2edad27dfe5001c7a93a15b262043c638",
+    "h1:aLJqPCF/IP8vZySKXhn6nZAi3wIu5u92tLZSy0rrCHs=",
+    "zh:01c9e1b3bbee3e0c6a2c6f4e1875d33471c66ac28cdbe56347eb19bf9f1abda2",
+    "zh:06e0b8d1a2049b64067e28c99b225f14341094f2cdc7ed220a0df048f3c4f21c",
+    "zh:35db810c66e143733de7378d4240604178e22ccc64aa7b1046ce9ac3bf75ad8e",
+    "zh:500d6d9bab49730d992cc8b434dce531a0206f339bbd37816e8a65eac952fa72",
+    "zh:6f8b40b3cc728191e622912a78faa219fcc060a2d08d49c9e689f4a55eed21ab",
+    "zh:9a59515d2f6a6a21d8b769eb737a0a112615b61b956b5a67232375ea87996a69",
     "zh:a33d53acc640dc93b81352ba633cf392bc8c7614a72d320d59d3dcdb22d73fc4",
-    "zh:ba4ce4a83179c00cdb4870de7b3e62d93050dbd6b75ea228a229e59079fc7ca0",
-    "zh:f155326fc97048d1fb5abe3bbe44f00b7cb52c39286c1c2f6f6b108da474fa4c",
+    "zh:ac1a7727dfeb3e6ad3d9d14bfd065e30715166e554a67ee977e7b9e0febf612f",
+    "zh:dc38e344c6c6f4675e6e1b67692d4212fff443fea03b3513ff39bf48bfc20281",
   ]
 }
