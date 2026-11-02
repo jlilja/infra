@@ -1,13 +1,13 @@
 locals {
   jameson_tls_terminated_services = [
-    # "cloudkey.liljalab.com",
+     "truenas.liljalab.com",
+     "warracker.liljalab.com",
     "dns.liljalab.com",
     "immich.liljalab.com",
     "jameson.liljalab.com",
     "plex.liljalab.com",
+    # "cloudkey.liljalab.com",
     # "router.liljalab.com",
-     "truenas.liljalab.com",
-     "warracker.liljalab.com",
   ]
 }
 
