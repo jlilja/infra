@@ -40,6 +40,13 @@ immich.liljalab.com {
 	reverse_proxy 192.168.86.33:2283
 }
 
+warracker.liljalab.com {
+	import headers
+	import ovh
+
+	reverse_proxy 192.168.86.33:30148
+}
+
 plex.liljalab.com {
 	import headers
 	import ovh
