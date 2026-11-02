@@ -26,7 +26,7 @@ truenas.liljalab.com {
 	import headers
 	import ovh
 
-	reverse_proxy https://192.168.53.5 {
+	reverse_proxy https://192.168.86.33 {
 		transport http {
 			tls_insecure_skip_verify
 		}
