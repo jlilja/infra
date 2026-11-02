@@ -7,6 +7,7 @@ locals {
     "plex.liljalab.com",
     # "router.liljalab.com",
      "truenas.liljalab.com",
+     "warracker.liljalab.com",
   ]
 }
 
