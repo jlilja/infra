@@ -2,17 +2,17 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/pjsalty/truenas" {
-  version     = "3.1.1"
+  version     = "3.4.0"
   constraints = "~> 3.0"
   hashes = [
-    "h1:noM2enzJJfRTiSovJ2Eh4daXMZHQt3a0Ual+t59LAeE=",
-    "zh:050db8819c21a8f7b8e4a5ac868776c5ec59ed9de0861c68b5950bd21f93ae36",
-    "zh:0ade3b36ef09b87932694c83f0235700d9ec9f9a22cd9e8b1ca17ce5b6a3d0b6",
-    "zh:1fbbe7cf3e8e1e5fdcee3e5591f5615682e7ca6af8161831083d5ff7eb589715",
-    "zh:3d0dc9d038bf6288740adbed4d63c4e2e2ea1ea67c6546e4e19a74e01d0fe814",
-    "zh:55660f4ec74b3ed7b428d1b4997bb0fd98235f9a7913fb0fb9d4c9d1e6b7dc40",
-    "zh:c8adf6fa5b6e2a1195dac5dce041ff6b375f8726d5e5d60e5282385b2a634449",
-    "zh:d19cd21d5fe27968b343049afd2ffcb650174acbeac6f13086986a4374a4a57d",
+    "h1:qUlNd16Asg7nZAUbyX+vrikZvfY/KpDk8y7JChvxOKI=",
+    "zh:57e3c17d91f43d89437b644510b2b47fc54c3586df73d584b5d8be660671eb73",
+    "zh:8b32c5aa8a7903995411d45a0597c95f2b095ee0b3059fcb2530b0b597be8666",
+    "zh:91e0fca51d27abdc00e35d3cf4e5bda75e3c0b408fea22435c6270ac8194a523",
+    "zh:968e49a5cdd3a4104b106c9b868728116a13dfa8d85c899915cfa54e526f12f7",
+    "zh:974e201e950a22686c2c6fdda01c92e856e8926955f4ada4ef77c698c642193d",
+    "zh:99f221caeedc31026b6dfe6b108be95ec2e7cbdb140d78e989f571d217a6c7b3",
+    "zh:9d1a5ae1655d953ef881230fa4cda6d999f1dda9c1ef57416eca3158d7ddb82c",
     "zh:f809ab383cca0a5f83072981c64208cbd7fa67e986a86ee02dd2c82333221e32",
   ]
 }
