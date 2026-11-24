@@ -4,7 +4,7 @@ resource "truenas_share_nfs" "this" {
   enabled  = var.enabled
 
   networks = [
-    local.lan
+    var.range
   ]
 
   maproot_user  = "root"
