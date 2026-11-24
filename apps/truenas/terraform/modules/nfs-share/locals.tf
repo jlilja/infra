@@ -1,8 +1,16 @@
 # Shares
 locals {
-  music  = "/mnt/media/Music"
-  movies = "/mnt/media/Movies"
-  shows  = "/mnt/media/Shows"
+  media_types = [
+    "music",
+    "movies",
+    "shows"
+  ]
+
+  media_paths = [
+    "/mnt/media/Music",
+    "/mnt/media/Movies",
+    "/mnt/media/Shows"
+  ]
 }
 
 # Locations
