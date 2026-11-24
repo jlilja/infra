@@ -21,3 +21,7 @@ variable "enabled" {
 
   default = false
 }
+
+variable "range" {
+  type = string
+}
